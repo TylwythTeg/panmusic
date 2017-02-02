@@ -82,9 +82,7 @@ class Interval(Enum):
     def flat(self):
         return self.value - 1
     
-    def iterate(self):
-        for interval in Interval:
-            print(interval)
+
     
         
     

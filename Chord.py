@@ -5,15 +5,26 @@ class Chord():
     name = None
     notes = []
     triad = None
+
+    def __init__(self, root):
+        self.root = root
+        self.name = "Scale"
+        print("hey")
+
+    def generate_notes(self):
+        for interval in self.intervals:
+            self.notes.append(self.root.plus(interval))
+
     
-    def factory(type, root, sus_interval=None):
+    def factory(type, root):
         types = {
             Triad.MAJOR: MajorChord(root),
             Triad.MINOR: MinorChord(root),
-            Triad.MINOR: SuspendedChord(root,sus_interval),
-            Triad.MINOR: AugmentedChord(root),
-            Triad.MINOR: DiminishedChord(root),
-            Triad.MINOR: FlatFifthChord(root)
+            Triad.SUSPENDED_SECOND: SuspendedChord(root, Interval.MAJOR_SECOND),
+            Triad.SUSPENDED_FOURTH: SuspendedChord(root, Interval.FOURTH),
+            Triad.AUGMENTED: AugmentedChord(root),
+            Triad.DIMINISHED: DiminishedChord(root),
+            Triad.FLAT_FIFTH: FlatFifthChord(root)
         }
         return types.get(type)
         
@@ -34,79 +45,76 @@ class Triad(Enum):
     FLAT_FIFTH = 6
 
 class MajorChord(Chord):
-    
+    intervals = {
+        Interval.MAJOR_THIRD,
+        Interval.FIFTH
+    }
     def __init__(self, root):
         self.root = root
         self.name = root.__str__() + " Major Chord"
-        self.addNotes()
-        #print(self.notes)    
-        
-    def addNotes(self):
-        self.notes = []
-        self.notes.append(self.root)
-        self.notes.append(self.root.plus(Interval.MAJOR_THIRD))
-        self.notes.append(self.root.plus(Interval.FIFTH))
+        self.notes = [self.root]
+        self.generate_notes()
+        #print(self.notes)
+
         
         
         
         
-class MinorChord(Chord):   
+class MinorChord(Chord):
+    intervals = {
+        Interval.MINOR_THIRD,
+        Interval.FIFTH
+    }
     def __init__(self, root):
         self.root = root
         self.name = root.__str__() + " Minor Chord"
-        self.addNotes()
+        self.notes = [self.root]
+        self.generate_notes()
         
-    def addNotes(self):
-        self.notes = []
-        self.notes.append(self.root)
-        self.notes.append(self.root.plus(Interval.MINOR_THIRD))
-        self.notes.append(self.root.plus(Interval.FIFTH))
-        
-class SuspendedChord(Chord):   
+class SuspendedChord(Chord):
+
     def __init__(self, root, interval):
         self.root = root
         self.name = root.__str__() + " Suspended " + interval.__str__() + " Chord"
         self.susInterval = interval
-        self.addNotes()
+        self.intervals = {
+            self.susInterval,
+            Interval.FIFTH
+        }
+        self.notes = [self.root]
+        self.generate_notes()
         
-    def addNotes(self):
-        self.notes = []
-        self.notes.append(self.root)
-        self.notes.append(self.root.plus(self.susInterval))
-        self.notes.append(self.root.plus(Interval.FIFTH))
-        
-class AugmentedChord(Chord):   
+class AugmentedChord(Chord):
+    intervals = {
+        Interval.MAJOR_THIRD,
+        Interval.MINOR_SIXTH
+    }
     def __init__(self, root):
         self.root = root
         self.name = root.__str__() + " Augmented Chord"
-        self.addNotes()
+        self.notes = [self.root]
+        self.generate_notes()
+
         
-    def addNotes(self):
-        self.notes = []
-        self.notes.append(self.root)
-        self.notes.append(self.root.plus(Interval.MAJOR_THIRD))
-        self.notes.append(self.root.plus(Interval.MINOR_SIXTH))
-        
-class DiminishedChord(Chord):   
+class DiminishedChord(Chord):
+    intervals = {
+        Interval.MINOR_THIRD,
+        Interval.DIMINISHED_FIFTH
+    }
     def __init__(self, root):
         self.root = root
         self.name = root.__str__() + " Diminished Chord"
-        self.addNotes()
-        
-    def addNotes(self):
-        self.notes = []
-        self.notes.append(self.root)
-        self.notes.append(self.root.plus(Interval.MINOR_THIRD))
-        self.notes.append(self.root.plus(Interval.DIMINISHED_FIFTH))
+        self.notes = [self.root]
+        self.generate_notes()
 
-class FlatFifthChord(Chord):   
+
+class FlatFifthChord(Chord):
+    intervals = {
+        Interval.MAJOR_THIRD,
+        Interval.DIMINISHED_FIFTH
+    }
     def __init__(self, root):
         self.root = root
         self.name = root.__str__() + " Flat Fifth Chord"
-        self.addNotes()
-        
-    def addNotes(self):
-        self.notes = []
-        self.notes.append(self.root)
-        self.notes.append(self.root.plus(Interval.MAJOR_THIRD))
-        self.notes.append(self.root.plus(Interval.DIMINISHED_FIFTH))
+        self.notes = [self.root]
+        self.generate_notes()

@@ -19,41 +19,17 @@ class Scale():
             print(triad)
             
     def build_triads_for_note(self, root):
-        triads_for_note = []
-        """chords = {
-            Triad.MAJOR: MajorChord(root),
-            Triad.MINOR: MinorChord(root),
-            Triad.SUSPENDED_SECOND: SuspendedChord(root, Interval.MAJOR_SECOND),
-            Triad.SUSPENDED_FOURTH: MinorChord(root),
-            Triad.MINOR: MinorChord(root),
-            Triad.MINOR: MinorChord(root),
-            Triad.MINOR: MinorChord(root),
-        }"""
+        triads = []
 
         for triad in Triad:
             chord = Chord.factory(triad,root)
             if self.hasNotes(chord.notes):
-                triads_for_note.append(chord)
-        #if self.hasNotes()
+                triads.append(chord)
 
-        """if self.has_triad(root, Triad.MAJOR):
-            triads_for_note.append(MajorChord(root))
-        if self.has_triad(root, Triad.MINOR):
-            triads_for_note.append(MinorChord(root))
-        if self.has_triad(root, Triad.SUSPENDED_SECOND):
-            triads_for_note.append(SuspendedChord(root, Interval.MAJOR_SECOND))
-        if self.has_triad(root, Triad.SUSPENDED_FOURTH):
-            triads_for_note.append(SuspendedChord(root, Interval.FOURTH))
-        if self.has_triad(root, Triad.AUGMENTED):
-            triads_for_note.append(AugmentedChord(root))
-        if self.has_triad(root, Triad.DIMINISHED):
-            triads_for_note.append(DiminishedChord(root))
-        if self.has_triad(root, Triad.FLAT_FIFTH):
-            triads_for_note.append(FlatFifthChord(root))"""
-        
-        for triad in triads_for_note:
+        """Print debug"""
+        for triad in triads:
             print(triad)
-        return triads_for_note
+        return triads
             
         
     def has_triad(self, root, triad):
