@@ -60,16 +60,18 @@ class Interval(Enum):
     MAJOR_SIXTH = 9
     MINOR_SEVENTH = 10
     MAJOR_SEVENTH = 11
-    OCTAVE = 12
     
     def __str__(self):
         choices = {
             Interval.UNISON: "Unison",
-            Interval.MAJOR_SECOND: "Second",
+            Interval.MINOR_SECOND: "Minor Second",
+            Interval.MAJOR_SECOND: "Major Second",
             Interval.MINOR_THIRD: "Minor Third",
             Interval.MAJOR_THIRD: "Major Third",
             Interval.FOURTH: "Fourth",
+            Interval.DIMINISHED_FIFTH: "Diminished Fifth",
             Interval.FIFTH: "Fifth",
+            Interval.MINOR_SIXTH: "Minor Sixth",
             Interval.MAJOR_SIXTH: "Sixth",
             Interval.MINOR_SEVENTH: "Dominant Seventh",
             Interval.MAJOR_SEVENTH: "Major Seventh",

@@ -3,68 +3,56 @@ from Chord import *
 
 class Scale():
     notes = []
-    triads = {}
     name = "Scale"
     
     #def factory()
+
+    def generate_notes(self):
+        self.notes = [self.root]
+        for interval in self.intervals:
+            self.notes.append(self.root.plus(interval))
     
-    def addTriads(self):
+    def add_triads(self):
+        self.triads = {}
         for note in self.notes:
             print ("\nChords for",note)
-            self.triads[note] = self.build_triads_for_note(note)
+            self.triads[note] = self.generate_triads(note)
             
             
         print("\nTest:")
         for triad in self.triads[Note.E]:
             print(triad)
             
-    def build_triads_for_note(self, root):
+    def generate_triads(self, root):
         triads = []
 
         for triad in Triad:
             chord = Chord.factory(triad,root)
-            if self.hasNotes(chord.notes):
+            if self.has_chord(chord):
                 triads.append(chord)
 
         """Print debug"""
         for triad in triads:
             print(triad)
         return triads
-            
-        
-    def has_triad(self, root, triad):
-        #triads = {
-            #Triad.MAJOR: return self.hasNotes(MajorChord(root).notes)
 
-        #}
-        if triad == Triad.MAJOR:
-            return self.hasNotes(MajorChord(root).notes)
-        if triad == Triad.MINOR:
-            return self.hasNotes(MinorChord(root).notes)
-        if triad == Triad.SUSPENDED_SECOND:
-            return self.hasNotes(SuspendedChord(root,Interval.MAJOR_SECOND).notes)
-        if triad == Triad.SUSPENDED_FOURTH:
-            return self.hasNotes(SuspendedChord(root,Interval.FOURTH).notes)
-        if triad == Triad.AUGMENTED:
-            return self.hasNotes(AugmentedChord(root).notes)
-        if triad == Triad.DIMINISHED:
-            return self.hasNotes(DiminishedChord(root).notes)
-        if triad == Triad.FLAT_FIFTH:
-            return self.hasNotes(FlatFifthChord(root).notes)
-        return False
+
+
+    def has_chord(self, chord):
+        return self.has_notes(chord.notes)
 
     def __str__(self):
         return self.name
    
 
-    def hasNotes(self, notes):
+    def has_notes(self, notes):
         for note in notes:
-            if not self.hasNote(note):
+            if not self.has_note(note):
                 return False
         return True
                 
             
-    def hasNote(self, note):
+    def has_note(self, note):
         for scale_note in self.notes:
             if note == scale_note:
                 return True
@@ -80,31 +68,39 @@ class Scale():
 
 class PhrygianScale(Scale):
 
-    intervals = {
+    intervals = [
         Interval.MINOR_SECOND,
         Interval.MINOR_THIRD,
         Interval.FOURTH,
         Interval.FIFTH,
         Interval.MINOR_SIXTH,
         Interval.MINOR_SEVENTH
-    }
+    ]
     def __init__(self, root):
         self.root = root
         self.name = root.__str__() + " Phrygian Scale"
-        self.addNotes()
-        self.triads = {}
-        self.addTriads()
+        print(self.name)
+        self.generate_notes()
+
+
+        self.add_triads()
         
         
-    def addNotes(self):
-        self.notes = [self.root]
-        for interval in self.intervals:
-            self.notes.append(self.root.plus(interval))
+
 
         
         
 scl = PhrygianScale(Note.E)
-print(scl)
+print(PhrygianScale(Note.E).notes)
+print("SDFFFFFFFF")
+print(PhrygianScale(Note.E).notes)
+
+print(MajorChord(Note.E).notes)
+print(MajorChord(Note.E).notes)
+print(MajorChord(Note.E).notes)
+#print(PhrygianScale(Note.E).triads)
+
+#print(scl)
 #print(scl.hasTriad(Note.F, Triad.FLAT_FIFTH))
 
 #for note in scl.notes:
