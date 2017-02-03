@@ -1,7 +1,8 @@
 import unittest
-from Scale import *
+from Fretboard import *
 
 class Test(unittest.TestCase):
-    def
+    def test(self):
+        self.assertEqual()
     
 unittest.main()
