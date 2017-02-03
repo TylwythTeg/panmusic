@@ -65,7 +65,7 @@ class Interval(Enum):
         choices = {
             Interval.UNISON: "Unison",
             Interval.MINOR_SECOND: "Minor Second",
-            Interval.MAJOR_SECOND: "Major Second",
+            Interval.MAJOR_SECOND: "Second",
             Interval.MINOR_THIRD: "Minor Third",
             Interval.MAJOR_THIRD: "Major Third",
             Interval.FOURTH: "Fourth",

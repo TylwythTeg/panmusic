@@ -65,9 +65,40 @@ class Scale():
     
     
 
+"""The Modal Scales. Heptatonic. Diatonic."""
+class IonianScale(Scale):
+    intervals = [
+        Interval.MAJOR_SECOND,
+        Interval.MAJOR_THIRD,
+        Interval.FOURTH,
+        Interval.FIFTH,
+        Interval.MAJOR_SIXTH,
+        Interval.MAJOR_SEVENTH
+    ]
+    def __init__(self, root):
+        self.name = root.__str__() + " Major (Ionian) Scale"
+        print(self.name)
+        self.root = root
+        self.generate_notes()
+        self.add_triads()
+
+class DorianScale(Scale):
+    intervals = [
+        Interval.MAJOR_SECOND,
+        Interval.MINOR_THIRD,
+        Interval.FOURTH,
+        Interval.FIFTH,
+        Interval.MAJOR_SIXTH,
+        Interval.MINOR_SEVENTH
+    ]
+    def __init__(self, root):
+        self.name = root.__str__() + " Dorian Scale"
+        print(self.name)
+        self.root = root
+        self.generate_notes()
+        self.add_triads()
 
 class PhrygianScale(Scale):
-
     intervals = [
         Interval.MINOR_SECOND,
         Interval.MINOR_THIRD,
@@ -77,12 +108,74 @@ class PhrygianScale(Scale):
         Interval.MINOR_SEVENTH
     ]
     def __init__(self, root):
-        self.root = root
         self.name = root.__str__() + " Phrygian Scale"
         print(self.name)
+        self.root = root
         self.generate_notes()
+        self.add_triads()
 
+class LydianScale(Scale):
+    intervals = [
+        Interval.MAJOR_SECOND,
+        Interval.MAJOR_THIRD,
+        Interval.DIMINISHED_FIFTH,
+        Interval.FIFTH,
+        Interval.MAJOR_SIXTH,
+        Interval.MAJOR_SEVENTH
+    ]
+    def __init__(self, root):
+        self.name = root.__str__() + " Lydian Scale"
+        print(self.name)
+        self.root = root
+        self.generate_notes()
+        self.add_triads()
 
+class MixolydianScale(Scale):
+    intervals = [
+        Interval.MAJOR_SECOND,
+        Interval.MAJOR_THIRD,
+        Interval.FOURTH,
+        Interval.FIFTH,
+        Interval.MAJOR_SIXTH,
+        Interval.MINOR_SEVENTH
+    ]
+    def __init__(self, root):
+        self.name = root.__str__() + " Mixolydian Scale"
+        print(self.name)
+        self.root = root
+        self.generate_notes()
+        self.add_triads()
+
+class AeolianScale(Scale):
+    intervals = [
+        Interval.MAJOR_SECOND,
+        Interval.MINOR_THIRD,
+        Interval.FOURTH,
+        Interval.FIFTH,
+        Interval.MINOR_SIXTH,
+        Interval.MINOR_SEVENTH
+    ]
+    def __init__(self, root):
+        self.name = root.__str__() + " Aeolian (Natural Minor) Scale"
+        print(self.name)
+        self.root = root
+        self.generate_notes()
+        self.add_triads()
+
+class LocrianScale(Scale):
+    intervals = [
+        Interval.MINOR_SECOND,
+        Interval.MINOR_THIRD,
+        Interval.FOURTH,
+        Interval.DIMINISHED_FIFTH,
+        Interval.MINOR_SIXTH,
+        Interval.MINOR_SEVENTH
+    ]
+    def __init__(self, root):
+        self.name = root.__str__() + " Locrian Scale"
+        print(self.name)
+        self.root = root
+        self.generate_notes()
         self.add_triads()
         
         
@@ -100,6 +193,9 @@ print(MajorChord(Note.E).notes)
 print(MajorChord(Note.E).notes)
 #print(PhrygianScale(Note.E).triads)
 
+
+scl = LocrianScale(Note.B)
+print(LocrianScale(Note.B).notes)
 #print(scl)
 #print(scl.hasTriad(Note.F, Triad.FLAT_FIFTH))
 

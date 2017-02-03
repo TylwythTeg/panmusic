@@ -12,6 +12,7 @@ class Chord():
         print("hey")
 
     def generate_notes(self):
+        self.notes = [self.root]
         for interval in self.intervals:
             self.notes.append(self.root.plus(interval))
 
@@ -44,6 +45,20 @@ class Triad(Enum):
     DIMINISHED = 5
     FLAT_FIFTH = 6
 
+#MAJOR.sdf =1
+
+    def __str__(self):
+        return {
+            MAJOR: "Major",
+            MINOR: "Minor",
+            SUSPENDED_SECOND: "Suspended Second",
+            SUSPENDED_FOURTH: "Suspended Fourth",
+            AUGMENTED: "Augmented",
+            DIMINISHED: "Diminished",
+            FLAT_FIFTH: "Flat Fifth",
+        }.get(self, 'Triad Not Found')
+
+
 class MajorChord(Chord):
     intervals = {
         Interval.MAJOR_THIRD,
@@ -52,7 +67,6 @@ class MajorChord(Chord):
     def __init__(self, root):
         self.root = root
         self.name = root.__str__() + " Major Chord"
-        self.notes = [self.root]
         self.generate_notes()
         #print(self.notes)
 
@@ -66,22 +80,20 @@ class MinorChord(Chord):
         Interval.FIFTH
     }
     def __init__(self, root):
-        self.root = root
         self.name = root.__str__() + " Minor Chord"
-        self.notes = [self.root]
+        self.root = root
         self.generate_notes()
         
 class SuspendedChord(Chord):
 
     def __init__(self, root, interval):
-        self.root = root
         self.name = root.__str__() + " Suspended " + interval.__str__() + " Chord"
         self.susInterval = interval
         self.intervals = {
             self.susInterval,
             Interval.FIFTH
         }
-        self.notes = [self.root]
+        self.root = root
         self.generate_notes()
         
 class AugmentedChord(Chord):
@@ -90,9 +102,8 @@ class AugmentedChord(Chord):
         Interval.MINOR_SIXTH
     }
     def __init__(self, root):
-        self.root = root
         self.name = root.__str__() + " Augmented Chord"
-        self.notes = [self.root]
+        self.root = root
         self.generate_notes()
 
         
@@ -102,9 +113,8 @@ class DiminishedChord(Chord):
         Interval.DIMINISHED_FIFTH
     }
     def __init__(self, root):
-        self.root = root
         self.name = root.__str__() + " Diminished Chord"
-        self.notes = [self.root]
+        self.root = root
         self.generate_notes()
 
 
@@ -114,7 +124,6 @@ class FlatFifthChord(Chord):
         Interval.DIMINISHED_FIFTH
     }
     def __init__(self, root):
-        self.root = root
         self.name = root.__str__() + " Flat Fifth Chord"
-        self.notes = [self.root]
+        self.root = root
         self.generate_notes()
