@@ -9,7 +9,6 @@ class Chord():
     def __init__(self, root):
         self.root = root
         self.name = "Scale"
-        print("hey")
 
     def generate_notes(self):
         self.notes = [self.root]
@@ -68,7 +67,6 @@ class MajorChord(Chord):
         self.root = root
         self.name = root.__str__() + " Major Chord"
         self.generate_notes()
-        #print(self.notes)
 
         
         

@@ -4,8 +4,22 @@ from Chord import *
 class Scale():
     notes = []
     name = "Scale"
+
+    types = [
+        "Ionian (Major)", "Dorian", "Phrygian", "Lydian", "Mixolydian", "Aeolian (Natural Minor)", "Locrian"
+    ]
     
-    #def factory()
+    def factory(type, root):
+        types = {
+            "Ionian (Major)": IonianScale(root),
+            "Dorian": DorianScale(root),
+            "Phrygian": PhrygianScale(root),
+            "Lydian": LydianScale(root),
+            "Mixolydian": MixolydianScale(root),
+            "Aeolian (Natural Minor)": AeolianScale(root),
+            "Locrian": LocrianScale(root)
+        }
+        return types.get(type)
 
     def generate_notes(self):
         self.notes = [self.root]
@@ -36,7 +50,8 @@ class Scale():
             print(triad)
         return triads
 
-
+    def get_triads(self, note):
+        return self.triads[note]
 
     def has_chord(self, chord):
         return self.has_notes(chord.notes)
@@ -77,7 +92,6 @@ class IonianScale(Scale):
     ]
     def __init__(self, root):
         self.name = root.__str__() + " Major (Ionian) Scale"
-        print(self.name)
         self.root = root
         self.generate_notes()
         self.add_triads()
@@ -93,7 +107,6 @@ class DorianScale(Scale):
     ]
     def __init__(self, root):
         self.name = root.__str__() + " Dorian Scale"
-        print(self.name)
         self.root = root
         self.generate_notes()
         self.add_triads()
@@ -109,7 +122,6 @@ class PhrygianScale(Scale):
     ]
     def __init__(self, root):
         self.name = root.__str__() + " Phrygian Scale"
-        print(self.name)
         self.root = root
         self.generate_notes()
         self.add_triads()
@@ -125,7 +137,6 @@ class LydianScale(Scale):
     ]
     def __init__(self, root):
         self.name = root.__str__() + " Lydian Scale"
-        print(self.name)
         self.root = root
         self.generate_notes()
         self.add_triads()
@@ -141,7 +152,6 @@ class MixolydianScale(Scale):
     ]
     def __init__(self, root):
         self.name = root.__str__() + " Mixolydian Scale"
-        print(self.name)
         self.root = root
         self.generate_notes()
         self.add_triads()
@@ -157,7 +167,6 @@ class AeolianScale(Scale):
     ]
     def __init__(self, root):
         self.name = root.__str__() + " Aeolian (Natural Minor) Scale"
-        print(self.name)
         self.root = root
         self.generate_notes()
         self.add_triads()
@@ -173,7 +182,6 @@ class LocrianScale(Scale):
     ]
     def __init__(self, root):
         self.name = root.__str__() + " Locrian Scale"
-        print(self.name)
         self.root = root
         self.generate_notes()
         self.add_triads()

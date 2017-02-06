@@ -13,7 +13,8 @@ class Note(Enum):
     FSHARP = 9
     G = 10
     GSHARP = 11
-    
+
+
     def __str__(self):
         choices = {
             Note.A: "A",
@@ -27,9 +28,12 @@ class Note(Enum):
             Note.F: "F",
             Note.FSHARP: "F#",
             Note.G: "G",
-            Note.GSHARP: "G#",
+            Note.GSHARP: "G#"
         }
         return choices.get(self, 'Note Not Found')
+
+    def __repr__(self):
+        return self.__str__()
         
     
     
