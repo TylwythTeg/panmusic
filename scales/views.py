@@ -14,36 +14,7 @@ from Note import *
     #return dictionary.get(key)
 
 def index(request):
-    '''print (request.path_info)
-    scl = DorianScale(Note.E)
-    the_triads = {}
-
-    for note in scl.notes:
-        triads_for_note_list = []
-        for triad in scl.triads[note]:
-            triads_for_note_list.append(triad)
-            the_triads[note] = triads_for_note_list'''
-
-
     return render(request, 'scales/home.html',{'content': Scale.types })
-
-
-'''Deprecate this. Don't call it anymore'''
-def dorian(request):
-    print (request.path_info)
-    scl = DorianScale(Note.E)
-    the_triads = {}
-
-    for note in scl.notes:
-        triads_for_note_list = []
-        for triad in scl.triads[note]:
-            triads_for_note_list.append(triad)
-            the_triads[note] = triads_for_note_list
-
-
-
-
-    return HttpResponse("<h2>HEY!</h2>")
 
 
 def scale(request, scale_type):
