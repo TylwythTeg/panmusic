@@ -43,8 +43,7 @@ def dorian(request):
 
 
 
-    return render(request, 'scales/dorian.html',{'content': [scl.notes],'scale_name': scl.name, 'scale' : scl, 'the_triads': the_triads })
-    #return HttpResponse("<h2>HEY!</h2>")
+    return HttpResponse("<h2>HEY!</h2>")
 
 
 def scale(request, scale_type):
@@ -60,4 +59,4 @@ def scale(request, scale_type):
 
 
     #return HttpResponse("HEY")
-    return render(request, 'scales/dorian.html',{'content': [scl.notes],'scale_name': scl.name, 'scale' : scl, 'the_triads': the_triads })
+    return render(request, 'scales/scale.html',{'content': [scl.notes],'scale_name': scl.name, 'scale' : scl, 'the_triads': the_triads })
