@@ -1,0 +1,22 @@
+{% extends "scales/header.html" %}
+
+
+{% block content %}
+        <h1>{{scale_name}}</h1>
+        <p>{{scale.notes}}</p>
+
+    {% for note in scale.notes %}
+        <p><h4>{{note}} Triads:</h4></p>
+            {% for key, value in scale.triads.items %}
+                    <div class="Triads-List">
+                    {% if key == note %}
+                        {% for chord in value %}
+                                <h5>{{chord}}</h5><p></p>
+                        {% endfor %}
+                    {% endif %}
+                    </div>
+            {% endfor %}
+
+    {% endfor %}
+{% include "scales/includes/htmlsnippet.html" %}
+{% endblock %}
