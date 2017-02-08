@@ -1,9 +1,9 @@
-{% extends "scales/header.html" %}
+{% extends "chordscales/header.html" %}
 
 
 {% block content %}
-        <h1>Scales</h1>
-    <h4>Diatonic Modes:</h4>
+        <h1>Chords</h1>
+    <h4>Triads:</h4>
     <div class="Triads-List">
 
     {% for c in content %}
@@ -13,5 +13,5 @@
         </h5>
     {% endfor %}
         </div>
-{% include "scales/includes/htmlsnippet.html" %}
+{% include "chordscales/includes/htmlsnippet.html" %}
 {% endblock %}

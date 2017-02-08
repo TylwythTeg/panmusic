@@ -18,5 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^Scales/', include('scales.urls')),
+    url(r'^Scales/', include('webapp.urls_scales')),
+    #url(r'^Scales/', include('webapp/urls/scales')),
+    url(r'^Chords/', include('webapp.urls_chords'))
 ]
