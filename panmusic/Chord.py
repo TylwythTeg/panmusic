@@ -12,9 +12,8 @@ class Chord():
 
     def generate_notes(self):
         self.notes = [self.root]
-        print("starting")
         for interval in self.intervals:
-            print("Added note:", self.root.plus(interval),"To chord:", self.root)
+            #print("Added note:", self.root.plus(interval),"To chord:", self.root)
             self.notes.append(self.root.plus(interval))
 
 
@@ -93,7 +92,8 @@ class MajorChord(Chord):
     ]
     def __init__(self, root):
         self.root = root
-        self.name = root.__str__() + " Major Chord"
+        self.type = "Major"
+        self.name = root.__str__() + " " + self.type + " " + "Chord"
         self.generate_notes()
 
         
@@ -106,14 +106,17 @@ class MinorChord(Chord):
         Interval.FIFTH
     ]
     def __init__(self, root):
-        self.name = root.__str__() + " Minor Chord"
+        self.type = "Minor"
+        self.name = root.__str__() + " " + self.type + " " + "Chord"
         self.root = root
         self.generate_notes()
         
 class SuspendedChord(Chord):
 
     def __init__(self, root, interval):
-        self.name = root.__str__() + " Suspended " + interval.__str__() + " Chord"
+        self.type = "Suspended " + interval.__str__()
+        self.name = root.__str__() + " " + self.type + " " + "Chord"
+        #self.name = root.__str__() + " Suspended " + interval.__str__() + " Chord"
         self.susInterval = interval
         self.intervals = [
             self.susInterval,
@@ -128,7 +131,8 @@ class AugmentedChord(Chord):
         Interval.MINOR_SIXTH
     ]
     def __init__(self, root):
-        self.name = root.__str__() + " Augmented Chord"
+        self.type = "Augmented"
+        self.name = root.__str__() + " " + self.type + " " + "Chord"
         self.root = root
         self.generate_notes()
 
@@ -139,7 +143,8 @@ class DiminishedChord(Chord):
         Interval.DIMINISHED_FIFTH
     ]
     def __init__(self, root):
-        self.name = root.__str__() + " Diminished Chord"
+        self.type = "Diminished"
+        self.name = root.__str__() + " " + self.type + " " + "Chord"
         self.root = root
         self.generate_notes()
 
@@ -150,6 +155,7 @@ class FlatFifthChord(Chord):
         Interval.DIMINISHED_FIFTH
     ]
     def __init__(self, root):
-        self.name = root.__str__() + " Flat Fifth Chord"
+        self.type = "Flat Fifth"
+        self.name = root.__str__() + " " + self.type + " " + "Chord"
         self.root = root
         self.generate_notes()

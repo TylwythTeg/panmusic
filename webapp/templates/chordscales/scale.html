@@ -1,5 +1,10 @@
 {% extends "chordscales/header.html" %}
 
+<script>
+    document
+
+</script>
+
 
 {% block content %}
         <h1>{{scale_name}}</h1>
@@ -11,7 +16,7 @@
                     <div class="Triads-List">
                     {% if key == note %}
                         {% for chord in value %}
-                                <h5>{{chord}}</h5><p></p>
+                                <h5><a href="PLACEHOLDER_LINK">{{chord}}</a></h5>  <p></p>
                         {% endfor %}
                     {% endif %}
                     </div>

@@ -4,6 +4,6 @@ from Scale import *
 
 urlpatterns = [
     url(r'^$', views.index_chords, name='index_chords'),
-    url(r'^(?P<chord_type>\w+)/$', views.chord, name = 'chord')
+    url(r'^(?P<chord_type>[\w|\W]+)/$', views.chord, name = 'chord')
     
 ]
