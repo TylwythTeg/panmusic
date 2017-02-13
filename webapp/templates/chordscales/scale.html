@@ -16,7 +16,7 @@
                     <div class="Triads-List">
                     {% if key == note %}
                         {% for chord in value %}
-                                <h5><a href="{% url 'chord' chord.type %}">{{chord}}</a></h5>  <p></p>
+                                <h5><a href="{% url 'chord_specific' chord.type chord.root %}">{{chord}}</a></h5>  <p></p>
                         {% endfor %}
                     {% endif %}
                     </div>

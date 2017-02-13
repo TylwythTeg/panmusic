@@ -32,6 +32,23 @@ class Note(Enum):
         }
         return choices.get(self, 'Note Not Found')
 
+    def from_string(str):
+        choices = {
+            "A": Note.A,
+            "A#": Note.ASHARP,
+            "B": Note.B,
+            "C": Note.C,
+            "C#": Note.CSHARP,
+            "D": Note.D,
+            "D#": Note.DSHARP,
+            "E": Note.E,
+            "F": Note.F,
+            "F#": Note.FSHARP,
+            "G": Note.G,
+            "G#": Note.GSHARP
+        }
+        return choices.get(str, 'Note Not Found')
+
     def __repr__(self):
         return self.__str__()
         

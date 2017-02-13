@@ -7,6 +7,7 @@ sys.path.append("C:/Users/Rob/Django-Projects/mysite/panmusic/")
 from Scale import *
 from Note import *
 from Chord import *
+from Note import *
 
 # Create your views here.
 
@@ -29,5 +30,10 @@ def scale(request, scale_type):
 
 def chord(request, chord_type):
     chr = Chord.factory(Triad.from_string(chord_type), Note.E)
+    print(chr.notes)
+    return render(request,'chordscales/chord.html', {'chord': chr } )
+
+def chord_specific(request, chord_type, root):
+    chr = Chord.factory(Triad.from_string(chord_type), Note.from_string(root))
     print(chr.notes)
     return render(request,'chordscales/chord.html', {'chord': chr } )
