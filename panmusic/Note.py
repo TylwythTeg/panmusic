@@ -35,17 +35,22 @@ class Note(Enum):
     def from_string(str):
         choices = {
             "A": Note.A,
-            "A#": Note.ASHARP,
+            "A": Note.ASHARP,
+            "ASharp": Note.ASHARP,
             "B": Note.B,
             "C": Note.C,
             "C#": Note.CSHARP,
+            "CSharp": Note.CSHARP,
             "D": Note.D,
             "D#": Note.DSHARP,
+            "DSharp": Note.DSHARP,
             "E": Note.E,
             "F": Note.F,
             "F#": Note.FSHARP,
+            "FSharp": Note.FSHARP,
             "G": Note.G,
-            "G#": Note.GSHARP
+            "G#": Note.GSHARP,
+            "GSharp": Note.GSHARP,
         }
         return choices.get(str, 'Note Not Found')
 

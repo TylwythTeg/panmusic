@@ -116,12 +116,13 @@ class SuspendedChord(Chord):
     def __init__(self, root, interval):
         self.type = "Suspended " + interval.__str__()
         self.name = root.__str__() + " " + self.type + " " + "Chord"
-        #self.name = root.__str__() + " Suspended " + interval.__str__() + " Chord"
         self.susInterval = interval
+
         self.intervals = [
             self.susInterval,
             Interval.FIFTH
         ]
+
         self.root = root
         self.generate_notes()
         
@@ -159,3 +160,9 @@ class FlatFifthChord(Chord):
         self.name = root.__str__() + " " + self.type + " " + "Chord"
         self.root = root
         self.generate_notes()
+
+
+#class DominantSeventhChord()
+   # components = [
+   # Triad.MAJOR
+   # ]

@@ -6,18 +6,23 @@ class Scale():
     name = "Scale"
 
     types = [
-        "Ionian (Major)", "Dorian", "Phrygian", "Lydian", "Mixolydian", "Aeolian (Natural Minor)", "Locrian"
+        ("Ionian", "Dorian", "Phrygian", "Lydian", "Mixolydian", "Aeolian (Natural Minor)", "Locrian",
+            "Melodic Minor", )
     ]
     
     def factory(type, root):
         types = {
-            "Ionian (Major)": IonianScale(root),
+            "Ionian": IonianScale(root),
             "Dorian": DorianScale(root),
             "Phrygian": PhrygianScale(root),
             "Lydian": LydianScale(root),
             "Mixolydian": MixolydianScale(root),
-            "Aeolian (Natural Minor)": AeolianScale(root),
-            "Locrian": LocrianScale(root)
+            "Aeolian": AeolianScale(root),
+            "Locrian": LocrianScale(root),
+
+            "Melodic Minor": MelodicMinor(root),
+            "Dorian b2": Dorianb2(root),
+            "Lydian Augmented": LydianAugmented(root),
         }
         return types.get(type)
 
@@ -33,9 +38,7 @@ class Scale():
             self.triads[note] = self.generate_triads(note)
             
             
-        print("\nTest:")
-        for triad in self.triads[Note.E]:
-            print(triad)
+        
             
     def generate_triads(self, root):
         triads = []
@@ -186,6 +189,56 @@ class LocrianScale(Scale):
         self.generate_notes()
         self.add_triads()
         
+
+#Melodic minor modes
+class MelodicMinor(Scale):
+    intervals = [
+        Interval.MAJOR_SECOND,
+        Interval.MINOR_THIRD,
+        Interval.FOURTH,
+        Interval.FIFTH,
+        Interval.MAJOR_SIXTH,
+        Interval.MAJOR_SEVENTH
+    ]
+    def __init__(self, root):
+        self.name = root.__str__() + " Melodic Minor"
+        self.root = root
+        self.generate_notes()
+        self.add_triads()
+
+class Dorianb2(Scale):
+    intervals = [
+        Interval.MINOR_SECOND,
+        Interval.MINOR_THIRD,
+        Interval.FOURTH,
+        Interval.FIFTH,
+        Interval.MAJOR_SIXTH,
+        Interval.MINOR_SEVENTH
+    ]
+    def __init__(self, root):
+        self.name = root.__str__() + " Dorian b2"
+        self.root = root
+        self.generate_notes()
+        self.add_triads()
+
+class LydianAugmented(Scale):
+    intervals = [
+        Interval.MAJOR_SECOND,
+        Interval.MAJOR_THIRD,
+        Interval.DIMINISHED_FIFTH,
+        Interval.MINOR_SIXTH,
+        Interval.MAJOR_SIXTH,
+        Interval.MAJOR_SEVENTH
+    ]
+    def __init__(self, root):
+        self.name = root.__str__() + " Lydian Augmented"
+        self.root = root
+        self.generate_notes()
+        self.add_triads()
+
+
+
+
         
 
 
