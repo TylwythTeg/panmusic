@@ -57,7 +57,7 @@ class Note(Enum):
     def __repr__(self):
         return self.__str__()
         
-    ##
+    ###
     
     def plus(self, amount):
         if isinstance(amount, Interval):
