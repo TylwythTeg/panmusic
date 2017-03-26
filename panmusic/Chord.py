@@ -29,15 +29,17 @@ class Chord():
     ]
 
     
-    def factory(type, root):
+    def create(type, root, triad= ""):
         types = {
-            Triad.MAJOR: MajorChord(root),
-            Triad.MINOR: MinorChord(root),
-            Triad.SUSPENDED_SECOND: SuspendedChord(root, Interval.MAJOR_SECOND),
-            Triad.SUSPENDED_FOURTH: SuspendedChord(root, Interval.FOURTH),
-            Triad.AUGMENTED: AugmentedChord(root),
-            Triad.DIMINISHED: DiminishedChord(root),
-            Triad.FLAT_FIFTH: FlatFifthChord(root)
+            "Major": MajorTriad(root),
+            "Minor": MinorTriad(root),
+            "Suspended Two": SuspendedTriad(root, Interval.MAJOR_SECOND),
+            "Suspended Four": SuspendedTriad(root, Interval.FOURTH),
+            "Augmented": AugmentedTriad(root),
+            "Diminished": DiminishedTriad(root),
+            "Flat Five": FlatFifthTriad(root),
+
+            "Dominant Seventh": DominantSeventhChord(MajorTriad(root))
         }
         return types.get(type)
         
@@ -47,7 +49,7 @@ class Chord():
     
     #def addNote(note):
         #self.notes.append(note)
-        
+''''        
 class Triad(Enum):
     MAJOR = 0
     MINOR = 1
@@ -68,11 +70,54 @@ class Triad(Enum):
             "Flat Fifth": Triad.FLAT_FIFTH
         }
         return types.get(string)
+'''
+
+class Triad(Chord):
+    types = [
+        "Major",
+        "Minor",
+        "Suspended Two",
+        "Suspended Four",
+        "Diminished",
+        "Augmented",
+        "Flat Five"
+    ]
+
+    #constructors = {
+    #    "Major": MajorTriad(self.root),
+    #    "Minor": MinorTriad(self.root),
+#
+    #}
+
+
+    def create(triad, root):
+        #self.type = triad
+        #self.root = root
+        #return constructors.get(triad, root)
+
+        return Chord.create(triad, root)
+
+
+    def from_string(string):
+        types = {
+            "Major": Triad.MAJOR,
+            "Minor": Triad.MINOR,
+            "Suspended Second": Triad.SUSPENDED_SECOND,
+            "Suspended Fourth": Triad.SUSPENDED_FOURTH,
+            "Augmented": Triad.AUGMENTED,
+            "Diminished": Triad.DIMINISHED,
+            "Flat Fifth": Triad.FLAT_FIFTH
+        }
+        return types.get(string)
+
+
+    def __str__(self):
+        return self.type
 
 
 
 #MAJOR.sdf =1
-
+''''
     def __str__(self):
         return {
             MAJOR: "Major",
@@ -83,9 +128,9 @@ class Triad(Enum):
             DIMINISHED: "Diminished",
             FLAT_FIFTH: "Flat Fifth",
         }.get(self, 'Triad Not Found')
+'''
 
-
-class MajorChord(Chord):
+class MajorTriad(Triad):
     intervals = [
         Interval.MAJOR_THIRD,
         Interval.FIFTH
@@ -95,12 +140,9 @@ class MajorChord(Chord):
         self.type = "Major"
         self.name = root.__str__() + " " + self.type + " " + "Chord"
         self.generate_notes()
-
         
         
-        
-        
-class MinorChord(Chord):
+class MinorTriad(Triad):
     intervals = [
         Interval.MINOR_THIRD,
         Interval.FIFTH
@@ -111,7 +153,7 @@ class MinorChord(Chord):
         self.root = root
         self.generate_notes()
         
-class SuspendedChord(Chord):
+class SuspendedTriad(Triad):
 
     def __init__(self, root, interval):
         self.type = "Suspended " + interval.__str__()
@@ -126,7 +168,7 @@ class SuspendedChord(Chord):
         self.root = root
         self.generate_notes()
         
-class AugmentedChord(Chord):
+class AugmentedTriad(Triad):
     intervals = [
         Interval.MAJOR_THIRD,
         Interval.MINOR_SIXTH
@@ -138,7 +180,7 @@ class AugmentedChord(Chord):
         self.generate_notes()
 
         
-class DiminishedChord(Chord):
+class DiminishedTriad(Triad):
     intervals = [
         Interval.MINOR_THIRD,
         Interval.DIMINISHED_FIFTH
@@ -150,13 +192,13 @@ class DiminishedChord(Chord):
         self.generate_notes()
 
 
-class FlatFifthChord(Chord):
+class FlatFifthTriad(Triad):
     intervals = [
         Interval.MAJOR_THIRD,
         Interval.DIMINISHED_FIFTH
     ]
     def __init__(self, root):
-        self.type = "Flat Fifth"
+        self.type = "Flat 5"
         self.name = root.__str__() + " " + self.type + " " + "Chord"
         self.root = root
         self.generate_notes()
@@ -182,4 +224,29 @@ class DominantSeventhChord():
         self.generate_notes()
 
    '''     
+
+
+class SeventhChord(Chord):
+    pass
+
+class DominantSeventhChord(SeventhChord):
+    intervals = [
+    Interval.MINOR_SEVENTH
+    ]
+
+    def __init__(self, triad):
+        if triad.type == "Diminished":
+            self.type = "Half Diminished Seven"
+        else:
+            self.type = "Seven"
+
+        self.triad = triad
+        self.name = triad.root.__str__() + " " + self.type + " " + "Chord"
+        self.root = triad.root
+
+        self.intervals = triad.intervals + self.intervals
+
+        self.generate_notes()
+
+
 

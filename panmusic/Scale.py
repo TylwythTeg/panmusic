@@ -7,7 +7,7 @@ class Scale():
 
     types = [
         ("Ionian", "Dorian", "Phrygian", "Lydian", "Mixolydian", "Aeolian (Natural Minor)", "Locrian",
-            "Melodic Minor", )
+            "Melodic Minor", "Dorian b2", "Lydian Augmented")
     ]
     
     def factory(type, root):
@@ -43,8 +43,8 @@ class Scale():
     def generate_triads(self, root):
         triads = []
 
-        for triad in Triad:
-            chord = Chord.factory(triad,root)
+        for triad in Triad.types:
+            chord = Chord.create(triad,root)
             if self.has_chord(chord):
                 triads.append(chord)
 
@@ -244,19 +244,19 @@ class LydianAugmented(Scale):
 
         
         
-scl = PhrygianScale(Note.E)
-print(PhrygianScale(Note.E).notes)
-print("SDFFFFFFFF")
-print(PhrygianScale(Note.E).notes)
+#scl = PhrygianScale(Note.E)
+#print(PhrygianScale(Note.E).notes)
+#print("SDFFFFFFFF")
+#print(PhrygianScale(Note.E).notes)
 
-print(MajorChord(Note.E).notes)
-print(MajorChord(Note.E).notes)
-print(MajorChord(Note.E).notes)
+#print(MajorChord(Note.E).notes)
+#print(MajorChord(Note.E).notes)
+#print(MajorChord(Note.E).notes)
 #print(PhrygianScale(Note.E).triads)
 
 
-scl = LocrianScale(Note.B)
-print(LocrianScale(Note.B).notes)
+#scl = LocrianScale(Note.B)
+#print(LocrianScale(Note.B).notes)
 #print(scl)
 #print(scl.hasTriad(Note.F, Triad.FLAT_FIFTH))
 
