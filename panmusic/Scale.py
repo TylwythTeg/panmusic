@@ -44,7 +44,7 @@ class Scale():
         triads = []
 
         for triad in Triad.types:
-            chord = Chord.create(triad,root)
+            chord = Triad.create(triad,root)
             if self.has_chord(chord):
                 triads.append(chord)
 

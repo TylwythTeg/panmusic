@@ -35,7 +35,7 @@ class Note(Enum):
     def from_string(str):
         choices = {
             "A": Note.A,
-            "A": Note.ASHARP,
+            "A#": Note.ASHARP,
             "ASharp": Note.ASHARP,
             "B": Note.B,
             "C": Note.C,
