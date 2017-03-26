@@ -161,8 +161,25 @@ class FlatFifthChord(Chord):
         self.root = root
         self.generate_notes()
 
+'''
+class DominantSeventhChord():
+    def __init__(self,triad, root):
+        if triad == Triad.MAJOR:
+            self.type = "Seven"
+        if triad == Triad.MINOR:
+            self.type = "Minor Seven"
 
-#class DominantSeventhChord()
-   # components = [
-   # Triad.MAJOR
-   # ]
+        if triad == Triad.DIMINISHED:
+            self.type = "Half-Diminished Seven"
+
+            components = [
+    triad,
+    Interval.MINOR_SEVENTH
+    ]
+
+        self.name = root.__str__() + " " + self.type + " " + "Chord"
+        self.root = root
+        self.generate_notes()
+
+   '''     
+
