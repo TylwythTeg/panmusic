@@ -76,6 +76,10 @@ class MajorTriad(Triad):
         self.type = "Major"
         self.name = root.__str__() + " " + self.type
         self.generate_notes()
+
+
+        print("testsdsdfdsfsdfsdf")
+        print(Note.A.plus(24))
         
         
 class MinorTriad(Triad):

@@ -59,12 +59,14 @@ class Note(Enum):
         
     ###
     
-    def plus(self, amount):
+    def plus(self, amount):  
         if isinstance(amount, Interval):
             amount = amount.value
-        while self.value + amount >= 12:
-            amount -= 12
+
         amount += self.value
+        amount %= 12
+
+        print(amount,"dsdsfsdf")
         return Note(amount)
             
     def is_in_scale(self, scale):
