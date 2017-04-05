@@ -49,8 +49,8 @@ class Scale():
                 triads.append(chord)
 
         """Print debug"""
-        for triad in triads:
-            print(triad)
+        #for triad in triads:
+            #print(triad)
         return triads
 
     def get_triads(self, note):

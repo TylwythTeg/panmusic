@@ -96,7 +96,11 @@ class MinorTriad(Triad):
 class SuspendedTriad(Triad):
 
     def __init__(self, root, interval):
-        self.type = "Suspended " + interval.__str__()
+
+        if interval == Interval.MAJOR_SECOND:
+            self.type = "Suspended Two"
+        elif interval == Interval.FOURTH:
+            self.type = "Suspended Four"
         self.name = root.__str__() + " " + self.type
         self.susInterval = interval
 

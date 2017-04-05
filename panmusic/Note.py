@@ -60,10 +60,8 @@ class Note(Enum):
     ###
     
     def plus(self, amount):  
-
         if is_interval(amount):
             amount = amount.value
-
         amount += self.value
         amount %= 12
         return Note(amount)
