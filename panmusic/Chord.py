@@ -12,7 +12,6 @@ class Chord():
 
     def generate_notes(self):
         self.notes = [self.root]
-        apples = self.root
         for interval in self.intervals:
             self.notes.append(self.root.plus(interval))
     
@@ -26,9 +25,9 @@ class Chord():
             "Diminished": DiminishedTriad(root),
             "Flat Five": FlatFifthTriad(root),
 
-            "Dominant Seven": DominantSeventhChord(Triad.create(triad, root)),
-            "Major Seven": MajorSeventhChord(Triad.create(triad,root)),
-            "Diminished Seven": DiminishedSeventhChord(Triad.create(triad,root))
+            "Dominant Seven": DominantSeventhChord(triad,root),
+            "Major Seven": MajorSeventhChord(triad,root),
+            "Diminished Seven": DiminishedSeventhChord(triad,root)
         }
 
         
@@ -157,22 +156,23 @@ class DominantSeventhChord(SeventhChord):
     Interval.MINOR_SEVENTH
     ]
 
-    def __init__(self, triad):
+    def __init__(self, triad, root):
 
-        if triad.type == "Diminished":
+        if triad == "Diminished":
             self.type = "Half Diminished Seven"
-        elif triad.type == "Augmented":
-            self.type = triad.type + " Seven"
-        elif triad.type == "Flat Five":
+        elif triad == "Augmented":
+            self.type = triad + " Seven"
+        elif triad == "Flat Five":
             self.type = "Seven Flat Five"
         else:
             self.type = "Seven"
 
-        self.triad = triad
-        self.name = triad.root.__str__() + " " + self.type
-        self.root = triad.root
+        self.triad = Triad.create(triad, root)
 
-        self.intervals = triad.intervals + self.intervals
+        self.name = root.__str__() + " " + self.type
+        self.root = root
+
+        self.intervals = self.triad.intervals + self.intervals
 
         self.generate_notes()
 
@@ -181,18 +181,19 @@ class MajorSeventhChord(SeventhChord):
     Interval.MAJOR_SEVENTH
     ]
 
-    def __init__(self, triad):
-        if triad.type in ("Minor", "Augmented", "Diminished"):
-            self.type = triad.type + " " + "Major Seven"
-        elif triad.type in ("Suspended Second", "Suspended Fourth"):
-            self.type = "Major Seven " + triad.type
+    def __init__(self, triad, root):
+        if triad in ("Minor", "Augmented", "Diminished"):
+            self.type = triad + " " + "Major Seven"
+        elif triad in ("Suspended Second", "Suspended Fourth"):
+            self.type = "Major Seven " + triad
         else:
             self.type = "Major Seven"
 
-        self.triad = triad
-        self.name = triad.root.__str__() + " " + self.type
-        self.root = triad.root
-        self.intervals = triad.intervals + self.intervals
+        self.triad = Triad.create(triad, root)
+
+        self.name = root.__str__() + " " + self.type
+        self.root = root
+        self.intervals = self.triad.intervals + self.intervals
 
         self.generate_notes()
 
@@ -201,16 +202,17 @@ class DiminishedSeventhChord(SeventhChord):
     Interval.MAJOR_SIXTH
     ]
 
-    def __init__(self, triad):
-        if triad.type in ("Diminished"):
+    def __init__(self, triad, root):
+        if triad in ("Diminished"):
             self.type = "Diminished Seven"
         else:
             self.type = "Error Diminished 7"
 
-        self.traid = triad
-        self.name = triad.root.__str__() + " " + self.type
-        self.root = triad.root
-        self.intervals = triad.intervals + self.intervals
+        self.triad = Triad.create(triad, root)
+
+        self.name = root.__str__() + " " + self.type
+        self.root = root
+        self.intervals = self.triad.intervals + self.intervals
 
         self.generate_notes()
 
