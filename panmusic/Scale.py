@@ -36,6 +36,50 @@ class Scale():
         for note in self.notes:
             print ("\nChords for",note)
             self.triads[note] = self.generate_triads(note)
+
+
+    def add_seventh_chords(self):
+        self.seven_chords = {}
+
+        for triads in self.triads.values():
+            for triad in triads:
+                print("Seven chords for", triad)
+                self.seven_chords[triad] = self.generate_seven_chords(triad.type, triad.root)
+
+
+
+        #for triad in self.triads.values():
+        #    print("Seven chords for", triad)
+        #    self.seven_chords[triad] = self.generate_seven_chords(triad, triad.root)
+
+
+    def generate_seven_chords(self, triad, root):
+        seven_chords = []
+
+        print("Checking note: ", root)
+
+
+        for seven_chord in SeventhChord.types:
+            print("----------------",triad,seven_chord)
+
+
+            #if minor triad/major sixth e.g. Cm6 and etc
+            #This is really sloppy but just trying to get this working
+            if triad != "Diminished" and seven_chord == "Diminished Seven":
+                continue
+            elif triad == "Flat Five" and seven_chord == "Major Seven":
+                continue
+
+            chord = Chord.create(seven_chord, root, triad)
+            if self.has_chord(chord):
+                seven_chords.append(chord)
+                print(self, " has Chord: ", chord)
+                print("------------- Notes: ", chord.notes)
+
+        for seven_chord in seven_chords:
+            print("SEVEN:    ",seven_chord)
+
+        return seven_chords
             
             
         
@@ -98,6 +142,7 @@ class IonianScale(Scale):
         self.root = root
         self.generate_notes()
         self.add_triads()
+        self.add_seventh_chords()
 
 class DorianScale(Scale):
     intervals = [
@@ -113,6 +158,7 @@ class DorianScale(Scale):
         self.root = root
         self.generate_notes()
         self.add_triads()
+        self.add_seventh_chords()
 
 class PhrygianScale(Scale):
     intervals = [
@@ -128,6 +174,7 @@ class PhrygianScale(Scale):
         self.root = root
         self.generate_notes()
         self.add_triads()
+        self.add_seventh_chords()
 
 class LydianScale(Scale):
     intervals = [
@@ -143,6 +190,7 @@ class LydianScale(Scale):
         self.root = root
         self.generate_notes()
         self.add_triads()
+        self.add_seventh_chords()
 
 class MixolydianScale(Scale):
     intervals = [
@@ -158,6 +206,7 @@ class MixolydianScale(Scale):
         self.root = root
         self.generate_notes()
         self.add_triads()
+        self.add_seventh_chords()
 
 class AeolianScale(Scale):
     intervals = [
@@ -173,6 +222,7 @@ class AeolianScale(Scale):
         self.root = root
         self.generate_notes()
         self.add_triads()
+        self.add_seventh_chords()
 
 class LocrianScale(Scale):
     intervals = [
@@ -188,6 +238,7 @@ class LocrianScale(Scale):
         self.root = root
         self.generate_notes()
         self.add_triads()
+        self.add_seventh_chords()
         
 
 #Melodic minor modes
@@ -205,6 +256,7 @@ class MelodicMinor(Scale):
         self.root = root
         self.generate_notes()
         self.add_triads()
+        self.add_seventh_chords()
 
 class Dorianb2(Scale):
     intervals = [
@@ -220,6 +272,7 @@ class Dorianb2(Scale):
         self.root = root
         self.generate_notes()
         self.add_triads()
+        self.add_seventh_chords()
 
 class LydianAugmented(Scale):
     intervals = [
@@ -235,6 +288,7 @@ class LydianAugmented(Scale):
         self.root = root
         self.generate_notes()
         self.add_triads()
+        self.add_seventh_chords()
 
 
 
