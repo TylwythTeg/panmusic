@@ -23,6 +23,8 @@ class Scale():
             "Melodic Minor": MelodicMinor(root),
             "Dorian b2": Dorianb2(root),
             "Lydian Augmented": LydianAugmented(root),
+
+            "Double Harmonic Major": DoubleHarmonicMajor(root),
         }
         return types.get(type)
 
@@ -285,6 +287,26 @@ class LydianAugmented(Scale):
     ]
     def __init__(self, root):
         self.name = root.__str__() + " Lydian Augmented"
+        self.root = root
+        self.generate_notes()
+        self.add_triads()
+        self.add_seventh_chords()
+
+
+
+
+####################
+class DoubleHarmonicMajor(Scale):
+    intervals = [
+        Interval.MINOR_SECOND,
+        Interval.MAJOR_THIRD,
+        Interval.FOURTH,
+        Interval.FIFTH,
+        Interval.MINOR_SIXTH,
+        Interval.MAJOR_SEVENTH
+    ]
+    def __init__(self, root):
+        self.name = root.__str__() + " Double Harmonic Major"
         self.root = root
         self.generate_notes()
         self.add_triads()
