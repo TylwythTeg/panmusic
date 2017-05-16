@@ -25,6 +25,8 @@ class Scale():
             "Lydian Augmented": LydianAugmented(root),
 
             "Double Harmonic Major": DoubleHarmonicMajor(root),
+            "Harmonic Minor": HarmonicMinor(root),
+            "Custom Scale": CustomScale(root)
         }
         return types.get(type)
 
@@ -312,7 +314,44 @@ class DoubleHarmonicMajor(Scale):
         self.add_triads()
         self.add_seventh_chords()
 
+class HarmonicMinor(Scale):
+    intervals = [
+        Interval.MAJOR_SECOND,
+        Interval.MINOR_THIRD,
+        Interval.FOURTH,
+        Interval.FIFTH,
+        Interval.MINOR_SIXTH,
+        Interval.MAJOR_SEVENTH
 
+    ]
+
+
+    def __init__(self, root):
+        self.name = root.__str__() + " Harmonic Minor"
+        self.root = root
+        self.generate_notes()
+        self.add_triads()
+        self.add_seventh_chords()
+
+
+class CustomScale(Scale):
+    intervals = [
+        Interval.MAJOR_SECOND,
+        Interval.MINOR_THIRD,
+        Interval.FOURTH,
+        Interval.MINOR_SIXTH,
+        Interval.MAJOR_SIXTH,
+        Interval.MAJOR_SEVENTH
+
+    ]
+
+
+    def __init__(self, root):
+        self.name = root.__str__() + " Harmonic Minor"
+        self.root = root
+        self.generate_notes()
+        self.add_triads()
+        self.add_seventh_chords()
 
 
         
