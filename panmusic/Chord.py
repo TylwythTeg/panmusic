@@ -400,11 +400,12 @@ class MajorSeventhChord(SeventhChord):
         
         self.name = root.__str__() + " " + self.type
         self.root = root
+        self.tetrad_type = "Major Seventh"
         self.triad = Triad.create(triad, root)
-        print("0intervals:", self.intervals)
-        print("triad_intervals:", self.triad.intervals)
+        #print("0intervals:", self.intervals)
+        #print("triad_intervals:", self.triad.intervals)
         self.intervals = self.triad.intervals + self.seventh_interval
-        print("intervals:", self.intervals)
+        #print("intervals:", self.intervals)
         
 
         self.generate_notes()
@@ -424,6 +425,7 @@ class DiminishedSeventhChord(SeventhChord):
 
         self.name = root.__str__() + " " + self.type
         self.root = root
+        self.tetrad_type = "Diminished Seventh"
         self.triad = Triad.create(triad, root)
         self.intervals = self.triad.intervals + self.seventh_interval
         

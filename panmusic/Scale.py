@@ -74,7 +74,12 @@ class Scale():
             elif triad == "Flat Five" and seven_chord == "Major Seven":
                 continue
 
-            chord = Chord.create(seven_chord, root, triad)
+            #chord = Chord.create(seven_chord, root, triad)
+            chord = Chord.create(
+                root = root,
+                triad = triad,
+                tetrad = seven_chord
+            )
             if self.has_chord(chord):
                 seven_chords.append(chord)
                 print(self, " has Chord: ", chord)
