@@ -97,7 +97,7 @@ class Scale():
         triads = []
 
         for triad in Triad.types:
-            chord = Triad.create(triad,root)
+            chord = Triad.create(triad = triad,root = root)
             if self.has_chord(chord):
                 triads.append(chord)
 
@@ -130,8 +130,61 @@ class Scale():
         return False
     
     
-    
-    
+
+
+
+    #These are the types, direct children of Scale, as Chord they are based on # of notes
+class Heptatonic(Scale):
+    pass
+
+class Diatonic(Heptatonic):
+    pass
+
+class DoubleHarmonic(Heptatonic):
+    intervals = [
+        Interval.MINOR_SECOND,
+        Interval.MAJOR_THIRD,
+        Interval.FOURTH,
+        Interval.FIFTH,
+        Interval.MINOR_SIXTH,
+        Interval.MAJOR_SEVENTH
+    ]
+    def __init__(self, root):
+        self.name = root.__str__() + " Harmonic Major Scale"
+        self.root = root
+        self.generate_notes()
+        self.add_triads()
+        self.add_seventh_chords()
+
+class DoubleHarmonic(Heptatonic):
+    intervals = [
+        Interval.MINOR_SECOND,
+        Interval.MAJOR_THIRD,
+        Interval.FOURTH,
+        Interval.FIFTH,
+        Interval.MINOR_SIXTH,
+        Interval.MAJOR_SEVENTH
+    ]
+
+    names = [
+        "Double Harmonic",
+        "Double Harmonic Major"
+    ]
+
+
+
+    def __init__(self, root):
+        self.name = root.__str__() + " Harmonic Major Scale"
+        self.root = root
+
+
+
+
+        self.generate_notes()
+        self.add_triads()
+        self.add_seventh_chords()
+
+
     
     
     
@@ -327,7 +380,6 @@ class HarmonicMinor(Scale):
         Interval.FIFTH,
         Interval.MINOR_SIXTH,
         Interval.MAJOR_SEVENTH
-
     ]
 
 

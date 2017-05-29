@@ -23,6 +23,12 @@ class GuitarString():
             self.frets.append(open_note.plus(i))
 
     def __str__(self):
-        string = ""
-        for i in range (0,self.frets):
-            string = string + "Fret: " + str(i) + " Note: " + str(self.frets[i])
+        #print(self.frets)
+        #strinfg = ""
+        #for i in self.frets:
+        #    strinfg = (strinfg 
+        #    + "Fret: "
+        #    + str(i)
+        #     + " Note: " 
+        #    + "")
+        return self.frets.__str__()

@@ -1,5 +1,6 @@
 from Note import *
 from enum import Enum
+from Fretboard import * 
 
 class Chord():
     name = None
@@ -59,10 +60,31 @@ class Triad(Chord):
     ]
 
     def constructors(triad_type):
-        return globals()[triad_type+"Triad"]
+        return globals()[triad_type + "Triad"]
     
 
     def create(root = None, triad = None ):
+
+        #Does suspended need to be a tier of class? like Sus < 2,4
+        if "Suspended" in triad:
+            #triad = triad.split()[1]
+            sus = {
+                "Two" : Interval.MAJOR_SECOND,
+                "Four" : Interval.FOURTH
+            }
+            interval = sus[triad.split()[1]]
+            constructor = globals()["SuspendedTriad"]
+
+            return SuspendedTriad(root, interval )
+
+        elif "Flat Five" in triad:
+            return FlatFiveTriad(root)
+
+
+               
+
+
+
         constructor = Triad.constructors(triad)
         return constructor(root)
 
@@ -81,12 +103,6 @@ class MajorTriad(Triad):
         self.type = "Major"
         self.name = root.__str__() + " " + self.type
         self.generate_notes()
-
-
-        #print("testsdsdfdsfsdfsdf")
-        #print(Note.A.plus(24))
-
-        #print(self.intervals)
         
         
 class MinorTriad(Triad):
@@ -207,10 +223,10 @@ class DominantSeventhChord(SeventhChord):
         print(self.name)
         self.root = root
         self.tetrad_type = "Dominant Seventh"
+
         self.triad = Triad.create(
-                    triad = triad,
-                    root = root
-                    )
+            triad = triad,
+            root = root)
 
         #t_intervals = self.intervals
         #t_triad_intervals = self.triad.intervals
@@ -296,6 +312,24 @@ print("My Chord:", my_chord)
 my_chord.triad = "Diminished"
 
 '''
+
+
+'''
+The Testing Ground For Fellowship
+'''
+
+h = Fretboard()
+
+for i in h.strings:
+    print(i)
+
+print(len(h.strings))
+
+
+'''
+The Testing Ground For Fellowship
+'''
+
 
 #########
 # I need to figure out how to update the Chord.type string or whatever
