@@ -9,15 +9,30 @@ class Chord():
     triad = None
     
 
-    def __init__(self, root):
-        self.root = root
-        self.name = "Scale"
+    def __init__(self, *notes , root = None):
+        self.notes = []
+        for note in notes:
+            self.notes.append(note)
+
+        if root is not None:
+            self.root = root
+        #self.root = root
+        #self.name = "Scale"
 
     def generate_notes(self):
         self.notes = [self.root]
         for interval in self.intervals:
             self.notes.append(self.root.plus(interval))
 
+    '''
+    #This inverts all of the intervals in the chord
+    def paralell_inversion(self):
+        inversions = []
+        for interval in self.intervals:
+            inversions.append(interval.inversion())
+        print(interval.inversion())
+
+    '''
 
 
 
@@ -33,14 +48,46 @@ class Chord():
         else:    
             return Tetrad.create(tetrad = tetrad,triad = triad,root = root)
 
+    def new(*notes):
+        self.notes = []
+        for note in notes:
+            self.notes.append()
+        #for note in notes:
+
+    def calculate_intervals(self):
+        intervals = []
+
+        first = True
+        for note in self.notes:
+            if first:
+                last_note = note
+                first = False
+                continue
+
+            interval = Interval.between(last_note, note)
+            print("adding interval:", interval)
+            intervals.append(interval)
+            last_note = note
+        return intervals
 
 
+    def is_major(self):
+        #If self.triad has been set as Major, we already know because we set this ourselves
+        if self.triad == "Major":
+            return True
 
 
+        #This is a custom chord created with Chord(*notes)
+        #We must calculate intervals between the notes and check for intervals
+        intervals = self.calculate_intervals()
+        print("THE INTERVALS", intervals)
+
+        if Interval.MAJOR_THIRD in intervals:
+            if Interval.FIFTH in intervals:
+                return True
+        
+        return False
     
-
-
-
         
     def __str__(self):
         return self.name
@@ -66,6 +113,7 @@ class Triad(Chord):
     def create(root = None, triad = None ):
 
         #Does suspended need to be a tier of class? like Sus < 2,4
+        #this is so ugly
         if "Suspended" in triad:
             #triad = triad.split()[1]
             sus = {
@@ -103,6 +151,11 @@ class MajorTriad(Triad):
         self.type = "Major"
         self.name = root.__str__() + " " + self.type
         self.generate_notes()
+
+        #self.opposite = MinorTriad(root.value + Interval.FOURTH.value)
+        #root = Note.from_int(root.value + Interval.FOURTH.value)
+        #self.opposite = Triad.create(root = root, triad = "Minor")
+        print("OPPOSITE",self.opposite)
         
         
 class MinorTriad(Triad):
@@ -295,12 +348,12 @@ class DiminishedSeventhChord(SeventhChord):
 
 
 
+
 my_chord = Chord.create(
         root = Note.F,
         triad = "Major",
         tetrad = "Dominant Seven"
     )
-
 
 print("My Chord:", my_chord, my_chord.name)
 '''

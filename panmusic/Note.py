@@ -54,6 +54,11 @@ class Note(Enum):
         }
         return choices.get(str, 'Note Not Found')
 
+    def from_int(value):
+        value %= 12
+        return Note(value)
+
+
     def __repr__(self):
         return self.__str__()
         
@@ -109,8 +114,19 @@ class Interval(Enum):
     def flat(self):
         return self.value - 1
 
+    def inversion(self):
+        value = 12 - self.value
+        return Interval(value)
 
 
+    #order matters
+    def between(note_one, note_two):
+        print("----------",note_one,note_two)
+        difference = note_two.value + (12-note_one.value)
+        difference %= 12
+        return Interval(difference)
+
+#interval_between()
 
 def is_interval(interval):
     return isinstance(interval,Interval)
