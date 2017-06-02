@@ -1,6 +1,25 @@
 from Note import *
 from enum import Enum
-from Fretboard import * 
+from Fretboard import *
+
+#import itertools
+#this is some helper stuff that needs a home
+def combinations(array):
+    #Gets combinations by iterating through list.
+    #For every element, it creates a new list and adds the rest of the elements on top
+    #This list of lists is returned as combinations
+    combinations = []
+    for element in array:
+        temp_array = [element]
+        for temp_element in array:
+            if temp_element != element:
+                temp_array.append(temp_element)
+        combinations.append(temp_array)
+
+    return combinations 
+#this is some helper stuff that needs a home
+
+
 
 class Chord():
     name = None
@@ -9,8 +28,10 @@ class Chord():
     triad = None
     
 
-    def __init__(self, *notes , root = None):
+    def __init__(self, notes , root = None):
         self.notes = []
+        print("THJE ARGS",notes)
+
         for note in notes:
             self.notes.append(note)
 
@@ -24,15 +45,30 @@ class Chord():
         for interval in self.intervals:
             self.notes.append(self.root.plus(interval))
 
-    '''
-    #This inverts all of the intervals in the chord
-    def paralell_inversion(self):
-        inversions = []
-        for interval in self.intervals:
-            inversions.append(interval.inversion())
-        print(interval.inversion())
+    def generate_inversions(self):
+         self.inversions = combinations(self.notes)
 
-    '''
+    def generate_inversion_intervals(self):
+        self.inversion_intervals = []
+
+        first = True
+        for inversion in self.inversions:
+            if first:
+                last_inversion = inversion
+                first = False
+                continue
+
+            ch = Chord(inversion)
+            inters = ch.calculate_intervals()
+
+            self.inversion_intervals.append(inters)
+            
+
+
+
+        print("Inversions", combinations(self.notes))
+
+
 
 
 
@@ -56,16 +92,19 @@ class Chord():
 
     def calculate_intervals(self):
         intervals = []
+        print("HERYUERYERWEREWRWER")
+
+        print (self.notes)
 
         first = True
         for note in self.notes:
-            if first:
+            if first == True:
                 last_note = note
                 first = False
+                
                 continue
 
-            interval = Interval.between(last_note, note)
-            print("adding interval:", interval)
+            interval = Interval.between(self.notes[0], note)
             intervals.append(interval)
             last_note = note
         return intervals
@@ -141,6 +180,7 @@ class Triad(Chord):
 
 
 
+
 class MajorTriad(Triad):
     intervals = [
         Interval.MAJOR_THIRD,
@@ -151,12 +191,34 @@ class MajorTriad(Triad):
         self.type = "Major"
         self.name = root.__str__() + " " + self.type
         self.generate_notes()
+        self.generate_inversions()
+        self.generate_inversion_intervals()
 
-        #self.opposite = MinorTriad(root.value + Interval.FOURTH.value)
-        #root = Note.from_int(root.value + Interval.FOURTH.value)
-        #self.opposite = Triad.create(root = root, triad = "Minor")
-        print("OPPOSITE",self.opposite)
+
+
         
+
+        
+    '''    
+    def get_inversions(self):
+        #for 
+
+
+
+
+
+        other_notes = []
+        for note in self.notes:
+                print(note)
+                print(self.notes)
+                apples = set(self.notes) - set([note])
+                print("Apples",apples)
+                other_notes.append(list(apples))
+
+        print(other_notes)'''
+
+
+
         
 class MinorTriad(Triad):
     intervals = [
@@ -168,6 +230,8 @@ class MinorTriad(Triad):
         self.name = root.__str__() + " " + self.type
         self.root = root
         self.generate_notes()
+        self.generate_inversions()
+        self.generate_inversion_intervals()
         
 class SuspendedTriad(Triad):
 
@@ -187,6 +251,8 @@ class SuspendedTriad(Triad):
 
         self.root = root
         self.generate_notes()
+        self.generate_inversions()
+        self.generate_inversion_intervals()
         
 class AugmentedTriad(Triad):
     intervals = [
@@ -198,6 +264,8 @@ class AugmentedTriad(Triad):
         self.name = root.__str__() + " " + self.type
         self.root = root
         self.generate_notes()
+        self.generate_inversions()
+        self.generate_inversion_intervals()
 
         
 class DiminishedTriad(Triad):
@@ -210,6 +278,8 @@ class DiminishedTriad(Triad):
         self.name = root.__str__() + " " + self.type
         self.root = root
         self.generate_notes()
+        self.generate_inversions()
+        self.generate_inversion_intervals()
 
 
 class FlatFiveTriad(Triad):
@@ -222,6 +292,8 @@ class FlatFiveTriad(Triad):
         self.name = root.__str__() + " " + self.type
         self.root = root
         self.generate_notes()
+        self.generate_inversions()
+        self.generate_inversion_intervals()
   
 
 
@@ -287,6 +359,8 @@ class DominantSeventhChord(SeventhChord):
         self.intervals = self.triad.intervals + self.seventh_interval
 
         self.generate_notes()
+        self.generate_inversions()
+        self.generate_inversion_intervals()
 
 class MajorSeventhChord(SeventhChord):
     seventh_interval = [
@@ -316,6 +390,8 @@ class MajorSeventhChord(SeventhChord):
         
 
         self.generate_notes()
+        self.generate_inversions()
+        self.generate_inversion_intervals()
 
 class DiminishedSeventhChord(SeventhChord):
     seventh_interval = [
@@ -340,6 +416,8 @@ class DiminishedSeventhChord(SeventhChord):
         self.intervals = self.triad.intervals + self.seventh_interval
         
         self.generate_notes()
+        self.generate_inversions()
+        self.generate_inversion_intervals()
 
 
 

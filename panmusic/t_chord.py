@@ -2,7 +2,15 @@ from Note import *
 from Chord import *
 
 major_chord = Chord.create(root = Note.A, triad = "Major")
-seven_chord = Chord.create(root = Note.A, triad = "Major", tetrad = "Dominant Seven")
+print("major",major_chord.inversion_intervals)
+
+
+seven_chord = Chord.create(root = Note.A, triad = "Major", tetrad = "Major Seven")
+print("Seven",seven_chord.inversion_intervals)
+
+
+
+
 '''
 
 print(major_chord.intervals)
