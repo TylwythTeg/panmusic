@@ -121,7 +121,7 @@ class Interval(Enum):
 
     #order matters
     def between(note_one, note_two):
-        print("----------",note_one,note_two)
+        #print("----------",note_one,note_two)
         difference = note_two.value + (12-note_one.value)
         difference %= 12
         return Interval(difference)

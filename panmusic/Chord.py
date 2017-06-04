@@ -4,6 +4,7 @@ from Fretboard import *
 
 #import itertools
 #this is some helper stuff that needs a home
+#This might actually not be essential at all, but I'll see. Not really "using" it right now
 def combinations(array):
     #Gets combinations by iterating through list.
     #For every element, it creates a new list and adds the rest of the elements on top
@@ -26,28 +27,34 @@ class Chord():
     notes = []
     tetrad = None
     triad = None
+
+    def set_fingerprint(self):
+        self.fingerprint = frozenset(self.notes)
     
 
     def __init__(self, notes , root = None):
         self.notes = []
-        print("THJE ARGS",notes)
 
         for note in notes:
             self.notes.append(note)
 
         if root is not None:
             self.root = root
-        #self.root = root
-        #self.name = "Scale"
+
+        self.set_fingerprint()
 
     def generate_notes(self):
         self.notes = [self.root]
         for interval in self.intervals:
             self.notes.append(self.root.plus(interval))
 
+        #need to move this into creation I guess?
+        self.set_fingerprint()
+
     def generate_inversions(self):
          self.inversions = combinations(self.notes)
 
+    #I don't know what use this could ever really be yet
     def generate_inversion_intervals(self):
         self.inversion_intervals = []
 
@@ -61,22 +68,12 @@ class Chord():
             ch = Chord(inversion)
             inters = ch.calculate_intervals()
 
+            inters = frozenset(inters)
+
             self.inversion_intervals.append(inters)
-            
 
+        self.inversion_intervals = frozenset(self.inversion_intervals)
 
-
-        print("Inversions", combinations(self.notes))
-
-
-
-
-
-
-    #Keywords:
-    #   root
-    #   triad
-    #   tetrad
     def create(root = None, triad = None, tetrad = None ):
 
         if tetrad is None:
@@ -84,17 +81,9 @@ class Chord():
         else:    
             return Tetrad.create(tetrad = tetrad,triad = triad,root = root)
 
-    def new(*notes):
-        self.notes = []
-        for note in notes:
-            self.notes.append()
-        #for note in notes:
 
     def calculate_intervals(self):
         intervals = []
-        print("HERYUERYERWEREWRWER")
-
-        print (self.notes)
 
         first = True
         for note in self.notes:
@@ -110,6 +99,7 @@ class Chord():
         return intervals
 
 
+    #This is probably deprecated
     def is_major(self):
         #If self.triad has been set as Major, we already know because we set this ourselves
         if self.triad == "Major":
@@ -145,35 +135,35 @@ class Triad(Chord):
         "Flat Five"
     ]
 
+
+
     def constructors(triad_type):
+        triad_type = triad_type.replace(" ", "")
         return globals()[triad_type + "Triad"]
+
+    def generate_triad(triad, root):
+        constructor = Triad.constructors(triad)
+        return constructor(root)
+
+    #all for note, not all for all
+    def generate_all(root):
+        triads = []
+        for chord in Triad.types:
+            new_triad = Triad.generate_triad(chord, root)
+            triads.append(new_triad)
+        return triads
+
     
 
     def create(root = None, triad = None ):
 
-        #Does suspended need to be a tier of class? like Sus < 2,4
-        #this is so ugly
-        if "Suspended" in triad:
-            #triad = triad.split()[1]
-            sus = {
-                "Two" : Interval.MAJOR_SECOND,
-                "Four" : Interval.FOURTH
-            }
-            interval = sus[triad.split()[1]]
-            constructor = globals()["SuspendedTriad"]
+        if triad == "All":
+            return Triad.generate_all(root)
 
-            return SuspendedTriad(root, interval )
-
-        elif "Flat Five" in triad:
-            return FlatFiveTriad(root)
+        triad = Triad.generate_triad(triad, root)
+        return triad
 
 
-               
-
-
-
-        constructor = Triad.constructors(triad)
-        return constructor(root)
 
     def __str__(self):
         return self.name
@@ -194,31 +184,6 @@ class MajorTriad(Triad):
         self.generate_inversions()
         self.generate_inversion_intervals()
 
-
-
-        
-
-        
-    '''    
-    def get_inversions(self):
-        #for 
-
-
-
-
-
-        other_notes = []
-        for note in self.notes:
-                print(note)
-                print(self.notes)
-                apples = set(self.notes) - set([note])
-                print("Apples",apples)
-                other_notes.append(list(apples))
-
-        print(other_notes)'''
-
-
-
         
 class MinorTriad(Triad):
     intervals = [
@@ -234,20 +199,37 @@ class MinorTriad(Triad):
         self.generate_inversion_intervals()
         
 class SuspendedTriad(Triad):
+    pass
 
-    def __init__(self, root, interval):
-
-        if interval == Interval.MAJOR_SECOND:
-            self.type = "Suspended Two"
-        elif interval == Interval.FOURTH:
-            self.type = "Suspended Four"
-        self.name = root.__str__() + " " + self.type
-        self.susInterval = interval
-
-        self.intervals = [
-            self.susInterval,
+class SuspendedTwoTriad(SuspendedTriad):
+    suspended_interval = Interval.MAJOR_SECOND
+    intervals = [
+            Interval.MAJOR_SECOND,
             Interval.FIFTH
         ]
+    
+    def __init__(self, root):
+
+        self.type = "Suspended Two"
+        self.name = root.__str__() + " " + self.type
+
+        self.root = root
+        self.generate_notes()
+        self.generate_inversions()
+        self.generate_inversion_intervals()
+
+class SuspendedFourTriad(SuspendedTriad):
+    suspended_interval = Interval.FOURTH
+    intervals = [
+            Interval.FOURTH,
+            Interval.FIFTH
+        ]
+    
+    def __init__(self, root):
+
+        self.type = "Suspended Four"
+        self.name = root.__str__() + " " + self.type
+
 
         self.root = root
         self.generate_notes()
@@ -299,17 +281,77 @@ class FlatFiveTriad(Triad):
 
 class Tetrad(Chord):
     types = [
-        "Seven",
-        "Six",
+        "Dominant Seven",
+        "Major Seven",
+        "Diminished Seven",
+        "Six"
     ]
 
     def constructors(tetrad_type):
         tetrad_type = tetrad_type.replace(" ", "")
         return globals()[tetrad_type + "thChord"]
 
-    def create(tetrad = None, triad = None, root = None):
+    def generate_tetrad(tetrad, triad, root):
         constructor = Tetrad.constructors(tetrad)
         return constructor(triad, root)
+
+    #generate all tetrads for root note given
+    def generate_all(root):
+        tetrads = []
+        for triad in Triad.types:
+            for tetrad in Tetrad.types:
+                new_tetrad = Tetrad.create(root = root, triad = triad, tetrad = tetrad)
+                if "Error" not in new_tetrad.type:
+                    if tetrad == "Six" and triad != "Diminished":
+                        tetrads.append(new_tetrad)
+                    elif tetrad != "Six":
+                        tetrads.append(new_tetrad)
+        return tetrads
+
+    def create(tetrad = None, triad = None, root = None):
+        if tetrad == "All":
+            return Tetrad.generate_all(root)
+
+        return Tetrad.generate_tetrad(tetrad, triad, root)
+
+class SixthChord(Tetrad):
+    sixth_interval = [
+    Interval.MAJOR_SIXTH
+    ]
+    def __init__(self, triad, root):
+
+
+        #setType()
+        if triad == "Minor":
+            self.type = "Minor Major Six"
+        if triad == "Major":
+            self.type = "Six"
+        else:
+            self.type = "Six " + triad
+
+        self.name = root.__str__() + " " + self.type
+        self.root = root
+        self.tetrad_type = "Sixth"
+
+        self.triad = Triad.create(
+            triad = triad,
+            root = root)
+
+        self.intervals = self.triad.intervals + self.sixth_interval
+
+        self.generate_notes()
+        self.generate_inversions()
+        self.generate_inversion_intervals()
+
+
+        #create harmonic. Probably not necessary given self.fingerprint
+        note = Note.from_int(root.value + Interval.MAJOR_SIXTH.value)
+
+        self.enharmonic = [
+            Chord.create(tetrad = "Dominant Seven", triad = "Minor", root = note)
+        ]
+
+        #print(self.enharmonic[0].type)
 
 
 class SeventhChord(Tetrad):
@@ -327,7 +369,6 @@ class DominantSeventhChord(SeventhChord):
     def __init__(self, triad, root):
 
 
-        #setType()
         if triad == "Diminished":
             self.type = "Half Diminished Seven"
         elif triad == "Augmented":
@@ -341,20 +382,13 @@ class DominantSeventhChord(SeventhChord):
         else:
             self.type = "Seven"
 
-        print("Reached here!")
-        #t_triad = self.triad
-
         self.name = root.__str__() + " " + self.type
-        print(self.name)
         self.root = root
         self.tetrad_type = "Dominant Seventh"
 
         self.triad = Triad.create(
             triad = triad,
             root = root)
-
-        #t_intervals = self.intervals
-        #t_triad_intervals = self.triad.intervals
 
         self.intervals = self.triad.intervals + self.seventh_interval
 
@@ -386,8 +420,6 @@ class MajorSeventhChord(SeventhChord):
                     root = root
                     )
         self.intervals = self.triad.intervals + self.seventh_interval
-        #print("intervals:", self.intervals)
-        
 
         self.generate_notes()
         self.generate_inversions()
@@ -425,15 +457,15 @@ class DiminishedSeventhChord(SeventhChord):
 
 
 
+''
 
-
-my_chord = Chord.create(
-        root = Note.F,
-        triad = "Major",
-        tetrad = "Dominant Seven"
-    )
-
-print("My Chord:", my_chord, my_chord.name)
+#my_chord = Chord.create(
+#        root = Note.F,
+#        triad = "Major",
+#        tetrad = "Dominant Seven"
+#    )
+#
+#print("My Chord:", my_chord, my_chord.name)
 '''
 print("--------:", my_chord.notes)
 
@@ -449,12 +481,12 @@ my_chord.triad = "Diminished"
 The Testing Ground For Fellowship
 '''
 
-h = Fretboard()
+#h = Fretboard()
 
-for i in h.strings:
-    print(i)
+#for i in h.strings:
+#    print(i)
 
-print(len(h.strings))
+#print(len(h.strings))
 
 
 '''
