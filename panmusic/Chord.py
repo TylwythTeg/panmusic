@@ -28,8 +28,49 @@ class Chord():
     tetrad = None
     triad = None
 
+
+
     def set_fingerprint(self):
         self.fingerprint = frozenset(self.notes)
+        #print("FINGERPRINT----",self.fingerprint)
+
+    def set_fingerprints():
+
+        #chords = Chord.all()
+
+        triads = Triad.create(root = "All", triad = "All")
+        tetrads = Tetrad.create(root = "All", tetrad = "All")
+
+        chords = triads + tetrads
+
+        #print(["car, happy"])
+        #print("MY BIG ARRAY---------",chords)
+
+        for chord in chords:
+            print("\n Chord: ", chord)
+
+        fingerprints = {}
+
+        for chord in chords:
+
+            #if fingerprint doesn't already exist, add that key (fingerprint) and value (chord) simply
+            if chord.fingerprint not in fingerprints:
+                #print("Added fingerprint:", chord.fingerprint)
+                fingerprints[chord.fingerprint] = chord
+
+            #fingerprint already exists, add it either to list or create list and add to list
+            else:
+                if isinstance(fingerprints[chord.fingerprint], list):
+                    #add to list if there is already a list of multiple chord objects for this fingerprint
+                    fingerprints[chord.fingerprint].append(chord)
+                else:
+                    #create list from element and add to it because this is not a list and only one exists
+                    fingerprints[chord.fingerprint] = [fingerprints[chord.fingerprint]]
+                    fingerprints[chord.fingerprint].append(chord)
+
+        #print("--------------FINGERPRINTS",fingerprints,"____________________")
+
+        Chord.fingerprints = fingerprints
     
 
     def __init__(self, notes , root = None):
@@ -46,6 +87,7 @@ class Chord():
     def generate_notes(self):
         self.notes = [self.root]
         for interval in self.intervals:
+            #print("\n self.root------------",self.root)
             self.notes.append(self.root.plus(interval))
 
         #need to move this into creation I guess?
@@ -153,13 +195,24 @@ class Triad(Chord):
             triads.append(new_triad)
         return triads
 
+
+
     
 
     def create(root = None, triad = None ):
 
         if triad == "All":
-            return Triad.generate_all(root)
+            #function
+            if root is "All":
+                triads = []
+                for note in Note:
+                    triads += Triad.generate_all(note)
+                return triads
+            else:
+                #print("DEBUG3-----------", triad, root)
+                return Triad.generate_all(root)
 
+        #print("DEBUG-----------", triad, root)
         triad = Triad.generate_triad(triad, root)
         return triad
 
@@ -298,6 +351,9 @@ class Tetrad(Chord):
     #generate all tetrads for root note given
     def generate_all(root):
         tetrads = []
+
+
+
         for triad in Triad.types:
             for tetrad in Tetrad.types:
                 new_tetrad = Tetrad.create(root = root, triad = triad, tetrad = tetrad)
@@ -310,6 +366,13 @@ class Tetrad(Chord):
 
     def create(tetrad = None, triad = None, root = None):
         if tetrad == "All":
+
+            tetrads = []
+            if root is "All":
+                for note in Note:
+                    tetrads += Tetrad.generate_all(note)
+                return tetrads
+
             return Tetrad.generate_all(root)
 
         return Tetrad.generate_tetrad(tetrad, triad, root)
@@ -454,6 +517,125 @@ class DiminishedSeventhChord(SeventhChord):
 
 
 
+#helper functions go here
+'''
+def set_fingerprints(self):
+
+    #chords = Chord.all()
+
+    triads = Triad.create(root = "All", triad = "All")
+    tetrads = Tetrad.create(root = "All", tetrad = "All")
+
+    chords = triads + tetrads
+
+    #print(["car, happy"])
+    #print("MY BIG ARRAY---------",chords)
+
+    for chord in chords:
+        print("\n Chord: ", chord)
+
+    fingerprints = {}
+
+    for chord in chords:
+
+        #if fingerprint doesn't already exist, add that key (fingerprint) and value (chord) simply
+        if chord.fingerprint not in fingerprints:
+            #print("Added fingerprint:", chord.fingerprint)
+            fingerprints[chord.fingerprint] = chord
+
+        #fingerprint already exists, add it either to list or create list and add to list
+        else:
+            if isinstance(fingerprints[chord.fingerprint], list):
+                #add to list if there is already a list of multiple chord objects for this fingerprint
+                fingerprints[chord.fingerprint].append(chord)
+            else:
+                #create list from element and add to it because this is not a list and only one exists
+                fingerprints[chord.fingerprint] = [fingerprints[chord.fingerprint]]
+                fingerprints[chord.fingerprint].append(chord)
+
+    #print("--------------FINGERPRINTS",fingerprints,"____________________")
+
+    Chord.fingerprints = fingerprints
+'''
+
+
+def export_fingerprints():
+    fingerprint_log = ""
+
+    for fingerprint in Chord.fingerprints:
+        #print("\n Checking fingerprint: ",fingerprint,Chord.fingerprints[fingerprint])
+
+        value = Chord.fingerprints[fingerprint]
+        fingerprint_log += "\n Chord for notes: " + list(fingerprint).__str__()
+
+        if not isinstance(value, list):
+            value = [value]
+
+        for chord in value:
+            fingerprint_log += "\n \t Chord:" + chord.name
+            fingerprint_log += "\n \t \t Notes:" + chord.notes.__str__()
+            if len(chord.notes) > 3:
+                fingerprint_log += "\n \t \t Triad:" + chord.triad.__str__()
+            if len(chord.notes) > 3:
+                fingerprint_log += "\n \t \t Tetrad:" + chord.tetrad_type
+
+
+    new_file = open("fingerprints.txt", "w")
+    new_file.write(fingerprint_log)
+    new_file.close()
+
+
+Chord.set_fingerprints()
+export_fingerprints()
+
+print("sdfsdfsdfsdfdsfsdfsdfdsfsdf",len(Chord.fingerprints))
+
+
+
+
+
+
+
+
+'''
+
+        if chord.fingerprint in fingerprints:
+            if isinstance(fingerprints[chord.fingerprint], list):
+                #add to list
+                fingerprints[chord.fingerprint].append(tetrad)
+                #print("list")
+            else:
+                outlog += "\n Found a match: "
+                outlog += "\n \t" + fingerprints[chord.fingerprint].__str__() + ":"
+
+                #print("\n Found a match: ")
+                #print("\n \t", fingerprints[tetrad.fingerprint], ":")
+                uhm = fingerprints[chord.fingerprint]
+                outlog += "\n \t \t Notes:" + uhm.notes.__str__()
+                outlog += "\n \t \t Triad:" + uhm.triad.__str__()
+                outlog += "\n \t \t Tetrad:" + uhm.tetrad_type
+                #print("\n \t \t ","Notes:", uhm.notes)
+                #print("\n \t \t ","Triad:", uhm.triad)
+                #print("\n \t \t ","Tetrad:", uhm.tetrad_type)
+
+                outlog += "\n \t [Equals] " + tetrad.__str__() + ":"
+                outlog += "\n \t \t Notes:" + tetrad.notes.__str__()
+                outlog += "\n \t \t Triad:" + tetrad.triad.__str__()
+                outlog += "\n \t \t Tetrad:" + tetrad.tetrad_type
+                #print("\n \t EQUALS", tetrad, ":")
+                #print("\n \t \t ","Notes:", tetrad.notes)
+                #print("\n \t \t ","Triad:", tetrad.triad)
+                #print("\n \t \t ","Tetrad:", tetrad.tetrad_type)
+
+                #make value of dict a list if it isn't
+                fingerprints[chord.fingerprint] = [fingerprints[chord.fingerprint]]
+                #add to this list
+                fingerprints[chord.fingerprint].append(tetrad)
+        else:
+            fingerprints[chord.fingerprint] = tetrad
+'''
+
+Chord.fingerprints = {}
 
 
 

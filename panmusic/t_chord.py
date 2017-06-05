@@ -52,7 +52,7 @@ print("\n ALL TETRADS:",tetrads)
 
 print("\n A closer look:")
 
-first = True
+#first = True
 
 fingerprints = {}
 for tetrad in tetrads:
