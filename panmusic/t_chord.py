@@ -3,11 +3,11 @@ from Chord import *
 import collections 
 
 major_chord = Chord.create(root = Note.A, triad = "Major")
-print("\nmajor",major_chord.inversion_intervals)
+#print("\nmajor",major_chord.inversion_intervals)
 
 
 seven_chord = Chord.create(root = Note.A, triad = "Major", tetrad = "Major Seven")
-print("\nSeven",seven_chord.inversion_intervals)
+#print("\nSeven",seven_chord.inversion_intervals)
 
 
 
@@ -19,13 +19,13 @@ major_chord.fingerprint
 maj.fingerprint
 
 
-print(major_chord.fingerprint)
-print(maj.fingerprint)
+#print(major_chord.fingerprint)
+#print(maj.fingerprint)
 
 six = SixthChord("Major", Note.A)
-print(six.notes,"six",)
+#print(six.notes,"six",)
 m7 = Chord.create(triad = "Minor", tetrad = "Dominant Seven", root = Note.FSHARP)
-print("m7 = 6?", m7.fingerprint == six.fingerprint)
+#print("m7 = 6?", m7.fingerprint == six.fingerprint)
 
 if m7.notes[0] == "yadda":
 	#prioritize assignments
@@ -33,14 +33,14 @@ if m7.notes[0] == "yadda":
 
 
 
-print("\n", six.fingerprint == maj.fingerprint)
-print("\n", maj.fingerprint == major_chord.fingerprint)
+#print("\n", six.fingerprint == maj.fingerprint)
+#print("\n", maj.fingerprint == major_chord.fingerprint)
 
 
 triads = Triad.create(root = Note.A, triad = "All")
 
 
-print("All Triads:",triads,"-----|")
+#print("All Triads:",triads,"-----|")
 
 
 
@@ -48,32 +48,32 @@ print("All Triads:",triads,"-----|")
 #check fingerprints on tetrads
 
 tetrads = Tetrad.create(root = Note.A, tetrad = "All")
-print("\n ALL TETRADS:",tetrads)
+#print("\n ALL TETRADS:",tetrads)
 
-print("\n A closer look:")
+#print("\n A closer look:")
 
 #first = True
 
 fingerprints = {}
 for tetrad in tetrads:
 	if tetrad.fingerprint in fingerprints:
-		print("\n Found a match: ")
-		print("\n \t", fingerprints[tetrad.fingerprint], ":")
+		#print("\n Found a match: ")
+		#print("\n \t", fingerprints[tetrad.fingerprint], ":")
 		uhm = fingerprints[tetrad.fingerprint]
-		print("\n \t \t ","Notes:", uhm.notes)
-		print("\n \t \t ","Triad:", uhm.triad)
-		print("\n \t \t ","Tetrad:", uhm.tetrad_type)
+		#print("\n \t \t ","Notes:", uhm.notes)
+		#print("\n \t \t ","Triad:", uhm.triad)
+		#print("\n \t \t ","Tetrad:", uhm.tetrad_type)
 
-		print("\n \t EQUALS", tetrad, ":")
-		print("\n \t \t ","Notes:", tetrad.notes)
-		print("\n \t \t ","Triad:", tetrad.triad)
-		print("\n \t \t ","Tetrad:", tetrad.tetrad_type)
+		#print("\n \t EQUALS", tetrad, ":")
+		#print("\n \t \t ","Notes:", tetrad.notes)
+		#print("\n \t \t ","Triad:", tetrad.triad)
+		#print("\n \t \t ","Tetrad:", tetrad.tetrad_type)
 	else:
 		fingerprints[tetrad.fingerprint] = tetrad
-		print("\n", tetrad.root,tetrad.triad, tetrad.tetrad_type, tetrad.notes)
+		#print("\n", tetrad.root,tetrad.triad, tetrad.tetrad_type, tetrad.notes)
 
 
-print("\n ------------------------------------------------------")
+#print("\n ------------------------------------------------------")
 
 tetrads = []
 for note in Note:

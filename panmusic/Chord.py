@@ -87,11 +87,8 @@ class Chord():
     def generate_notes(self):
         self.notes = [self.root]
         for interval in self.intervals:
-            #print("\n self.root------------",self.root)
             self.notes.append(self.root.plus(interval))
-
-        #need to move this into creation I guess?
-        self.set_fingerprint()
+        
 
     def generate_inversions(self):
          self.inversions = combinations(self.notes)
@@ -236,6 +233,7 @@ class MajorTriad(Triad):
         self.generate_notes()
         self.generate_inversions()
         self.generate_inversion_intervals()
+        self.set_fingerprint()
 
         
 class MinorTriad(Triad):
@@ -250,6 +248,7 @@ class MinorTriad(Triad):
         self.generate_notes()
         self.generate_inversions()
         self.generate_inversion_intervals()
+        self.set_fingerprint()
         
 class SuspendedTriad(Triad):
     pass
@@ -270,6 +269,7 @@ class SuspendedTwoTriad(SuspendedTriad):
         self.generate_notes()
         self.generate_inversions()
         self.generate_inversion_intervals()
+        self.set_fingerprint()
 
 class SuspendedFourTriad(SuspendedTriad):
     suspended_interval = Interval.FOURTH
@@ -288,6 +288,7 @@ class SuspendedFourTriad(SuspendedTriad):
         self.generate_notes()
         self.generate_inversions()
         self.generate_inversion_intervals()
+        self.set_fingerprint()
         
 class AugmentedTriad(Triad):
     intervals = [
@@ -301,6 +302,7 @@ class AugmentedTriad(Triad):
         self.generate_notes()
         self.generate_inversions()
         self.generate_inversion_intervals()
+        self.set_fingerprint()
 
         
 class DiminishedTriad(Triad):
@@ -315,6 +317,7 @@ class DiminishedTriad(Triad):
         self.generate_notes()
         self.generate_inversions()
         self.generate_inversion_intervals()
+        self.set_fingerprint()
 
 
 class FlatFiveTriad(Triad):
@@ -329,6 +332,7 @@ class FlatFiveTriad(Triad):
         self.generate_notes()
         self.generate_inversions()
         self.generate_inversion_intervals()
+        self.set_fingerprint()
   
 
 
@@ -405,6 +409,7 @@ class SixthChord(Tetrad):
         self.generate_notes()
         self.generate_inversions()
         self.generate_inversion_intervals()
+        self.set_fingerprint()
 
 
         #create harmonic. Probably not necessary given self.fingerprint
@@ -429,21 +434,20 @@ class DominantSeventhChord(SeventhChord):
     Interval.MINOR_SEVENTH
     ]
 
+    def set_type(self,triad):
+        types = {
+            "Diminished": "Half Diminished Seven",
+            "Augmented": triad + " Seven",
+             "Minor": triad + " Seven",
+            "Flat Five": "Seven Flat Five",
+            "Suspended Two": "Seven " + triad,
+            "Suspended Four": "Seven " + triad,
+        }
+
+        self.type = types.get(triad, "Seven")
+
     def __init__(self, triad, root):
-
-
-        if triad == "Diminished":
-            self.type = "Half Diminished Seven"
-        elif triad == "Augmented":
-            self.type = triad + " Seven"
-        elif triad == "Flat Five":
-            self.type = "Seven Flat Five"
-        elif triad == "Minor":
-            self.type = triad + " Seven"
-        elif "Suspended" in triad:
-            self.type = "Seven " + triad
-        else:
-            self.type = "Seven"
+        self.set_type(triad)
 
         self.name = root.__str__() + " " + self.type
         self.root = root
@@ -458,6 +462,7 @@ class DominantSeventhChord(SeventhChord):
         self.generate_notes()
         self.generate_inversions()
         self.generate_inversion_intervals()
+        self.set_fingerprint()
 
 class MajorSeventhChord(SeventhChord):
     seventh_interval = [
@@ -487,6 +492,7 @@ class MajorSeventhChord(SeventhChord):
         self.generate_notes()
         self.generate_inversions()
         self.generate_inversion_intervals()
+        self.set_fingerprint()
 
 class DiminishedSeventhChord(SeventhChord):
     seventh_interval = [
@@ -513,52 +519,13 @@ class DiminishedSeventhChord(SeventhChord):
         self.generate_notes()
         self.generate_inversions()
         self.generate_inversion_intervals()
+        self.set_fingerprint()
 
 
 
 
-#helper functions go here
-'''
-def set_fingerprints(self):
 
-    #chords = Chord.all()
-
-    triads = Triad.create(root = "All", triad = "All")
-    tetrads = Tetrad.create(root = "All", tetrad = "All")
-
-    chords = triads + tetrads
-
-    #print(["car, happy"])
-    #print("MY BIG ARRAY---------",chords)
-
-    for chord in chords:
-        print("\n Chord: ", chord)
-
-    fingerprints = {}
-
-    for chord in chords:
-
-        #if fingerprint doesn't already exist, add that key (fingerprint) and value (chord) simply
-        if chord.fingerprint not in fingerprints:
-            #print("Added fingerprint:", chord.fingerprint)
-            fingerprints[chord.fingerprint] = chord
-
-        #fingerprint already exists, add it either to list or create list and add to list
-        else:
-            if isinstance(fingerprints[chord.fingerprint], list):
-                #add to list if there is already a list of multiple chord objects for this fingerprint
-                fingerprints[chord.fingerprint].append(chord)
-            else:
-                #create list from element and add to it because this is not a list and only one exists
-                fingerprints[chord.fingerprint] = [fingerprints[chord.fingerprint]]
-                fingerprints[chord.fingerprint].append(chord)
-
-    #print("--------------FINGERPRINTS",fingerprints,"____________________")
-
-    Chord.fingerprints = fingerprints
-'''
-
-
+#helper
 def export_fingerprints():
     fingerprint_log = ""
 
@@ -597,49 +564,12 @@ print("sdfsdfsdfsdfdsfsdfsdfdsfsdf",len(Chord.fingerprints))
 
 
 
-'''
 
-        if chord.fingerprint in fingerprints:
-            if isinstance(fingerprints[chord.fingerprint], list):
-                #add to list
-                fingerprints[chord.fingerprint].append(tetrad)
-                #print("list")
-            else:
-                outlog += "\n Found a match: "
-                outlog += "\n \t" + fingerprints[chord.fingerprint].__str__() + ":"
-
-                #print("\n Found a match: ")
-                #print("\n \t", fingerprints[tetrad.fingerprint], ":")
-                uhm = fingerprints[chord.fingerprint]
-                outlog += "\n \t \t Notes:" + uhm.notes.__str__()
-                outlog += "\n \t \t Triad:" + uhm.triad.__str__()
-                outlog += "\n \t \t Tetrad:" + uhm.tetrad_type
-                #print("\n \t \t ","Notes:", uhm.notes)
-                #print("\n \t \t ","Triad:", uhm.triad)
-                #print("\n \t \t ","Tetrad:", uhm.tetrad_type)
-
-                outlog += "\n \t [Equals] " + tetrad.__str__() + ":"
-                outlog += "\n \t \t Notes:" + tetrad.notes.__str__()
-                outlog += "\n \t \t Triad:" + tetrad.triad.__str__()
-                outlog += "\n \t \t Tetrad:" + tetrad.tetrad_type
-                #print("\n \t EQUALS", tetrad, ":")
-                #print("\n \t \t ","Notes:", tetrad.notes)
-                #print("\n \t \t ","Triad:", tetrad.triad)
-                #print("\n \t \t ","Tetrad:", tetrad.tetrad_type)
-
-                #make value of dict a list if it isn't
-                fingerprints[chord.fingerprint] = [fingerprints[chord.fingerprint]]
-                #add to this list
-                fingerprints[chord.fingerprint].append(tetrad)
-        else:
-            fingerprints[chord.fingerprint] = tetrad
-'''
-
-Chord.fingerprints = {}
+#Chord.fingerprints = {}
 
 
 
-''
+
 
 #my_chord = Chord.create(
 #        root = Note.F,
