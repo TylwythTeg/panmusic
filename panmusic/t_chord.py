@@ -153,6 +153,10 @@ new_file.close()
 
 
 
+#print(Chord.list("All"), "\n Length:", len(Chord.list("All")), "\n That was it")
+
+
+
 '''
 
 print(major_chord.intervals)

@@ -1,6 +1,5 @@
 from Note import *
 from enum import Enum
-from Fretboard import *
 
 #import itertools
 #this is some helper stuff that needs a home
@@ -27,12 +26,52 @@ class Chord():
     notes = []
     tetrad = None
     triad = None
+    '''
 
+    def list(notes = None, triad = None ):
+
+        def all(notes = None, triad = None):
+            all_chords = all_triads() + all_tetrads()
+            return all_chords
+
+        def all_triads():
+            return Triad.create(root = "All", triad = "All")
+
+        def all_tetrads():
+            return Tetrad.create(root = "All", tetrad = "All")
+
+
+        #All stuff?
+        if notes == None or notes == "All":
+            if triad == None or triad == "All":
+                return all_triads()
+            elif tetrad == None or tetrad == "All":
+                return all_tetrads()
+            else:
+                return all()
+
+        def all_triads():
+            triads = triads = Triad.create(root = "All", triad = "All")
+
+        def triads():
+            triads = Triad.create(root = "All", triad = "All")
+            return triads
+
+
+
+
+
+        if triad == "All":
+            return 
+
+        if notes == "All":
+            return all()
+
+    '''
 
 
     def set_fingerprint(self):
         self.fingerprint = frozenset(self.notes)
-        #print("FINGERPRINT----",self.fingerprint)
 
     def set_fingerprints():
 
@@ -42,12 +81,6 @@ class Chord():
         tetrads = Tetrad.create(root = "All", tetrad = "All")
 
         chords = triads + tetrads
-
-        #print(["car, happy"])
-        #print("MY BIG ARRAY---------",chords)
-
-        for chord in chords:
-            print("\n Chord: ", chord)
 
         fingerprints = {}
 
@@ -174,8 +207,38 @@ class Triad(Chord):
         "Flat Five"
     ]
 
+    '''
+    def liste(root = None, triad = None):
+        def notes(root):
+            return isinstance(root, list)
+        def root(root):
+            return root is not None
+        def triad(triad):
+            return triad is not None
+
+        def all():
+            return Triad.create(root = "All", triad = "All")
+
+        if root(root) and triad(triad):
+            print(root, triad)
+            print("\n sdfsdf")
+            #Return a list of triads that go with those notes
+            #i.e return chords that are minor and exist in [A,C,E,G,F]
+            return
+        if root():
+            return Triad.create(root = root, triad = "All")
+        if triad():
+            return Triad.create(root = "All", triad = "All" )
+        else:
+            return all()
 
 
+
+
+
+        #if notes == None or notes == "All"
+
+    '''
     def constructors(triad_type):
         triad_type = triad_type.replace(" ", "")
         return globals()[triad_type + "Triad"]
@@ -184,7 +247,7 @@ class Triad(Chord):
         constructor = Triad.constructors(triad)
         return constructor(root)
 
-    #all for note, not all for all
+    #all for note, not all for all notes
     def generate_all(root):
         triads = []
         for chord in Triad.types:
@@ -380,6 +443,13 @@ class Tetrad(Chord):
             return Tetrad.generate_all(root)
 
         return Tetrad.generate_tetrad(tetrad, triad, root)
+
+    def from_notes(notes):
+        tetrads = []
+        for note in notes:
+            tetrad = Tetrad.create(tetrad = "All", root = note)
+            tetrads += tetrad
+        return tetrads
 
 class SixthChord(Tetrad):
     sixth_interval = [

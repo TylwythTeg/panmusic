@@ -120,9 +120,9 @@ class Interval(Enum):
 
 
     #order matters
+    #finds the interval between the two notes from left to right
     def between(note_one, note_two):
-        #print("----------",note_one,note_two)
-        difference = note_two.value + (12-note_one.value)
+        difference = note_two.value + (12 - note_one.value)
         difference %= 12
         return Interval(difference)
 
