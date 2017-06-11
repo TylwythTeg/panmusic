@@ -69,6 +69,7 @@ class Chord():
 
     #global / static
     #add a chord to the Chord.fingerprints dictionary
+    #Note: looks like I can reuse this for Scale objects
     def add_to_fingerprints(chord):
         if chord.fingerprint not in Chord.fingerprints:
             Chord.fingerprints[chord.fingerprint] = [chord]
@@ -86,7 +87,7 @@ class Chord():
         for chord in chords:
             Chord.add_to_fingerprints(chord)
 
-        print("--------------FINGERPRINTS",Chord.fingerprints,"____________________")
+        #print("--------------FINGERPRINTS",Chord.fingerprints,"____________________")
     
 
     def __init__(self, notes , root = None):
@@ -153,25 +154,6 @@ class Chord():
             last_note = note
         return intervals
 
-
-    #This is probably deprecated
-    def is_major(self):
-        #If self.triad has been set as Major, we already know because we set this ourselves
-        if self.triad == "Major":
-            return True
-
-
-        #This is a custom chord created with Chord(*notes)
-        #We must calculate intervals between the notes and check for intervals
-        intervals = self.calculate_intervals()
-        print("THE INTERVALS", intervals)
-
-        if Interval.MAJOR_THIRD in intervals:
-            if Interval.FIFTH in intervals:
-                return True
-        
-        return False
-    
         
     def __str__(self):
         return self.name

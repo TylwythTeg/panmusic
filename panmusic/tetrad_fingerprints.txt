@@ -1,69 +1,69 @@
 
- Chords for notes: [A, E, C#]
+ Chords for notes: [C#, E, A]
  	 A Major:
  	 	 Triad: None
- Chords for notes: [A, E, C]
+ Chords for notes: [E, A, C]
  	 A Minor:
  	 	 Triad: None
- Chords for notes: [A, E, B]
+ Chords for notes: [E, B, A]
  	 A Suspended Two:
  	 	 Triad: None
  	 E Suspended Four:
  	 	 Triad: None
- Chords for notes: [A, D, E]
+ Chords for notes: [E, A, D]
  	 A Suspended Four:
  	 	 Triad: None
  	 D Suspended Two:
  	 	 Triad: None
- Chords for notes: [A, D#, C]
+ Chords for notes: [D#, A, C]
  	 A Diminished:
  	 	 Triad: None
- Chords for notes: [A, F, C#]
+ Chords for notes: [C#, A, F]
  	 A Augmented:
  	 	 Triad: None
  	 C# Augmented:
  	 	 Triad: None
  	 F Augmented:
  	 	 Triad: None
- Chords for notes: [A, D#, C#]
+ Chords for notes: [C#, D#, A]
  	 A Flat Five:
  	 	 Triad: None
- Chords for notes: [F, D, A#]
+ Chords for notes: [D, A#, F]
  	 A# Major:
  	 	 Triad: None
- Chords for notes: [F, A#, C#]
+ Chords for notes: [C#, A#, F]
  	 A# Minor:
  	 	 Triad: None
- Chords for notes: [F, C, A#]
+ Chords for notes: [F, A#, C]
  	 A# Suspended Two:
  	 	 Triad: None
  	 F Suspended Four:
  	 	 Triad: None
- Chords for notes: [F, D#, A#]
+ Chords for notes: [D#, A#, F]
  	 A# Suspended Four:
  	 	 Triad: None
  	 D# Suspended Two:
  	 	 Triad: None
- Chords for notes: [E, A#, C#]
+ Chords for notes: [C#, E, A#]
  	 A# Diminished:
  	 	 Triad: None
- Chords for notes: [D, A#, F#]
+ Chords for notes: [F#, D, A#]
  	 A# Augmented:
  	 	 Triad: None
  	 D Augmented:
  	 	 Triad: None
  	 F# Augmented:
  	 	 Triad: None
- Chords for notes: [D, E, A#]
+ Chords for notes: [E, D, A#]
  	 A# Flat Five:
  	 	 Triad: None
- Chords for notes: [D#, B, F#]
+ Chords for notes: [B, D#, F#]
  	 B Major:
  	 	 Triad: None
- Chords for notes: [D, B, F#]
+ Chords for notes: [B, D, F#]
  	 B Minor:
  	 	 Triad: None
- Chords for notes: [F#, B, C#]
+ Chords for notes: [C#, B, F#]
  	 B Suspended Two:
  	 	 Triad: None
  	 F# Suspended Four:
@@ -73,23 +73,23 @@
  	 	 Triad: None
  	 E Suspended Two:
  	 	 Triad: None
- Chords for notes: [F, D, B]
+ Chords for notes: [B, D, F]
  	 B Diminished:
  	 	 Triad: None
- Chords for notes: [D#, B, G]
+ Chords for notes: [B, G, D#]
  	 B Augmented:
  	 	 Triad: None
  	 D# Augmented:
  	 	 Triad: None
  	 G Augmented:
  	 	 Triad: None
- Chords for notes: [F, D#, B]
+ Chords for notes: [B, D#, F]
  	 B Flat Five:
  	 	 Triad: None
- Chords for notes: [G, E, C]
+ Chords for notes: [E, G, C]
  	 C Major:
  	 	 Triad: None
- Chords for notes: [G, D#, C]
+ Chords for notes: [D#, G, C]
  	 C Minor:
  	 	 Triad: None
  Chords for notes: [D, G, C]
@@ -97,50 +97,50 @@
  	 	 Triad: None
  	 G Suspended Four:
  	 	 Triad: None
- Chords for notes: [F, G, C]
+ Chords for notes: [G, C, F]
  	 C Suspended Four:
  	 	 Triad: None
  	 F Suspended Two:
  	 	 Triad: None
- Chords for notes: [D#, C, F#]
+ Chords for notes: [F#, D#, C]
  	 C Diminished:
  	 	 Triad: None
- Chords for notes: [E, C, G#]
+ Chords for notes: [E, G#, C]
  	 C Augmented:
  	 	 Triad: None
  	 E Augmented:
  	 	 Triad: None
  	 G# Augmented:
  	 	 Triad: None
- Chords for notes: [E, C, F#]
+ Chords for notes: [F#, E, C]
  	 C Flat Five:
  	 	 Triad: None
- Chords for notes: [F, G#, C#]
+ Chords for notes: [C#, G#, F]
  	 C# Major:
  	 	 Triad: None
- Chords for notes: [E, G#, C#]
+ Chords for notes: [C#, E, G#]
  	 C# Minor:
  	 	 Triad: None
- Chords for notes: [D#, G#, C#]
+ Chords for notes: [C#, D#, G#]
  	 C# Suspended Two:
  	 	 Triad: None
  	 G# Suspended Four:
  	 	 Triad: None
- Chords for notes: [F#, G#, C#]
+ Chords for notes: [C#, G#, F#]
  	 C# Suspended Four:
  	 	 Triad: None
  	 F# Suspended Two:
  	 	 Triad: None
- Chords for notes: [E, G, C#]
+ Chords for notes: [C#, E, G]
  	 C# Diminished:
  	 	 Triad: None
- Chords for notes: [F, G, C#]
+ Chords for notes: [C#, G, F]
  	 C# Flat Five:
  	 	 Triad: None
  Chords for notes: [A, D, F#]
  	 D Major:
  	 	 Triad: None
- Chords for notes: [A, F, D]
+ Chords for notes: [A, D, F]
  	 D Minor:
  	 	 Triad: None
  Chords for notes: [A, D, G]
@@ -148,10 +148,10 @@
  	 	 Triad: None
  	 G Suspended Two:
  	 	 Triad: None
- Chords for notes: [F, D, G#]
+ Chords for notes: [G#, D, F]
  	 D Diminished:
  	 	 Triad: None
- Chords for notes: [D, G#, F#]
+ Chords for notes: [G#, D, F#]
  	 D Flat Five:
  	 	 Triad: None
  Chords for notes: [D#, G, A#]
@@ -160,15 +160,15 @@
  Chords for notes: [D#, A#, F#]
  	 D# Minor:
  	 	 Triad: None
- Chords for notes: [A#, D#, G#]
+ Chords for notes: [D#, G#, A#]
  	 D# Suspended Four:
  	 	 Triad: None
  	 G# Suspended Two:
  	 	 Triad: None
- Chords for notes: [A, D#, F#]
+ Chords for notes: [D#, A, F#]
  	 D# Diminished:
  	 	 Triad: None
- Chords for notes: [A, D#, G]
+ Chords for notes: [D#, A, G]
  	 D# Flat Five:
  	 	 Triad: None
  Chords for notes: [E, B, G#]
@@ -180,31 +180,31 @@
  Chords for notes: [E, G, A#]
  	 E Diminished:
  	 	 Triad: None
- Chords for notes: [E, A#, G#]
+ Chords for notes: [E, G#, A#]
  	 E Flat Five:
  	 	 Triad: None
- Chords for notes: [A, F, C]
+ Chords for notes: [A, C, F]
  	 F Major:
  	 	 Triad: None
- Chords for notes: [F, C, G#]
+ Chords for notes: [G#, C, F]
  	 F Minor:
  	 	 Triad: None
- Chords for notes: [F, B, G#]
+ Chords for notes: [B, G#, F]
  	 F Diminished:
  	 	 Triad: None
- Chords for notes: [A, F, B]
+ Chords for notes: [B, A, F]
  	 F Flat Five:
  	 	 Triad: None
  Chords for notes: [C#, A#, F#]
  	 F# Major:
  	 	 Triad: None
- Chords for notes: [A, C#, F#]
+ Chords for notes: [C#, A, F#]
  	 F# Minor:
  	 	 Triad: None
- Chords for notes: [A, C, F#]
+ Chords for notes: [A, F#, C]
  	 F# Diminished:
  	 	 Triad: None
- Chords for notes: [C, A#, F#]
+ Chords for notes: [A#, F#, C]
  	 F# Flat Five:
  	 	 Triad: None
  Chords for notes: [D, B, G]
@@ -213,85 +213,85 @@
  Chords for notes: [D, G, A#]
  	 G Minor:
  	 	 Triad: None
- Chords for notes: [G, A#, C#]
+ Chords for notes: [C#, G, A#]
  	 G Diminished:
  	 	 Triad: None
- Chords for notes: [B, G, C#]
+ Chords for notes: [C#, B, G]
  	 G Flat Five:
  	 	 Triad: None
- Chords for notes: [D#, C, G#]
+ Chords for notes: [D#, G#, C]
  	 G# Major:
  	 	 Triad: None
- Chords for notes: [D#, B, G#]
+ Chords for notes: [B, G#, D#]
  	 G# Minor:
  	 	 Triad: None
- Chords for notes: [D, B, G#]
+ Chords for notes: [B, G#, D]
  	 G# Diminished:
  	 	 Triad: None
- Chords for notes: [D, C, G#]
+ Chords for notes: [G#, D, C]
  	 G# Flat Five:
  	 	 Triad: None
- Chords for notes: [A, E, G, C#]
+ Chords for notes: [C#, E, A, G]
  	 A Seven:
  	 	 Triad: A Major
- Chords for notes: [A, E, G#, C#]
+ Chords for notes: [C#, E, A, G#]
  	 A Major Seven:
  	 	 Triad: A Major
- Chords for notes: [A, F#, E, C#]
+ Chords for notes: [C#, E, A, F#]
  	 A Six:
  	 	 Triad: A Major
  	 F# Minor Seven:
  	 	 Triad: F# Minor
- Chords for notes: [A, G, E, C]
+ Chords for notes: [E, A, G, C]
  	 A Minor Seven:
  	 	 Triad: A Minor
  	 C Six:
  	 	 Triad: C Major
- Chords for notes: [A, E, C, G#]
+ Chords for notes: [E, A, G#, C]
  	 A Minor Major Seven:
  	 	 Triad: A Minor
  	 C Six Augmented:
  	 	 Triad: C Augmented
- Chords for notes: [A, E, C, F#]
+ Chords for notes: [F#, E, A, C]
  	 A Six Minor:
  	 	 Triad: A Minor
  	 C Six Flat Five:
  	 	 Triad: C Flat Five
  	 F# Half Diminished Seven:
  	 	 Triad: F# Diminished
- Chords for notes: [A, E, B, G]
+ Chords for notes: [E, B, A, G]
  	 A Seven Suspended Two:
  	 	 Triad: A Suspended Two
- Chords for notes: [A, E, B, G#]
+ Chords for notes: [E, B, A, G#]
  	 A Major Seven Suspended Two:
  	 	 Triad: A Suspended Two
- Chords for notes: [A, E, B, F#]
+ Chords for notes: [E, B, A, F#]
  	 A Six Suspended Two:
  	 	 Triad: A Suspended Two
  	 B Seven Suspended Four:
  	 	 Triad: B Suspended Four
- Chords for notes: [A, D, E, G]
+ Chords for notes: [E, A, D, G]
  	 A Seven Suspended Four:
  	 	 Triad: A Suspended Four
  	 G Six Suspended Two:
  	 	 Triad: G Suspended Two
- Chords for notes: [A, D, E, G#]
+ Chords for notes: [E, A, D, G#]
  	 A Major Seven Suspended Four:
  	 	 Triad: A Suspended Four
- Chords for notes: [A, D, E, F#]
+ Chords for notes: [E, A, D, F#]
  	 A Six Suspended Four:
  	 	 Triad: A Suspended Four
- Chords for notes: [A, G, D#, C]
+ Chords for notes: [D#, A, G, C]
  	 A Half Diminished Seven:
  	 	 Triad: A Diminished
  	 C Six Minor:
  	 	 Triad: C Minor
  	 D# Six Flat Five:
  	 	 Triad: D# Flat Five
- Chords for notes: [A, D#, C, G#]
+ Chords for notes: [D#, A, G#, C]
  	 A Diminished Major Seven:
  	 	 Triad: A Diminished
- Chords for notes: [A, D#, C, F#]
+ Chords for notes: [F#, D#, A, C]
  	 A Diminished Seven:
  	 	 Triad: A Diminished
  	 C Diminished Seven:
@@ -300,93 +300,93 @@
  	 	 Triad: D# Diminished
  	 F# Diminished Seven:
  	 	 Triad: F# Diminished
- Chords for notes: [A, F, G, C#]
+ Chords for notes: [C#, A, G, F]
  	 A Augmented Seven:
  	 	 Triad: A Augmented
- Chords for notes: [A, F, G#, C#]
+ Chords for notes: [C#, A, G#, F]
  	 A Augmented Major Seven:
  	 	 Triad: A Augmented
- Chords for notes: [A, F, F#, C#]
+ Chords for notes: [C#, A, F#, F]
  	 A Six Augmented:
  	 	 Triad: A Augmented
  	 F# Minor Major Seven:
  	 	 Triad: F# Minor
- Chords for notes: [A, D#, G, C#]
+ Chords for notes: [C#, D#, A, G]
  	 A Seven Flat Five:
  	 	 Triad: A Flat Five
  	 D# Seven Flat Five:
  	 	 Triad: D# Flat Five
- Chords for notes: [A, D#, G#, C#]
+ Chords for notes: [C#, D#, A, G#]
  	 A Major Seven:
  	 	 Triad: A Flat Five
- Chords for notes: [A, F#, D#, C#]
+ Chords for notes: [C#, D#, A, F#]
  	 A Six Flat Five:
  	 	 Triad: A Flat Five
  	 D# Half Diminished Seven:
  	 	 Triad: D# Diminished
  	 F# Six Minor:
  	 	 Triad: F# Minor
- Chords for notes: [F, D, G#, A#]
+ Chords for notes: [G#, D, A#, F]
  	 A# Seven:
  	 	 Triad: A# Major
- Chords for notes: [A, F, D, A#]
+ Chords for notes: [A, D, A#, F]
  	 A# Major Seven:
  	 	 Triad: A# Major
- Chords for notes: [F, D, G, A#]
+ Chords for notes: [D, G, A#, F]
  	 A# Six:
  	 	 Triad: A# Major
  	 G Minor Seven:
  	 	 Triad: G Minor
- Chords for notes: [F, G#, A#, C#]
+ Chords for notes: [C#, G#, A#, F]
  	 A# Minor Seven:
  	 	 Triad: A# Minor
  	 C# Six:
  	 	 Triad: C# Major
- Chords for notes: [A, F, A#, C#]
+ Chords for notes: [C#, A, A#, F]
  	 A# Minor Major Seven:
  	 	 Triad: A# Minor
  	 C# Six Augmented:
  	 	 Triad: C# Augmented
- Chords for notes: [F, G, A#, C#]
+ Chords for notes: [C#, G, A#, F]
  	 A# Six Minor:
  	 	 Triad: A# Minor
  	 C# Six Flat Five:
  	 	 Triad: C# Flat Five
  	 G Half Diminished Seven:
  	 	 Triad: G Diminished
- Chords for notes: [F, G#, C, A#]
+ Chords for notes: [F, G#, A#, C]
  	 A# Seven Suspended Two:
  	 	 Triad: A# Suspended Two
- Chords for notes: [A, F, C, A#]
+ Chords for notes: [A, F, A#, C]
  	 A# Major Seven Suspended Two:
  	 	 Triad: A# Suspended Two
- Chords for notes: [F, G, C, A#]
+ Chords for notes: [F, G, A#, C]
  	 A# Six Suspended Two:
  	 	 Triad: A# Suspended Two
  	 C Seven Suspended Four:
  	 	 Triad: C Suspended Four
- Chords for notes: [F, D#, G#, A#]
+ Chords for notes: [D#, G#, A#, F]
  	 A# Seven Suspended Four:
  	 	 Triad: A# Suspended Four
  	 G# Six Suspended Two:
  	 	 Triad: G# Suspended Two
- Chords for notes: [A, F, D#, A#]
+ Chords for notes: [D#, A, A#, F]
  	 A# Major Seven Suspended Four:
  	 	 Triad: A# Suspended Four
- Chords for notes: [F, D#, G, A#]
+ Chords for notes: [D#, G, A#, F]
  	 A# Six Suspended Four:
  	 	 Triad: A# Suspended Four
- Chords for notes: [E, G#, A#, C#]
+ Chords for notes: [C#, E, G#, A#]
  	 A# Half Diminished Seven:
  	 	 Triad: A# Diminished
  	 C# Six Minor:
  	 	 Triad: C# Minor
  	 E Six Flat Five:
  	 	 Triad: E Flat Five
- Chords for notes: [A, E, A#, C#]
+ Chords for notes: [C#, E, A, A#]
  	 A# Diminished Major Seven:
  	 	 Triad: A# Diminished
- Chords for notes: [E, G, A#, C#]
+ Chords for notes: [C#, E, G, A#]
  	 A# Diminished Seven:
  	 	 Triad: A# Diminished
  	 C# Diminished Seven:
@@ -395,67 +395,67 @@
  	 	 Triad: E Diminished
  	 G Diminished Seven:
  	 	 Triad: G Diminished
- Chords for notes: [D, G#, A#, F#]
+ Chords for notes: [F#, G#, D, A#]
  	 A# Augmented Seven:
  	 	 Triad: A# Augmented
- Chords for notes: [A, D, A#, F#]
+ Chords for notes: [F#, A, D, A#]
  	 A# Augmented Major Seven:
  	 	 Triad: A# Augmented
- Chords for notes: [D, G, A#, F#]
+ Chords for notes: [F#, D, G, A#]
  	 A# Six Augmented:
  	 	 Triad: A# Augmented
  	 G Minor Major Seven:
  	 	 Triad: G Minor
- Chords for notes: [D, E, G#, A#]
+ Chords for notes: [E, G#, D, A#]
  	 A# Seven Flat Five:
  	 	 Triad: A# Flat Five
  	 E Seven Flat Five:
  	 	 Triad: E Flat Five
- Chords for notes: [A, D, E, A#]
+ Chords for notes: [E, A, D, A#]
  	 A# Major Seven:
  	 	 Triad: A# Flat Five
- Chords for notes: [D, E, G, A#]
+ Chords for notes: [E, D, G, A#]
  	 A# Six Flat Five:
  	 	 Triad: A# Flat Five
  	 E Half Diminished Seven:
  	 	 Triad: E Diminished
  	 G Six Minor:
  	 	 Triad: G Minor
- Chords for notes: [A, D#, B, F#]
+ Chords for notes: [B, A, D#, F#]
  	 B Seven:
  	 	 Triad: B Major
- Chords for notes: [D#, B, A#, F#]
+ Chords for notes: [B, A#, D#, F#]
  	 B Major Seven:
  	 	 Triad: B Major
- Chords for notes: [D#, B, G#, F#]
+ Chords for notes: [B, G#, D#, F#]
  	 B Six:
  	 	 Triad: B Major
  	 G# Minor Seven:
  	 	 Triad: G# Minor
- Chords for notes: [A, D, B, F#]
+ Chords for notes: [B, A, D, F#]
  	 B Minor Seven:
  	 	 Triad: B Minor
  	 D Six:
  	 	 Triad: D Major
- Chords for notes: [D, B, A#, F#]
+ Chords for notes: [B, D, A#, F#]
  	 B Minor Major Seven:
  	 	 Triad: B Minor
  	 D Six Augmented:
  	 	 Triad: D Augmented
- Chords for notes: [D, B, G#, F#]
+ Chords for notes: [B, G#, D, F#]
  	 B Six Minor:
  	 	 Triad: B Minor
  	 D Six Flat Five:
  	 	 Triad: D Flat Five
  	 G# Half Diminished Seven:
  	 	 Triad: G# Diminished
- Chords for notes: [A, F#, B, C#]
+ Chords for notes: [C#, B, A, F#]
  	 B Seven Suspended Two:
  	 	 Triad: B Suspended Two
- Chords for notes: [F#, B, A#, C#]
+ Chords for notes: [C#, B, A#, F#]
  	 B Major Seven Suspended Two:
  	 	 Triad: B Suspended Two
- Chords for notes: [F#, B, G#, C#]
+ Chords for notes: [C#, B, G#, F#]
  	 B Six Suspended Two:
  	 	 Triad: B Suspended Two
  	 C# Seven Suspended Four:
@@ -466,17 +466,17 @@
  Chords for notes: [E, B, G#, F#]
  	 B Six Suspended Four:
  	 	 Triad: B Suspended Four
- Chords for notes: [A, F, D, B]
+ Chords for notes: [B, A, D, F]
  	 B Half Diminished Seven:
  	 	 Triad: B Diminished
  	 D Six Minor:
  	 	 Triad: D Minor
  	 F Six Flat Five:
  	 	 Triad: F Flat Five
- Chords for notes: [F, D, B, A#]
+ Chords for notes: [B, D, A#, F]
  	 B Diminished Major Seven:
  	 	 Triad: B Diminished
- Chords for notes: [F, D, B, G#]
+ Chords for notes: [B, G#, D, F]
  	 B Diminished Seven:
  	 	 Triad: B Diminished
  	 D Diminished Seven:
@@ -485,52 +485,52 @@
  	 	 Triad: F Diminished
  	 G# Diminished Seven:
  	 	 Triad: G# Diminished
- Chords for notes: [A, D#, B, G]
+ Chords for notes: [B, A, G, D#]
  	 B Augmented Seven:
  	 	 Triad: B Augmented
- Chords for notes: [D#, B, G, A#]
+ Chords for notes: [B, G, D#, A#]
  	 B Augmented Major Seven:
  	 	 Triad: B Augmented
- Chords for notes: [D#, B, G, G#]
+ Chords for notes: [B, G#, G, D#]
  	 B Six Augmented:
  	 	 Triad: B Augmented
  	 G# Minor Major Seven:
  	 	 Triad: G# Minor
- Chords for notes: [A, F, D#, B]
+ Chords for notes: [B, A, D#, F]
  	 B Seven Flat Five:
  	 	 Triad: B Flat Five
  	 F Seven Flat Five:
  	 	 Triad: F Flat Five
- Chords for notes: [F, D#, B, A#]
+ Chords for notes: [B, D#, A#, F]
  	 B Major Seven:
  	 	 Triad: B Flat Five
- Chords for notes: [F, D#, B, G#]
+ Chords for notes: [B, G#, D#, F]
  	 B Six Flat Five:
  	 	 Triad: B Flat Five
  	 F Half Diminished Seven:
  	 	 Triad: F Diminished
  	 G# Six Minor:
  	 	 Triad: G# Minor
- Chords for notes: [G, E, C, A#]
+ Chords for notes: [E, G, A#, C]
  	 C Seven:
  	 	 Triad: C Major
- Chords for notes: [G, E, B, C]
+ Chords for notes: [E, B, G, C]
  	 C Major Seven:
  	 	 Triad: C Major
- Chords for notes: [G, D#, C, A#]
+ Chords for notes: [D#, G, A#, C]
  	 C Minor Seven:
  	 	 Triad: C Minor
  	 D# Six:
  	 	 Triad: D# Major
- Chords for notes: [B, G, D#, C]
+ Chords for notes: [D#, G, B, C]
  	 C Minor Major Seven:
  	 	 Triad: C Minor
  	 D# Six Augmented:
  	 	 Triad: D# Augmented
- Chords for notes: [D, G, C, A#]
+ Chords for notes: [A#, D, G, C]
  	 C Seven Suspended Two:
  	 	 Triad: C Suspended Two
- Chords for notes: [D, G, B, C]
+ Chords for notes: [B, D, G, C]
  	 C Major Seven Suspended Two:
  	 	 Triad: C Suspended Two
  Chords for notes: [A, D, G, C]
@@ -538,151 +538,151 @@
  	 	 Triad: C Suspended Two
  	 D Seven Suspended Four:
  	 	 Triad: D Suspended Four
- Chords for notes: [F, G, B, C]
+ Chords for notes: [B, G, C, F]
  	 C Major Seven Suspended Four:
  	 	 Triad: C Suspended Four
- Chords for notes: [A, F, G, C]
+ Chords for notes: [A, G, C, F]
  	 C Six Suspended Four:
  	 	 Triad: C Suspended Four
- Chords for notes: [D#, C, A#, F#]
+ Chords for notes: [F#, D#, A#, C]
  	 C Half Diminished Seven:
  	 	 Triad: C Diminished
  	 D# Six Minor:
  	 	 Triad: D# Minor
  	 F# Six Flat Five:
  	 	 Triad: F# Flat Five
- Chords for notes: [B, D#, C, F#]
+ Chords for notes: [F#, D#, B, C]
  	 C Diminished Major Seven:
  	 	 Triad: C Diminished
- Chords for notes: [E, A#, C, G#]
+ Chords for notes: [E, G#, A#, C]
  	 C Augmented Seven:
  	 	 Triad: C Augmented
- Chords for notes: [E, B, C, G#]
+ Chords for notes: [E, B, G#, C]
  	 C Augmented Major Seven:
  	 	 Triad: C Augmented
- Chords for notes: [E, C, A#, F#]
+ Chords for notes: [F#, E, A#, C]
  	 C Seven Flat Five:
  	 	 Triad: C Flat Five
  	 F# Seven Flat Five:
  	 	 Triad: F# Flat Five
- Chords for notes: [E, B, C, F#]
+ Chords for notes: [F#, E, B, C]
  	 C Major Seven:
  	 	 Triad: C Flat Five
- Chords for notes: [F, B, G#, C#]
+ Chords for notes: [C#, B, G#, F]
  	 C# Seven:
  	 	 Triad: C# Major
- Chords for notes: [F, C, G#, C#]
+ Chords for notes: [C#, G#, C, F]
  	 C# Major Seven:
  	 	 Triad: C# Major
- Chords for notes: [E, B, G#, C#]
+ Chords for notes: [C#, E, B, G#]
  	 C# Minor Seven:
  	 	 Triad: C# Minor
  	 E Six:
  	 	 Triad: E Major
- Chords for notes: [E, C, G#, C#]
+ Chords for notes: [C#, E, G#, C]
  	 C# Minor Major Seven:
  	 	 Triad: C# Minor
  	 E Six Augmented:
  	 	 Triad: E Augmented
- Chords for notes: [B, D#, G#, C#]
+ Chords for notes: [C#, D#, G#, B]
  	 C# Seven Suspended Two:
  	 	 Triad: C# Suspended Two
- Chords for notes: [D#, C, G#, C#]
+ Chords for notes: [C#, D#, G#, C]
  	 C# Major Seven Suspended Two:
  	 	 Triad: C# Suspended Two
- Chords for notes: [A#, D#, G#, C#]
+ Chords for notes: [C#, D#, G#, A#]
  	 C# Six Suspended Two:
  	 	 Triad: C# Suspended Two
  	 D# Seven Suspended Four:
  	 	 Triad: D# Suspended Four
- Chords for notes: [F#, C, G#, C#]
+ Chords for notes: [C#, G#, F#, C]
  	 C# Major Seven Suspended Four:
  	 	 Triad: C# Suspended Four
- Chords for notes: [F#, A#, G#, C#]
+ Chords for notes: [C#, G#, A#, F#]
  	 C# Six Suspended Four:
  	 	 Triad: C# Suspended Four
- Chords for notes: [E, B, G, C#]
+ Chords for notes: [C#, E, B, G]
  	 C# Half Diminished Seven:
  	 	 Triad: C# Diminished
  	 E Six Minor:
  	 	 Triad: E Minor
  	 G Six Flat Five:
  	 	 Triad: G Flat Five
- Chords for notes: [C, E, G, C#]
+ Chords for notes: [C#, E, G, C]
  	 C# Diminished Major Seven:
  	 	 Triad: C# Diminished
- Chords for notes: [A, F, B, C#]
+ Chords for notes: [C#, B, A, F]
  	 C# Augmented Seven:
  	 	 Triad: C# Augmented
- Chords for notes: [A, F, C, C#]
+ Chords for notes: [C#, A, C, F]
  	 C# Augmented Major Seven:
  	 	 Triad: C# Augmented
- Chords for notes: [F, B, G, C#]
+ Chords for notes: [C#, B, G, F]
  	 C# Seven Flat Five:
  	 	 Triad: C# Flat Five
  	 G Seven Flat Five:
  	 	 Triad: G Flat Five
- Chords for notes: [C, F, G, C#]
+ Chords for notes: [C#, G, C, F]
  	 C# Major Seven:
  	 	 Triad: C# Flat Five
- Chords for notes: [A, D, C, F#]
+ Chords for notes: [A, D, F#, C]
  	 D Seven:
  	 	 Triad: D Major
- Chords for notes: [A, D, C#, F#]
+ Chords for notes: [C#, A, D, F#]
  	 D Major Seven:
  	 	 Triad: D Major
- Chords for notes: [A, F, D, C]
+ Chords for notes: [A, D, C, F]
  	 D Minor Seven:
  	 	 Triad: D Minor
  	 F Six:
  	 	 Triad: F Major
- Chords for notes: [A, F, D, C#]
+ Chords for notes: [C#, A, D, F]
  	 D Minor Major Seven:
  	 	 Triad: D Minor
  	 F Six Augmented:
  	 	 Triad: F Augmented
- Chords for notes: [A, D, E, C]
+ Chords for notes: [E, A, D, C]
  	 D Seven Suspended Two:
  	 	 Triad: D Suspended Two
- Chords for notes: [A, D, E, C#]
+ Chords for notes: [C#, E, A, D]
  	 D Major Seven Suspended Two:
  	 	 Triad: D Suspended Two
- Chords for notes: [A, D, E, B]
+ Chords for notes: [E, B, A, D]
  	 D Six Suspended Two:
  	 	 Triad: D Suspended Two
  	 E Seven Suspended Four:
  	 	 Triad: E Suspended Four
- Chords for notes: [A, D, G, C#]
+ Chords for notes: [C#, A, D, G]
  	 D Major Seven Suspended Four:
  	 	 Triad: D Suspended Four
- Chords for notes: [A, D, B, G]
+ Chords for notes: [B, A, D, G]
  	 D Six Suspended Four:
  	 	 Triad: D Suspended Four
- Chords for notes: [F, D, C, G#]
+ Chords for notes: [G#, D, C, F]
  	 D Half Diminished Seven:
  	 	 Triad: D Diminished
  	 F Six Minor:
  	 	 Triad: F Minor
  	 G# Six Flat Five:
  	 	 Triad: G# Flat Five
- Chords for notes: [F, D, G#, C#]
+ Chords for notes: [C#, G#, D, F]
  	 D Diminished Major Seven:
  	 	 Triad: D Diminished
- Chords for notes: [D, C, A#, F#]
+ Chords for notes: [D, A#, F#, C]
  	 D Augmented Seven:
  	 	 Triad: D Augmented
- Chords for notes: [D, C#, A#, F#]
+ Chords for notes: [C#, D, A#, F#]
  	 D Augmented Major Seven:
  	 	 Triad: D Augmented
- Chords for notes: [D, C, G#, F#]
+ Chords for notes: [G#, D, F#, C]
  	 D Seven Flat Five:
  	 	 Triad: D Flat Five
  	 G# Seven Flat Five:
  	 	 Triad: G# Flat Five
- Chords for notes: [D, C#, G#, F#]
+ Chords for notes: [C#, G#, D, F#]
  	 D Major Seven:
  	 	 Triad: D Flat Five
- Chords for notes: [D#, G, A#, C#]
+ Chords for notes: [C#, D#, G, A#]
  	 D# Seven:
  	 	 Triad: D# Major
  Chords for notes: [D, D#, G, A#]
@@ -693,44 +693,44 @@
  	 	 Triad: D# Minor
  	 F# Six:
  	 	 Triad: F# Major
- Chords for notes: [D, D#, A#, F#]
+ Chords for notes: [D#, D, A#, F#]
  	 D# Minor Major Seven:
  	 	 Triad: D# Minor
  	 F# Six Augmented:
  	 	 Triad: F# Augmented
- Chords for notes: [F, D#, A#, C#]
+ Chords for notes: [C#, D#, A#, F]
  	 D# Seven Suspended Two:
  	 	 Triad: D# Suspended Two
- Chords for notes: [F, D#, A#, D]
+ Chords for notes: [D#, D, A#, F]
  	 D# Major Seven Suspended Two:
  	 	 Triad: D# Suspended Two
- Chords for notes: [F, D#, C, A#]
+ Chords for notes: [C, D#, A#, F]
  	 D# Six Suspended Two:
  	 	 Triad: D# Suspended Two
  	 F Seven Suspended Four:
  	 	 Triad: F Suspended Four
- Chords for notes: [A#, D, D#, G#]
+ Chords for notes: [D#, G#, D, A#]
  	 D# Major Seven Suspended Four:
  	 	 Triad: D# Suspended Four
- Chords for notes: [A#, D#, C, G#]
+ Chords for notes: [D#, G#, A#, C]
  	 D# Six Suspended Four:
  	 	 Triad: D# Suspended Four
- Chords for notes: [A, D, D#, F#]
+ Chords for notes: [D#, A, D, F#]
  	 D# Diminished Major Seven:
  	 	 Triad: D# Diminished
- Chords for notes: [B, D#, G, C#]
+ Chords for notes: [C#, D#, G, B]
  	 D# Augmented Seven:
  	 	 Triad: D# Augmented
- Chords for notes: [B, D, D#, G]
+ Chords for notes: [D, D#, G, B]
  	 D# Augmented Major Seven:
  	 	 Triad: D# Augmented
- Chords for notes: [A, D, D#, G]
+ Chords for notes: [D, D#, A, G]
  	 D# Major Seven:
  	 	 Triad: D# Flat Five
- Chords for notes: [D, E, B, G#]
+ Chords for notes: [E, B, G#, D]
  	 E Seven:
  	 	 Triad: E Major
- Chords for notes: [D#, E, B, G#]
+ Chords for notes: [E, B, G#, D#]
  	 E Major Seven:
  	 	 Triad: E Major
  Chords for notes: [D, E, B, G]
@@ -738,15 +738,15 @@
  	 	 Triad: E Minor
  	 G Six:
  	 	 Triad: G Major
- Chords for notes: [D#, E, B, G]
+ Chords for notes: [E, B, G, D#]
  	 E Minor Major Seven:
  	 	 Triad: E Minor
  	 G Six Augmented:
  	 	 Triad: G Augmented
- Chords for notes: [D, E, B, F#]
+ Chords for notes: [E, B, D, F#]
  	 E Seven Suspended Two:
  	 	 Triad: E Suspended Two
- Chords for notes: [D#, E, B, F#]
+ Chords for notes: [E, B, D#, F#]
  	 E Major Seven Suspended Two:
  	 	 Triad: E Suspended Two
  Chords for notes: [C#, E, B, F#]
@@ -754,161 +754,161 @@
  	 	 Triad: E Suspended Two
  	 F# Seven Suspended Four:
  	 	 Triad: F# Suspended Four
- Chords for notes: [A, D#, E, B]
+ Chords for notes: [E, B, A, D#]
  	 E Major Seven Suspended Four:
  	 	 Triad: E Suspended Four
- Chords for notes: [A, E, B, C#]
+ Chords for notes: [C#, E, B, A]
  	 E Six Suspended Four:
  	 	 Triad: E Suspended Four
  Chords for notes: [E, D#, G, A#]
  	 E Diminished Major Seven:
  	 	 Triad: E Diminished
- Chords for notes: [D, E, C, G#]
+ Chords for notes: [E, G#, D, C]
  	 E Augmented Seven:
  	 	 Triad: E Augmented
- Chords for notes: [E, D#, C, G#]
+ Chords for notes: [E, D#, G#, C]
  	 E Augmented Major Seven:
  	 	 Triad: E Augmented
- Chords for notes: [D#, E, A#, G#]
+ Chords for notes: [E, D#, G#, A#]
  	 E Major Seven:
  	 	 Triad: E Flat Five
- Chords for notes: [A, F, D#, C]
+ Chords for notes: [D#, A, C, F]
  	 F Seven:
  	 	 Triad: F Major
- Chords for notes: [A, F, E, C]
+ Chords for notes: [E, A, C, F]
  	 F Major Seven:
  	 	 Triad: F Major
- Chords for notes: [F, D#, C, G#]
+ Chords for notes: [D#, G#, C, F]
  	 F Minor Seven:
  	 	 Triad: F Minor
  	 G# Six:
  	 	 Triad: G# Major
- Chords for notes: [F, E, C, G#]
+ Chords for notes: [E, G#, C, F]
  	 F Minor Major Seven:
  	 	 Triad: F Minor
  	 G# Six Augmented:
  	 	 Triad: G# Augmented
- Chords for notes: [C, F, D#, G]
+ Chords for notes: [D#, G, C, F]
  	 F Seven Suspended Two:
  	 	 Triad: F Suspended Two
- Chords for notes: [C, F, E, G]
+ Chords for notes: [E, G, C, F]
  	 F Major Seven Suspended Two:
  	 	 Triad: F Suspended Two
- Chords for notes: [C, F, G, D]
+ Chords for notes: [D, G, C, F]
  	 F Six Suspended Two:
  	 	 Triad: F Suspended Two
  	 G Seven Suspended Four:
  	 	 Triad: G Suspended Four
- Chords for notes: [F, E, C, A#]
+ Chords for notes: [C, E, A#, F]
  	 F Major Seven Suspended Four:
  	 	 Triad: F Suspended Four
- Chords for notes: [F, C, A#, D]
+ Chords for notes: [C, D, A#, F]
  	 F Six Suspended Four:
  	 	 Triad: F Suspended Four
- Chords for notes: [F, E, B, G#]
+ Chords for notes: [E, B, G#, F]
  	 F Diminished Major Seven:
  	 	 Triad: F Diminished
- Chords for notes: [A, F, D#, C#]
+ Chords for notes: [C#, D#, A, F]
  	 F Augmented Seven:
  	 	 Triad: F Augmented
- Chords for notes: [A, F, E, C#]
+ Chords for notes: [C#, E, A, F]
  	 F Augmented Major Seven:
  	 	 Triad: F Augmented
- Chords for notes: [A, F, E, B]
+ Chords for notes: [E, B, A, F]
  	 F Major Seven:
  	 	 Triad: F Flat Five
- Chords for notes: [E, C#, A#, F#]
+ Chords for notes: [C#, E, A#, F#]
  	 F# Seven:
  	 	 Triad: F# Major
- Chords for notes: [F, C#, A#, F#]
+ Chords for notes: [C#, A#, F#, F]
  	 F# Major Seven:
  	 	 Triad: F# Major
- Chords for notes: [E, C#, G#, F#]
+ Chords for notes: [C#, E, G#, F#]
  	 F# Seven Suspended Two:
  	 	 Triad: F# Suspended Two
- Chords for notes: [F, C#, G#, F#]
+ Chords for notes: [C#, G#, F#, F]
  	 F# Major Seven Suspended Two:
  	 	 Triad: F# Suspended Two
- Chords for notes: [D#, C#, G#, F#]
+ Chords for notes: [C#, D#, G#, F#]
  	 F# Six Suspended Two:
  	 	 Triad: F# Suspended Two
  	 G# Seven Suspended Four:
  	 	 Triad: G# Suspended Four
- Chords for notes: [F, C#, B, F#]
+ Chords for notes: [C#, B, F#, F]
  	 F# Major Seven Suspended Four:
  	 	 Triad: F# Suspended Four
- Chords for notes: [C#, D#, B, F#]
+ Chords for notes: [C#, B, D#, F#]
  	 F# Six Suspended Four:
  	 	 Triad: F# Suspended Four
- Chords for notes: [A, F, C, F#]
+ Chords for notes: [F, A, F#, C]
  	 F# Diminished Major Seven:
  	 	 Triad: F# Diminished
- Chords for notes: [D, E, A#, F#]
+ Chords for notes: [E, D, A#, F#]
  	 F# Augmented Seven:
  	 	 Triad: F# Augmented
- Chords for notes: [F, D, A#, F#]
+ Chords for notes: [D, A#, F#, F]
  	 F# Augmented Major Seven:
  	 	 Triad: F# Augmented
- Chords for notes: [F, C, A#, F#]
+ Chords for notes: [F, A#, F#, C]
  	 F# Major Seven:
  	 	 Triad: F# Flat Five
- Chords for notes: [F, D, B, G]
+ Chords for notes: [D, B, G, F]
  	 G Seven:
  	 	 Triad: G Major
  Chords for notes: [D, B, G, F#]
  	 G Major Seven:
  	 	 Triad: G Major
- Chords for notes: [A, F, D, G]
+ Chords for notes: [D, A, G, F]
  	 G Seven Suspended Two:
  	 	 Triad: G Suspended Two
- Chords for notes: [A, D, G, F#]
+ Chords for notes: [D, A, G, F#]
  	 G Major Seven Suspended Two:
  	 	 Triad: G Suspended Two
- Chords for notes: [C, D, G, F#]
+ Chords for notes: [F#, D, G, C]
  	 G Major Seven Suspended Four:
  	 	 Triad: G Suspended Four
- Chords for notes: [C, D, E, G]
+ Chords for notes: [D, E, G, C]
  	 G Six Suspended Four:
  	 	 Triad: G Suspended Four
- Chords for notes: [F#, G, A#, C#]
+ Chords for notes: [C#, G, F#, A#]
  	 G Diminished Major Seven:
  	 	 Triad: G Diminished
- Chords for notes: [F, D#, B, G]
+ Chords for notes: [B, G, D#, F]
  	 G Augmented Seven:
  	 	 Triad: G Augmented
- Chords for notes: [D#, B, G, F#]
+ Chords for notes: [B, G, D#, F#]
  	 G Augmented Major Seven:
  	 	 Triad: G Augmented
- Chords for notes: [F#, B, G, C#]
+ Chords for notes: [C#, B, G, F#]
  	 G Major Seven:
  	 	 Triad: G Flat Five
- Chords for notes: [D#, C, G#, F#]
+ Chords for notes: [F#, D#, G#, C]
  	 G# Seven:
  	 	 Triad: G# Major
- Chords for notes: [G, D#, C, G#]
+ Chords for notes: [D#, G#, G, C]
  	 G# Major Seven:
  	 	 Triad: G# Major
- Chords for notes: [D#, A#, G#, F#]
+ Chords for notes: [F#, D#, G#, A#]
  	 G# Seven Suspended Two:
  	 	 Triad: G# Suspended Two
- Chords for notes: [D#, A#, G, G#]
+ Chords for notes: [D#, G#, G, A#]
  	 G# Major Seven Suspended Two:
  	 	 Triad: G# Suspended Two
- Chords for notes: [D#, G, G#, C#]
+ Chords for notes: [C#, D#, G#, G]
  	 G# Major Seven Suspended Four:
  	 	 Triad: G# Suspended Four
- Chords for notes: [F, D#, G#, C#]
+ Chords for notes: [C#, D#, G#, F]
  	 G# Six Suspended Four:
  	 	 Triad: G# Suspended Four
- Chords for notes: [D, B, G, G#]
+ Chords for notes: [B, G#, D, G]
  	 G# Diminished Major Seven:
  	 	 Triad: G# Diminished
- Chords for notes: [E, C, G#, F#]
+ Chords for notes: [F#, E, G#, C]
  	 G# Augmented Seven:
  	 	 Triad: G# Augmented
- Chords for notes: [G, E, C, G#]
+ Chords for notes: [E, G#, G, C]
  	 G# Augmented Major Seven:
  	 	 Triad: G# Augmented
- Chords for notes: [D, G, C, G#]
+ Chords for notes: [G#, D, G, C]
  	 G# Major Seven:
  	 	 Triad: G# Flat Five
