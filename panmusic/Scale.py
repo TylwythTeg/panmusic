@@ -107,6 +107,7 @@ class Scale():
     #            yield triad
 
 
+
     def chords_in_scale(self, chords):
         for chord in chords:
             if self.has_chord(chord):
@@ -114,10 +115,10 @@ class Scale():
 
     def add_tetrad(self, tetrad):
         triad = tetrad.triad
-        #if key doesn't exist, initialize list
+        #if key doesn't exist, initialize first tetrad within a new list
         if triad not in self.tetrads:
             self.tetrads[triad] = [tetrad]
-        #else append to current list
+        #else append to current list of tetrad(s)
         else:
             self.tetrads[triad].append(tetrad)
 
@@ -127,7 +128,7 @@ class Scale():
         #gives us all tetrads from roots that we need to filter
         tetrads = Tetrad.from_notes(self.notes)
 
-        # use a generator to filter
+        # use a generator to filter away all tetrads that don't exist in this scale
         for tetrad in self.chords_in_scale(tetrads):
             self.add_tetrad(tetrad)
             
@@ -188,57 +189,6 @@ class Scale():
         #    print("\n Tetrad")
         #    print("\n \t key", key)
         #    print("\n \t value", value)
-
-
-
-    def generated_tetrads(self):
-        self.tetrads = {}
-        tetrads = Tetrad.create(root = self.root, tetrad = "All")
-
-        print("\ntetrads", tetrads)
-        print(self.name)
-        i = 0
-        for tetrad in tetrads:
-            #print("checking:", tetrad)
-            if self.has_chord(tetrad):
-                print("\n has:", tetrad)
-                print(self.name)
-                print("tetrad.triad", tetrad.triad)
-                print(self.tetrads.get(tetrad.triad, None))
-                print("sdf",self.tetrads.get(tetrad.triad, None).__class__())
-
-                #if isinstance(tetrads)
-                for key in tetrads:
-                    print("key", key)
-
-                print("\n segfghfghfe", self.tetrads.get(tetrad.triad))
-
-                if isinstance(self.tetrads.get(tetrad.triad), list):
-                    print("\n \n \n was a list")
-                    self.tetrads[tetrad.triad].append(tetrad)
-                else:
-                    print("\n i",i)
-                    print("\n notes", tetrad.notes)
-                    print("\n self.tetrads", self.tetrads)
-
-
-
-                    if tetrad.triad not in self.triads:#self.tetrads.get(tetrad.triad, None) is None:
-                        self.tetrads[tetrad.triad] = [tetrad]
-                        #for key in self.tetrads:
-                            #print("key", key)
-                    else:
-                        self.tetrads[tetrad.triad] += [tetrad]
-                    print("\n \n ADDING TETRAD", tetrad)
-                    print("\n TETRAD NOTES:", tetrad.notes)
-            i += 1
-        print("\n SELF TETRADS",self.tetrads)
-
-    #def generate_six_chord(self, triad, root):
-        #SixthChord(triad,root)
-
-    #def generate_tetrads():
-    #    tetrads = []
 
 
     '''

@@ -42,9 +42,22 @@ class Chord():
                 and frozenset(self.notes) == frozenset(other.notes)
                 and self.name == other.name
                 and self.type == other.type)
-            
+
     def __hash__(self):
         return hash((self.root, tuple(self.notes), self.name, self.type))
+
+
+
+
+
+
+    #############
+    def all():
+        triads = Triad.create(root = "All", triad = "All")
+        tetrads = Tetrad.create(root = "All", tetrad = "All")
+
+        return triads + tetrads
+
 
 
 
@@ -54,37 +67,26 @@ class Chord():
     def set_fingerprint(self):
         self.fingerprint = frozenset(self.notes)
 
+    #global / static
+    #add a chord to the Chord.fingerprints dictionary
+    def add_to_fingerprints(chord):
+        if chord.fingerprint not in Chord.fingerprints:
+            Chord.fingerprints[chord.fingerprint] = [chord]
+        else:
+            Chord.fingerprints[chord.fingerprint].append(chord)
+
+
+    #global / static 
+    #Group all chords under fingerprints under Chord.fingerprints
     def set_fingerprints():
+        Chord.fingerprints = {}
 
-        #chords = Chord.all()
-
-        triads = Triad.create(root = "All", triad = "All")
-        tetrads = Tetrad.create(root = "All", tetrad = "All")
-
-        chords = triads + tetrads
-
-        fingerprints = {}
+        chords = Chord.all()
 
         for chord in chords:
+            Chord.add_to_fingerprints(chord)
 
-            #if fingerprint doesn't already exist, add that key (fingerprint) and value (chord) simply
-            if chord.fingerprint not in fingerprints:
-                #print("Added fingerprint:", chord.fingerprint)
-                fingerprints[chord.fingerprint] = chord
-
-            #fingerprint already exists, add it either to list or create list and add to list
-            else:
-                if isinstance(fingerprints[chord.fingerprint], list):
-                    #add to list if there is already a list of multiple chord objects for this fingerprint
-                    fingerprints[chord.fingerprint].append(chord)
-                else:
-                    #create list from element and add to it because this is not a list and only one exists
-                    fingerprints[chord.fingerprint] = [fingerprints[chord.fingerprint]]
-                    fingerprints[chord.fingerprint].append(chord)
-
-        #print("--------------FINGERPRINTS",fingerprints,"____________________")
-
-        Chord.fingerprints = fingerprints
+        print("--------------FINGERPRINTS",Chord.fingerprints,"____________________")
     
 
     def __init__(self, notes , root = None):

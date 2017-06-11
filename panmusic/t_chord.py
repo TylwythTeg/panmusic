@@ -128,15 +128,24 @@ for tetrad in tetrads:
 
 
 fingerprint_log = ""
+lists = 0
+n_lists = 0
+fingerprints = Chord.fingerprints
 for fingerprint in fingerprints:
 	fingerprint_log += "\n Chords for notes: " + list(fingerprint).__str__()
 	#tetrad = None
+
+	
 	if isinstance(fingerprints[fingerprint], list):	
+		lists += 1
 		for tetrad in fingerprints[fingerprint]:
 			fingerprint_log += "\n \t " + tetrad.__str__() + ":"
 			fingerprint_log += "\n \t \t Triad: " + tetrad.triad.__str__()
-			fingerprint_log += "\n \t \t Tetrad: " + tetrad.tetrad_type.__str__()
+
+			if isinstance(fingerprints[fingerprint], Tetrad):
+				fingerprint_log += "\n \t \t Tetrad: " + tetrad.tetrad_type.__str__()
 	else:
+		n_lists += 1
 		tetrad = fingerprints[fingerprint]
 		fingerprint_log += "\n \t " + tetrad.__str__() + ":"
 		fingerprint_log += "\n \t \t Triad: " + tetrad.triad.__str__()
@@ -147,6 +156,9 @@ for fingerprint in fingerprints:
 new_file = open("tetrad_fingerprints.txt", "w")
 new_file.write(fingerprint_log)
 new_file.close()
+
+
+print("breakdown", "lists:", lists, "n_lists", n_lists)
 
 
 
