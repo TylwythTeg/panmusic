@@ -70,6 +70,13 @@ class Note(Enum):
         amount += self.value
         amount %= 12
         return Note(amount)
+
+    def __add__(self, amount):  
+        if is_interval(amount):
+            amount = amount.value
+        amount += self.value
+        amount %= 12
+        return Note(amount)
             
     def is_in_scale(self, scale):
         for note in scale.notes:

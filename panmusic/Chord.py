@@ -1,25 +1,6 @@
 from Note import *
 from enum import Enum
 
-#import itertools
-#this is some helper stuff that needs a home
-#This might actually not be essential at all, but I'll see. Not really "using" it right now
-def combinations(array):
-    #Gets combinations by iterating through list.
-    #For every element, it creates a new list and adds the rest of the elements on top
-    #This list of lists is returned as combinations
-    combinations = []
-    for element in array:
-        temp_array = [element]
-        for temp_element in array:
-            if temp_element != element:
-                temp_array.append(temp_element)
-        combinations.append(temp_array)
-
-    return combinations 
-#this is some helper stuff that needs a home
-
-
 
 class Chord():
     name = None
@@ -57,11 +38,7 @@ class Chord():
         tetrads = Tetrad.create(root = "All", tetrad = "All")
 
         return triads + tetrads
-
-
-
-
-
+    #############
 
 
     def set_fingerprint(self):
@@ -104,31 +81,9 @@ class Chord():
     def generate_notes(self):
         self.notes = [self.root]
         for interval in self.intervals:
-            self.notes.append(self.root.plus(interval))
+            self.notes.append(self.root + interval)
+            #self.notes.append(self.root.plus(interval))
         
-
-    def generate_inversions(self):
-         self.inversions = combinations(self.notes)
-
-    #I don't know what use this could ever really be yet
-    def generate_inversion_intervals(self):
-        self.inversion_intervals = []
-
-        first = True
-        for inversion in self.inversions:
-            if first:
-                last_inversion = inversion
-                first = False
-                continue
-
-            ch = Chord(inversion)
-            inters = ch.calculate_intervals()
-
-            inters = frozenset(inters)
-
-            self.inversion_intervals.append(inters)
-
-        self.inversion_intervals = frozenset(self.inversion_intervals)
 
     def create(root = None, triad = None, tetrad = None ):
 
@@ -146,7 +101,6 @@ class Chord():
             if first == True:
                 last_note = note
                 first = False
-                
                 continue
 
             interval = Interval.between(self.notes[0], note)
@@ -154,6 +108,8 @@ class Chord():
             last_note = note
         return intervals
 
+
+ 
         
     def __str__(self):
         return self.name
@@ -172,38 +128,7 @@ class Triad(Chord):
         "Flat Five"
     ]
 
-    '''
-    def liste(root = None, triad = None):
-        def notes(root):
-            return isinstance(root, list)
-        def root(root):
-            return root is not None
-        def triad(triad):
-            return triad is not None
 
-        def all():
-            return Triad.create(root = "All", triad = "All")
-
-        if root(root) and triad(triad):
-            print(root, triad)
-            print("\n sdfsdf")
-            #Return a list of triads that go with those notes
-            #i.e return chords that are minor and exist in [A,C,E,G,F]
-            return
-        if root():
-            return Triad.create(root = root, triad = "All")
-        if triad():
-            return Triad.create(root = "All", triad = "All" )
-        else:
-            return all()
-
-
-
-
-
-        #if notes == None or notes == "All"
-
-    '''
     def constructors(triad_type):
         triad_type = triad_type.replace(" ", "")
         return globals()[triad_type + "Triad"]
@@ -259,8 +184,6 @@ class MajorTriad(Triad):
         self.type = "Major"
         self.name = root.__str__() + " " + self.type
         self.generate_notes()
-        self.generate_inversions()
-        self.generate_inversion_intervals()
         self.set_fingerprint()
 
         
@@ -274,8 +197,6 @@ class MinorTriad(Triad):
         self.name = root.__str__() + " " + self.type
         self.root = root
         self.generate_notes()
-        self.generate_inversions()
-        self.generate_inversion_intervals()
         self.set_fingerprint()
         
 class SuspendedTriad(Triad):
@@ -295,8 +216,6 @@ class SuspendedTwoTriad(SuspendedTriad):
 
         self.root = root
         self.generate_notes()
-        self.generate_inversions()
-        self.generate_inversion_intervals()
         self.set_fingerprint()
 
 class SuspendedFourTriad(SuspendedTriad):
@@ -314,8 +233,6 @@ class SuspendedFourTriad(SuspendedTriad):
 
         self.root = root
         self.generate_notes()
-        self.generate_inversions()
-        self.generate_inversion_intervals()
         self.set_fingerprint()
         
 class AugmentedTriad(Triad):
@@ -328,8 +245,6 @@ class AugmentedTriad(Triad):
         self.name = root.__str__() + " " + self.type
         self.root = root
         self.generate_notes()
-        self.generate_inversions()
-        self.generate_inversion_intervals()
         self.set_fingerprint()
 
         
@@ -343,8 +258,6 @@ class DiminishedTriad(Triad):
         self.name = root.__str__() + " " + self.type
         self.root = root
         self.generate_notes()
-        self.generate_inversions()
-        self.generate_inversion_intervals()
         self.set_fingerprint()
 
 
@@ -358,8 +271,6 @@ class FlatFiveTriad(Triad):
         self.name = root.__str__() + " " + self.type
         self.root = root
         self.generate_notes()
-        self.generate_inversions()
-        self.generate_inversion_intervals()
         self.set_fingerprint()
   
 
@@ -444,8 +355,6 @@ class SixthChord(Tetrad):
         self.intervals = self.triad.intervals + self.sixth_interval
 
         self.generate_notes()
-        self.generate_inversions()
-        self.generate_inversion_intervals()
         self.set_fingerprint()
 
 
@@ -497,8 +406,6 @@ class DominantSeventhChord(SeventhChord):
         self.intervals = self.triad.intervals + self.seventh_interval
 
         self.generate_notes()
-        self.generate_inversions()
-        self.generate_inversion_intervals()
         self.set_fingerprint()
 
 class MajorSeventhChord(SeventhChord):
@@ -527,8 +434,6 @@ class MajorSeventhChord(SeventhChord):
         self.intervals = self.triad.intervals + self.seventh_interval
 
         self.generate_notes()
-        self.generate_inversions()
-        self.generate_inversion_intervals()
         self.set_fingerprint()
 
 class DiminishedSeventhChord(SeventhChord):
@@ -554,8 +459,6 @@ class DiminishedSeventhChord(SeventhChord):
         self.intervals = self.triad.intervals + self.seventh_interval
         
         self.generate_notes()
-        self.generate_inversions()
-        self.generate_inversion_intervals()
         self.set_fingerprint()
 
 

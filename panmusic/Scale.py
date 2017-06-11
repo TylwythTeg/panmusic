@@ -67,47 +67,32 @@ class Scale():
         return constructor(root)
         #return types.get(type)
 
+
+    ############## Notes ##############
     def generate_notes(self):
         self.notes = [self.root]
         for interval in self.intervals:
-            self.notes.append(self.root.plus(interval))
+            self.notes.append(self.root + interval)
+
+
+    ############## Triads ##############
+    def generate_triads(self, root):
+        triads = []
+
+        for triad in Triad.types:
+            chord = Triad.create(triad = triad,root = root)
+            if self.has_chord(chord):
+                triads.append(chord)
+                
+        return triads
     
     def add_triads(self):
         self.triads = {}
         for note in self.notes:
-            #print ("\nChords for",note)
             self.triads[note] = self.generate_triads(note)
 
-    '''
-    def add_seventh_chords(self):
-        self.seven_chords = {}
 
-        for triads in self.triads.values():
-            for triad in triads:
-                #print("Seven chords for", triad)
-                self.seven_chords[triad] = self.generate_seven_chords(triad.type, triad.root)
-            print("\n sdfsdfsdfds", self.seven_chords)
-    '''
-
-
-
-        #for triad in self.triads.values():
-        #    print("Seven chords for", triad)
-        #    self.seven_chords[triad] = self.generate_seven_chords(triad, triad.root)
-
-    #I THINK THIS SHITTY FUNCTION GIVES ALL TETRADS TO ALL TRIADS LOOK
-
-    #def interesting_tetrads(a_list):
-    #    for element in a_list:
-    #        if
-
-    #def triad_yield(self):
-    #    for triad_list in self.triads.values():
-    #        for triad in triad_list:
-    #            yield triad
-
-
-
+    ############## Tetrads ##############
     def chords_in_scale(self, chords):
         for chord in chords:
             if self.has_chord(chord):
@@ -134,113 +119,14 @@ class Scale():
             
                 
 
-    #def generate_tetrads(self):
-    #    self.tetrads = {}
-
-        #gives us all tetrads from roots tha twe need to filter
-    #    tetrads = Tetrad.from_notes(self.notes)
-    #
-    #    for tetrad in self.chords_in_scale(tetrads):
-            #triad = tetrad.triad
-
-    #        self.add_tetrad(tetrad)
-            #if triad not in self.tetrads:
-            #    self.tetrads[triad] = [tetrad]
-            #else:
-            #    self.tetrads[triad].append(tetrad)
-
-        #for tetrad in tetrads:
-        #    #filter non-scale chords
-        #    if not self.has_chord(tetrad):
-        #        continue
-        #
-        #
-        #    triad = tetrad.triad
-        #    if triad not in self.tetrads:
-        #        self.tetrads[triad] = [tetrad]
-        #    else:
-        #        self.tetrads[triad].append(tetrad)
+    
 
 
-    #def generate_tetrads(self):
-    #    self.tetrads = {}
-    #    tetrads = Tetrad.from_notes(self.notes)
-    #
-    #    for triad_list in self.triads.values():
-    #        for triad in triad_list:
-    #            for tetrad in tetrads:
-    #                #if self.has_chord(tetrad) and tetrad.has_triad(triad)
-    #                if self.has_chord(tetrad) and triad.type == tetrad.triad.type and triad.root == tetrad.root:
-    #                    #if tetrad not in...?
-    #                    if triad not in self.tetrads:
-    #                        self.tetrads[triad] = [tetrad]
-    #                        print(triad, "wasn't in, added:", tetrad)
-    #                    else:
-    #                        print(triad, "was in, added:", tetrad)
-    #                        self.tetrads[triad].append(tetrad)
-    #                    print("\n \n Self.tetrads", triad, self.tetrads[triad])##
 
-
-    #apples = self.tetrads
-
-        #print("werewrewrew------------------------ \n", self.tetrads)
-
-        #for key, value in self.tetrads.items():
-        #    print("\n Tetrad")
-        #    print("\n \t key", key)
-        #    print("\n \t value", value)
-
-
-    '''
-    def generate_seven_chords(self, triad, root):
-        seven_chords = []
-
-        #print("Checking note: ", root)
-
-
-        for seven_chord in SeventhChord.types:
-            #print("----------------",triad,seven_chord)
-
-
-            #if minor triad/major sixth e.g. Cm6 and etc
-            #This is really sloppy but just trying to get this working
-            if triad != "Diminished" and seven_chord == "Diminished Seven":
-                continue
-            elif triad == "Flat Five" and seven_chord == "Major Seven":
-                continue
-
-            #chord = Chord.create(seven_chord, root, triad)
-            chord = Chord.create(
-                root = root,
-                triad = triad,
-                tetrad = seven_chord
-            )
-            if self.has_chord(chord):
-                seven_chords.append(chord)
-                #print(self, " has Chord: ", chord)
-                #print("------------- Notes: ", chord.notes)
-
-        #for seven_chord in seven_chords:
-            #print("SEVEN:    ",seven_chord)
-
-        return seven_chords
-        '''
-            
             
         
             
-    def generate_triads(self, root):
-        triads = []
 
-        for triad in Triad.types:
-            chord = Triad.create(triad = triad,root = root)
-            if self.has_chord(chord):
-                triads.append(chord)
-
-        """Print debug"""
-        #for triad in triads:
-            #print(triad)
-        return triads
 
     def get_triads(self, note):
         return self.triads[note]
@@ -260,11 +146,8 @@ class Scale():
                 
             
     def has_note(self, note):
-        for scale_note in self.notes:
-            if note == scale_note:
-                return True
-        return False
-    
+        #print("\n \n \n \n \n \n YESSS print it:", self, note, note in self.notes)
+        return note in self.notes
     
 
 
