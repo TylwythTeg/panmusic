@@ -5,9 +5,10 @@ from enum import Enum
 class Chord():
     name = None
     notes = []
+    root = None
     tetrad = None
     triad = None
-    root = None
+    
 
 
     #so that we can use chords as dictionary keys.
@@ -82,7 +83,6 @@ class Chord():
         self.notes = [self.root]
         for interval in self.intervals:
             self.notes.append(self.root + interval)
-            #self.notes.append(self.root.plus(interval))
         
 
     def create(root = None, triad = None, tetrad = None ):
@@ -147,9 +147,16 @@ class Triad(Chord):
 
 
 
+
+
+
     
 
     def create(root = None, triad = None ):
+        #def all():
+        #    return root is None and triad is None
+
+
 
         if triad == "All":
             #function
@@ -331,18 +338,21 @@ class Tetrad(Chord):
 
 class SixthChord(Tetrad):
     sixth_interval = [
-    Interval.MAJOR_SIXTH
+        Interval.MAJOR_SIXTH
     ]
+
+    def set_type(self, triad):
+        types = {
+            "Minor": "Minor Major Six",
+            "Major": "Six",
+        }
+        self.type = types.get(triad, "Six " + triad)
+
+
     def __init__(self, triad, root):
 
 
-        #setType()
-        if triad == "Minor":
-            self.type = "Minor Major Six"
-        if triad == "Major":
-            self.type = "Six"
-        else:
-            self.type = "Six " + triad
+        self.set_type(triad)
 
         self.name = root.__str__() + " " + self.type
         self.root = root
@@ -357,15 +367,6 @@ class SixthChord(Tetrad):
         self.generate_notes()
         self.set_fingerprint()
 
-
-        #create harmonic. Probably not necessary given self.fingerprint
-        note = Note.from_int(root.value + Interval.MAJOR_SIXTH.value)
-
-        self.enharmonic = [
-            Chord.create(tetrad = "Dominant Seven", triad = "Minor", root = note)
-        ]
-
-        #print(self.enharmonic[0].type)
 
 
 class SeventhChord(Tetrad):
@@ -413,16 +414,20 @@ class MajorSeventhChord(SeventhChord):
     Interval.MAJOR_SEVENTH
     ]
 
+
+    def set_type(self, triad):
+        types = {
+            "Minor": triad + " " + "Major Seven",
+            "Augmented": triad + " " + "Major Seven",
+            "Diminished": triad + " " + "Major Seven",
+            "Suspended Two": "Major Seven " + triad,
+            "Suspended Four": "Major Seven " + triad,
+        }
+        self.type = types.get(triad, "Major Seven")
+
     def __init__(self, triad, root):
-        if triad in ("Minor", "Augmented", "Diminished"):
-            self.type = triad + " " + "Major Seven"
-        elif "Suspended" in triad:
-            self.type = "Major Seven " + triad
-        else:
-            self.type = "Major Seven"
 
-
-        
+        self.set_type(triad)
         
         self.name = root.__str__() + " " + self.type
         self.root = root
@@ -441,14 +446,14 @@ class DiminishedSeventhChord(SeventhChord):
     Interval.MAJOR_SIXTH
     ]
 
+    def set_type(self, triad):
+        types = {
+            "Diminished": "Diminished Seven",
+        }
+        self.type = types.get(triad, "Error Diminished 7")
+
     def __init__(self, triad, root):
-        if triad in ("Diminished"):
-            self.type = "Diminished Seven"
-        else:
-            self.type = "Error Diminished 7"
-
-        
-
+        self.set_type(triad)
         self.name = root.__str__() + " " + self.type
         self.root = root
         self.tetrad_type = "Diminished Seventh"

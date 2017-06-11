@@ -139,10 +139,7 @@ class Scale():
    
 
     def has_notes(self, notes):
-        for note in notes:
-            if not self.has_note(note):
-                return False
-        return True
+        return set(self.notes) >= set(notes)
                 
             
     def has_note(self, note):
