@@ -96,26 +96,91 @@ class Scale():
         #    self.seven_chords[triad] = self.generate_seven_chords(triad, triad.root)
 
     #I THINK THIS SHITTY FUNCTION GIVES ALL TETRADS TO ALL TRIADS LOOK
+
+    #def interesting_tetrads(a_list):
+    #    for element in a_list:
+    #        if
+
+    #def triad_yield(self):
+    #    for triad_list in self.triads.values():
+    #        for triad in triad_list:
+    #            yield triad
+
+
+    def chords_in_scale(self, chords):
+        for chord in chords:
+            if self.has_chord(chord):
+                yield chord
+
+    def add_tetrad(self, tetrad):
+        triad = tetrad.triad
+        #if key doesn't exist, initialize list
+        if triad not in self.tetrads:
+            self.tetrads[triad] = [tetrad]
+        #else append to current list
+        else:
+            self.tetrads[triad].append(tetrad)
+
     def generate_tetrads(self):
         self.tetrads = {}
+
+        #gives us all tetrads from roots that we need to filter
         tetrads = Tetrad.from_notes(self.notes)
 
-        for triad_list in self.triads.values():
-            for triad in triad_list:
-                for tetrad in tetrads:
-                    #if self.has_chord(tetrad) and tetrad.has_triad(triad)
-                    if self.has_chord(tetrad) and triad.type == tetrad.triad.type and triad.root == tetrad.root:
-                        #if tetrad not in...?
-                        if triad not in self.tetrads:
-                            self.tetrads[triad] = [tetrad]
-                            print(triad, "wasn't in, added:", tetrad)
-                        else:
-                            print(triad, "was in, added:", tetrad)
-                            self.tetrads[triad].append(tetrad)
-                        print("\n \n Self.tetrads", triad, self.tetrads[triad])
+        # use a generator to filter
+        for tetrad in self.chords_in_scale(tetrads):
+            self.add_tetrad(tetrad)
+            
+                
+
+    #def generate_tetrads(self):
+    #    self.tetrads = {}
+
+        #gives us all tetrads from roots tha twe need to filter
+    #    tetrads = Tetrad.from_notes(self.notes)
+    #
+    #    for tetrad in self.chords_in_scale(tetrads):
+            #triad = tetrad.triad
+
+    #        self.add_tetrad(tetrad)
+            #if triad not in self.tetrads:
+            #    self.tetrads[triad] = [tetrad]
+            #else:
+            #    self.tetrads[triad].append(tetrad)
+
+        #for tetrad in tetrads:
+        #    #filter non-scale chords
+        #    if not self.has_chord(tetrad):
+        #        continue
+        #
+        #
+        #    triad = tetrad.triad
+        #    if triad not in self.tetrads:
+        #        self.tetrads[triad] = [tetrad]
+        #    else:
+        #        self.tetrads[triad].append(tetrad)
 
 
-        apples = self.tetrads
+    #def generate_tetrads(self):
+    #    self.tetrads = {}
+    #    tetrads = Tetrad.from_notes(self.notes)
+    #
+    #    for triad_list in self.triads.values():
+    #        for triad in triad_list:
+    #            for tetrad in tetrads:
+    #                #if self.has_chord(tetrad) and tetrad.has_triad(triad)
+    #                if self.has_chord(tetrad) and triad.type == tetrad.triad.type and triad.root == tetrad.root:
+    #                    #if tetrad not in...?
+    #                    if triad not in self.tetrads:
+    #                        self.tetrads[triad] = [tetrad]
+    #                        print(triad, "wasn't in, added:", tetrad)
+    #                    else:
+    #                        print(triad, "was in, added:", tetrad)
+    #                        self.tetrads[triad].append(tetrad)
+    #                    print("\n \n Self.tetrads", triad, self.tetrads[triad])##
+
+
+    #apples = self.tetrads
 
         #print("werewrewrew------------------------ \n", self.tetrads)
 

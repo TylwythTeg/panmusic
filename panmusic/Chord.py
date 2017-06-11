@@ -26,48 +26,29 @@ class Chord():
     notes = []
     tetrad = None
     triad = None
-    '''
-
-    def list(notes = None, triad = None ):
-
-        def all(notes = None, triad = None):
-            all_chords = all_triads() + all_tetrads()
-            return all_chords
-
-        def all_triads():
-            return Triad.create(root = "All", triad = "All")
-
-        def all_tetrads():
-            return Tetrad.create(root = "All", tetrad = "All")
+    root = None
 
 
-        #All stuff?
-        if notes == None or notes == "All":
-            if triad == None or triad == "All":
-                return all_triads()
-            elif tetrad == None or tetrad == "All":
-                return all_tetrads()
-            else:
-                return all()
-
-        def all_triads():
-            triads = triads = Triad.create(root = "All", triad = "All")
-
-        def triads():
-            triads = Triad.create(root = "All", triad = "All")
-            return triads
+    #so that we can use chords as dictionary keys.
+    #I guess this makes them immutable
+    #Change notes to a frozenset rather than a list?
+    def __eq__(self, other):
+        #if a root isn't established, then we need to compare notes
+        if self.root is None or other.root is None:
+            return frozenset(self.notes) == frozenset(self.notes)
+        #root established, so check other established info against eachother
+        else:
+            return (self.root == other.root
+                and frozenset(self.notes) == frozenset(other.notes)
+                and self.name == other.name
+                and self.type == other.type)
+            
+    def __hash__(self):
+        return hash((self.root, tuple(self.notes), self.name, self.type))
 
 
 
 
-
-        if triad == "All":
-            return 
-
-        if notes == "All":
-            return all()
-
-    '''
 
 
     def set_fingerprint(self):
@@ -444,6 +425,8 @@ class Tetrad(Chord):
 
         return Tetrad.generate_tetrad(tetrad, triad, root)
 
+
+    #doesn't currently filter to have only chords with these notes, but gives chords for all notes as root
     def from_notes(notes):
         tetrads = []
         for note in notes:
