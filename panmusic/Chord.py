@@ -35,8 +35,10 @@ class Chord():
 
     #############
     def all():
-        triads = Triad.create(root = "All", triad = "All")
+        #triads = Triad.create(root = "All", triad = "All")
+        triads = Triad.list()
         tetrads = Tetrad.create(root = "All", tetrad = "All")
+
 
         return triads + tetrads
     #############
@@ -66,7 +68,6 @@ class Chord():
             Chord.add_to_fingerprints(chord)
 
         #print("--------------FINGERPRINTS",Chord.fingerprints,"____________________")
-    
 
     def __init__(self, notes , root = None):
         self.notes = []
@@ -116,7 +117,7 @@ class Chord():
 
     
             
-
+############## Triads ##############
 class Triad(Chord):
     types = [
         "Major",
@@ -146,6 +147,60 @@ class Triad(Chord):
         return triads
 
 
+    #def list(**kwargs):
+    #    if "scale" in kwargs:
+
+
+    def list(root = None, triad = None):
+        #Boolean check if no arguments passed
+        def all():
+            return root is None and triad is None
+
+        #generate all triads from note
+        def from_note(root):
+            triads = []
+            for chord in Triad.types:
+                new_triad = Triad.generate_triad(chord, root)
+                triads.append(new_triad)
+            return triads
+
+        #generate all triads of type X for every note
+        def from_triad(triad):
+            triads = []
+            for note in Note:
+                new_triad = Triad.generate_triad(triad, note)
+                triads.append(new_triad)
+            return triads
+
+        #Absolutely all triads, all notes
+        def generate_all():
+            triads = []
+            for note in Note:
+                triads += from_note(note)
+            return triads
+
+
+
+        #say you give pass my_scale.notes. This function will give you triads for this scale
+        #def from_notes(notes):
+        #    for note in notes:
+
+
+
+        if all():
+            return generate_all()
+
+
+        if root is None:
+            return from_triad(triad)
+
+        if triad is None:
+            return from_note(root)
+
+        print("\n ------Why the fuck did I make it here then??????")
+        print("\n ------Why the fuck did I make it here then??????")
+        print("\n ------Why the fuck did I make it here then??????")
+        print("\n ------Why the fuck did I make it here then??????")
 
 
 
@@ -153,8 +208,22 @@ class Triad(Chord):
     
 
     def create(root = None, triad = None ):
+        def none():
+            return root is None or triad is None
+
+        if none():
+            return None
+
+        return Triad.generate_triad(triad, root)
+
+
         #def all():
         #    return root is None and triad is None
+
+        #if all():
+        #    pass
+            #return Triad.create("All")
+
 
 
 
@@ -187,6 +256,7 @@ class MajorTriad(Triad):
         Interval.FIFTH
     ]
     def __init__(self, root):
+        #print("root", self.root)
         self.root = root
         self.type = "Major"
         self.name = root.__str__() + " " + self.type
@@ -281,7 +351,7 @@ class FlatFiveTriad(Triad):
         self.set_fingerprint()
   
 
-
+############## Tetrads ##############
 class Tetrad(Chord):
     types = [
         "Dominant Seven",
@@ -307,7 +377,10 @@ class Tetrad(Chord):
         for triad in Triad.types:
             for tetrad in Tetrad.types:
                 new_tetrad = Tetrad.create(root = root, triad = triad, tetrad = tetrad)
+
+                #filter out tetrad.type with "Error" (meaning chord shouldn't exist based on combination)
                 if "Error" not in new_tetrad.type:
+                    #filter out because Six and diminished doesn't exist?
                     if tetrad == "Six" and triad != "Diminished":
                         tetrads.append(new_tetrad)
                     elif tetrad != "Six":
@@ -478,6 +551,8 @@ def export_fingerprints():
         #print("\n Checking fingerprint: ",fingerprint,Chord.fingerprints[fingerprint])
 
         value = Chord.fingerprints[fingerprint]
+        #" ".join(fingerprint_log + "\n Chord for notes: " + list(fingerprint).__str__())
+
         fingerprint_log += "\n Chord for notes: " + list(fingerprint).__str__()
 
         if not isinstance(value, list):
@@ -492,7 +567,7 @@ def export_fingerprints():
                 fingerprint_log += "\n \t \t Tetrad:" + chord.tetrad_type
 
 
-    new_file = open("fingerprints.txt", "w")
+    new_file = open("fdingerprints.txt", "w")
     new_file.write(fingerprint_log)
     new_file.close()
 

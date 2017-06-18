@@ -90,6 +90,7 @@ class Scale():
         self.triads = {}
         for note in self.notes:
             self.triads[note] = self.generate_triads(note)
+            #self.triads[note] = Triad.generate_triads(note, self)
 
 
     ############## Tetrads ##############
