@@ -29,6 +29,48 @@ class Chord():
         return hash((self.root, tuple(self.notes), self.name, self.type))
 
 
+    ##############dict converters needs new class#############
+    ########## panmusic.Dict.from()
+    def as_dict(self):
+        #check if or set before
+
+
+        chord_dict = {}
+
+        chord_dict["root"] = self.root.__str__()
+        chord_dict["notes"] = list(map(str,self.notes))
+        chord_dict["intervals"] = list(map(str, self.intervals))
+        chord_dict["interval_dict"] = self.interval_dict()
+        chord_dict["name"] = self.name
+
+
+        #chord_dict["intervals"] = list(map(int, scale.intervals))
+
+        print("\n \n \n ", chord_dict)
+        print("sdfsdfsd",self.interval_dict())
+        print("!!!",list(map(str, self.intervals)))
+        #print("\n \n \t ", chord_dict)
+
+        return chord_dict
+
+    # key: note string, value: interval #
+    # for matching a note to an interval in regards to the scale#
+    def interval_dict(self):
+        intervals = {}
+
+
+        #print('sure', dict(map()))
+
+        #for interval in self.intervals:
+        first = True
+        for note in self.notes:
+            if first:
+                first = False
+                continue
+            intervals[note.__str__()] = Interval.between(self.root, note).__str__()
+        return intervals
+
+
 
 
 
@@ -212,35 +254,14 @@ class Triad(Chord):
             return root is None or triad is None
 
         if none():
+            print("\n ----@@@You should use create to create singular objects?")
+            #maybe return an empty chord, raise an error idk
+            #maybe random chord
+            #if one or the other is supplied, maybe route to lists?
             return None
 
         return Triad.generate_triad(triad, root)
 
-
-        #def all():
-        #    return root is None and triad is None
-
-        #if all():
-        #    pass
-            #return Triad.create("All")
-
-
-
-
-        if triad == "All":
-            #function
-            if root is "All":
-                triads = []
-                for note in Note:
-                    triads += Triad.generate_all(note)
-                return triads
-            else:
-                #print("DEBUG3-----------", triad, root)
-                return Triad.generate_all(root)
-
-        #print("DEBUG-----------", triad, root)
-        triad = Triad.generate_triad(triad, root)
-        return triad
 
 
 

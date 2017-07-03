@@ -1,5 +1,7 @@
 from Note import *
 from Chord import *
+from Scale import *
+from Fretboard import Fretboard
 
 
 def print_triads(triads):
@@ -7,6 +9,10 @@ def print_triads(triads):
         print("\n Triad:", triad.root, triad.type)
         #print("\n \t", triad.root, triad.type)
     print("Triad Size:", len(triads))
+
+def print_fretboard(fretboard):
+    for string in fretboard.strings:
+        print("String:", string)
 
 
 
@@ -32,6 +38,18 @@ triads = Triad.list(triad = "Major")
 print_triads(triads)
 
 
+
+board = Fretboard()
+print(board)
+
+
+print_fretboard(board)
+
+t = Chord.create(root = Note.E, triad = "Minor")
+
+t.as_dict()
+
+##print(Scale.fingerprints)
 
 '''
 

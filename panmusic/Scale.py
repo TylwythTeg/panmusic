@@ -1,5 +1,7 @@
 from Note import Note
 from Chord import *
+import sys
+import json
 
 class Scale():
     notes = []
@@ -10,7 +12,13 @@ class Scale():
             "Melodic Minor", "Dorian b2", "Lydian Augmented")
     ]
     
-    def factory(type, root):
+    def factory(type = None, root = None):
+        def all():
+            return type is None and root is None
+
+
+
+
         types = {
             #Diatonic Modes
             "Ionian": IonianScale,
@@ -63,13 +71,88 @@ class Scale():
             "Custom Scale": CustomScale
         }
 
+        if all():
+            return types
+
         constructor = types.get(type)
         return constructor(root)
         #return types.get(type)
 
+    ###############Dict stuff ####################
+    def as_dict(self):
+        #check if or set before
+
+
+        scale_dict = {}
+
+        scale_dict["root"] = self.root.__str__()
+        scale_dict["notes"] = list(map(str,self.notes))
+        scale_dict["intervals"] = list(map(str, self.intervals))
+        scale_dict["interval_dict"] = self.interval_dict()
+        scale_dict["triads"] = self.triads_dict()
+
+
+        #scale_dict["intervals"] = list(map(int, scale.intervals))
+
+        print("\n \n \n ", scale_dict)
+        print(list(map(str,self.notes)))
+        #print("\n \n \t ", scale_dict)
+        print("\n size:", sys.getsizeof(scale_dict))
+        print(scale_dict["triads"])
+        print("\n intervals",scale_dict["intervals"])
+        print("\n int_dict",scale_dict["interval_dict"])
+
+        return scale_dict
+
+    def triads_dict(self):
+        dict = {}
+        for root,triads in self.triads.items():
+            dict[root.__str__()] = json.dumps(list(map(Chord.as_dict,triads)))
+            print("\n \t ", list(map(str,triads)))
+        return dict
+    ############### Dict stuff ####################
+
+
+
+    ############### Fingerprints ####################
+    def set_fingerprint(self):
+        self.fingerprint = frozenset(self.notes)
+
+    #global / static
+    #add a chord to the Chord.fingerprints dictionary
+    #Note: looks like I can reuse this for Scale objects
+    def add_to_fingerprints(scale):
+        if scale.fingerprint not in Scale.fingerprints:
+            Scale.fingerprints[scale.fingerprint] = [chord]
+        else:
+            Scale.fingerprints[scale.fingerprint].append(scale)
+
+
+    #global / static 
+    #Group all chords under fingerprints under Chord.fingerprints
+    def set_fingerprints():
+        Scale.fingerprints = {}
+
+        scales = Scale.factory()
+
+        for key,scale in scales.items():
+            Scale.add_to_fingerprints(scale)
+
+    def all():
+        for scale in Scale.factory():
+            print("hey")
+    ############### Fingerprints ####################
+
+
+
+
+
+
 
     ############## Notes ##############
     def generate_notes(self):
+
+        
         self.notes = [self.root]
         for interval in self.intervals:
             self.notes.append(self.root + interval)
@@ -77,6 +160,9 @@ class Scale():
 
     ############## Triads ##############
     def generate_triads(self, root):
+
+        self.set_fingerprint()
+        
         triads = []
 
         for triad in Triad.types:
@@ -152,7 +238,17 @@ class Scale():
 
 #These are the types, direct children of Scale, as Chord they are based on # of notes
 class Heptatonic(Scale):
-    pass
+    # for matching a note to an interval in regards to the scale, with dictionary
+    def interval_dict(self):
+        
+        notes = map(str, self.notes[1:])
+        intervals =  map (str, self.intervals)
+
+        dictionary = dict(zip(notes, intervals ))
+        print(" \n \n \t \t HEY ", dictionary)
+        return dictionary
+
+
 
 class Diatonic(Heptatonic):
     pass
@@ -809,7 +905,7 @@ class UltraLocrian(HarmonicMinorMode):
 
 
 ####################
-class DoubleHarmonicMajor(Scale):
+class DoubleHarmonicMajor(Heptatonic):
     intervals = [
         Interval.MINOR_SECOND,
         Interval.MAJOR_THIRD,
