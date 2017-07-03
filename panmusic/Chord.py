@@ -56,19 +56,12 @@ class Chord():
     # key: note string, value: interval #
     # for matching a note to an interval in regards to the scale#
     def interval_dict(self):
-        intervals = {}
+        notes = map(str, self.notes[1:])
+        intervals =  map (str, self.intervals)
 
-
-        #print('sure', dict(map()))
-
-        #for interval in self.intervals:
-        first = True
-        for note in self.notes:
-            if first:
-                first = False
-                continue
-            intervals[note.__str__()] = Interval.between(self.root, note).__str__()
-        return intervals
+        dictionary = dict(zip(notes, intervals ))
+        print(" \n \n \t \t EFEFEFEF ", self.name, dictionary)
+        return dictionary
 
 
 
