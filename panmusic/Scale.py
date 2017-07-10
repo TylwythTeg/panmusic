@@ -94,13 +94,12 @@ class Scale():
 
         #scale_dict["intervals"] = list(map(int, scale.intervals))
 
-        print("\n \n \n ", scale_dict)
-        print(list(map(str,self.notes)))
-        #print("\n \n \t ", scale_dict)
-        print("\n size:", sys.getsizeof(scale_dict))
-        print(scale_dict["triads"])
-        print("\n intervals",scale_dict["intervals"])
-        print("\n int_dict",scale_dict["interval_dict"])
+        #print("\n \n \n ", scale_dict)
+        #print(list(map(str,self.notes)))
+        #print("\n size:", sys.getsizeof(scale_dict))
+        #print(scale_dict["triads"])
+        #print("\n intervals",scale_dict["intervals"])
+        #print("\n int_dict",scale_dict["interval_dict"])
 
         return scale_dict
 
@@ -108,7 +107,7 @@ class Scale():
         dict = {}
         for root,triads in self.triads.items():
             dict[root.__str__()] = json.dumps(list(map(Chord.as_dict,triads)))
-            print("\n \t ", list(map(str,triads)))
+            #print("\n \t ", list(map(str,triads)))
         return dict
     ############### Dict stuff ####################
 

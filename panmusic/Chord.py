@@ -60,7 +60,7 @@ class Chord():
         intervals =  map (str, self.intervals)
 
         dictionary = dict(zip(notes, intervals ))
-        print(" \n \n \t \t EFEFEFEF ", self.name, dictionary)
+        #print(" \n \n \t \t EFEFEFEF ", self.name, dictionary)
         return dictionary
 
 
@@ -103,6 +103,72 @@ class Chord():
             Chord.add_to_fingerprints(chord)
 
         #print("--------------FINGERPRINTS",Chord.fingerprints,"____________________")
+
+    ############# relatives #############
+    def get_relatives(self, note):
+        notes = self.notes[:]
+        notes.remove(note)
+        relatives = []
+        these_notes = frozenset(notes)
+
+        for fingerprint in Chord.fingerprints.keys():
+            print("\n fingerprint", fingerprint)
+            if these_notes.issubset(fingerprint):
+                relatives.append(Chord.fingerprints[fingerprint])
+
+        return relatives
+    ############# relatives #############
+
+    ############# get simplest fingerprint match #############
+    
+
+    ############# notes to chord, pass in list of strings string. pick one chord. prioritize by root #############
+    ############# but default to the first element (call enharmonic() for rest) #############
+    def from_notes(notes):
+
+
+        notes = [Note.from_string(note) for note in notes]
+        note_list = notes
+        notes = frozenset(notes)
+
+        chords = Chord.fingerprints[notes]
+
+        chord_match = chords[0]
+
+
+        for chord in chords:
+            if chord.root == note_list[0]:
+                return chord
+
+
+        #if notes in Chord.fingerprints:
+        return chord_match
+
+    def enharmonics(self):
+        chords = Chord.fingerprints[self.fingerprint]
+
+        #remove self chord
+        enharmonics = []
+        for chord in chords:
+            if chord != self:
+                enharmonics.append(chord)
+        return enharmonics
+
+
+
+
+
+    # return list of len(self.notes) that contains lists of 
+    def relatives(self):
+        #n-1
+        relatives = []
+        for note in self.notes:
+            chords = self.get_relatives(note)
+            relatives.append(chords)
+        return relatives
+
+
+
 
     def __init__(self, notes , root = None):
         self.notes = []
