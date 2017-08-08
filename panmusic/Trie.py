@@ -241,32 +241,6 @@ class Fingerprint():
     def sorted_string(self):
         return self.stamp
 
-
-
-
-
-
-
-        #get list of notes in fingerprint
-        notes = list(self.id)
-
-        #convert to list of values (0-11) for sorting
-        notes = [note.value for note in notes]
-
-        notes = sorted(notes)
-
-
-        #convert to list of strings representing notes in order from A-G#
-        notes = [str(Note(note)) for note in notes]
-
-
-        #convert list of strings into one string separated by comma such as "B,E,G"
-        notes = ",".join(notes)
-
-        print(notes)
-
-        return notes
-
     def print_chords(self):
         for chord in self.chords:
             print("\n Chord:", chord.name)
