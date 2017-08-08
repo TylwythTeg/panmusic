@@ -263,7 +263,7 @@ fingerprint = Fingerprint(
 print(fingerprint)
 print("Fingerprint ID:",fingerprint.id) #
 print(chord_major.fingerprint)
-print(fingerprint.id == chord_major.fingerprint)
+print(fingerprint.id == chord_major.fingerprint)#
     
 
 
