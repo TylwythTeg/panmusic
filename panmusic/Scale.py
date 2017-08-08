@@ -115,14 +115,16 @@ class Scale():
 
     ############### Fingerprints ####################
     def set_fingerprint(self):
+        #print("hyeyseyseyes \n \n sdfsdf")
         self.fingerprint = frozenset(self.notes)
 
     #global / static
     #add a chord to the Chord.fingerprints dictionary
     #Note: looks like I can reuse this for Scale objects
     def add_to_fingerprints(scale):
+        #print("sdf33333" , scale.name)
         if scale.fingerprint not in Scale.fingerprints:
-            Scale.fingerprints[scale.fingerprint] = [chord]
+            Scale.fingerprints[scale.fingerprint] = [scale]
         else:
             Scale.fingerprints[scale.fingerprint].append(scale)
 
@@ -135,12 +137,24 @@ class Scale():
         scales = Scale.factory()
 
         for key,scale in scales.items():
-            Scale.add_to_fingerprints(scale)
+
+            #put this in some kind of all_roots function
+            for root in Note:
+                Scale.add_to_fingerprints(scale(root))
+
 
     def all():
         for scale in Scale.factory():
             print("hey")
     ############### Fingerprints ####################
+
+    def from_chord(chord):
+        scales = []
+        for fingerprint in Scale.fingerprints:
+            if chord.fingerprint.issubset(fingerprint):
+                scales += chord.fingerprint
+        return scales
+
 
 
 
@@ -947,6 +961,7 @@ class CustomScale(Scale):
 
 
         
+Scale.set_fingerprints()
         
 #scl = PhrygianScale(Note.E)
 #print(PhrygianScale(Note.E).notes)

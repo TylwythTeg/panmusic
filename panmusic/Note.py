@@ -32,6 +32,9 @@ class Note(Enum):
         }
         return choices.get(self, 'Note Not Found')
 
+    
+
+
     def from_string(str):
         choices = {
             "A": Note.A,
@@ -61,29 +64,29 @@ class Note(Enum):
 
     def __repr__(self):
         return self.__str__()
-        
+
     ###
-    
-    def plus(self, amount):  
+
+    def plus(self, amount):
         if is_interval(amount):
             amount = amount.value
         amount += self.value
         amount %= 12
         return Note(amount)
 
-    def __add__(self, amount):  
+    def __add__(self, amount):
         if is_interval(amount):
             amount = amount.value
         amount += self.value
         amount %= 12
         return Note(amount)
-            
+
     def is_in_scale(self, scale):
         for note in scale.notes:
             if self == note:
                 return true
         return false
-    
+
 class Interval(Enum):
     UNISON = 0
     MINOR_SECOND = 1
@@ -97,7 +100,7 @@ class Interval(Enum):
     MAJOR_SIXTH = 9
     MINOR_SEVENTH = 10
     MAJOR_SEVENTH = 11
-    
+
     def __str__(self):
         choices = {
             Interval.UNISON: "Unison",
@@ -114,10 +117,10 @@ class Interval(Enum):
             Interval.MAJOR_SEVENTH: "Major Seventh",
         }
         return choices.get(self, 'Interval Not Found')
-        
+
     def sharp(self):
         return self.value + 1
-    
+
     def flat(self):
         return self.value - 1
 
@@ -137,9 +140,3 @@ class Interval(Enum):
 
 def is_interval(interval):
     return isinstance(interval,Interval)
-    
-
-    
-        
-    
-
