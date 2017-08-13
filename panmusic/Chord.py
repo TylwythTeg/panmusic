@@ -46,9 +46,9 @@ class Chord():
 
         #chord_dict["intervals"] = list(map(int, scale.intervals))
 
-        print("\n \n \n ", chord_dict)
-        print("sdfsdfsd",self.interval_dict())
-        print("!!!",list(map(str, self.intervals)))
+        #print("\n \n \n ", chord_dict)
+       # print("sdfsdfsd",self.interval_dict())
+        #print("!!!",list(map(str, self.intervals)))
         #print("\n \n \t ", chord_dict)
 
         return chord_dict
@@ -104,6 +104,8 @@ class Chord():
 
     def set_fingerprint(self):
         self.fingerprint = frozenset(self.notes)
+
+        self.note_set = frozenset(self.notes)
 
 
     ############# notes to chord, pass in list of strings string. pick one chord. prioritize by root #############
@@ -273,10 +275,10 @@ class Triad(Chord):
         if triad is None:
             return from_note(root)
 
-        print("\n ------Why the fuck did I make it here then??????")
-        print("\n ------Why the fuck did I make it here then??????")
-        print("\n ------Why the fuck did I make it here then??????")
-        print("\n ------Why the fuck did I make it here then??????")
+        #print("\n ------Why the fuck did I make it here then??????")
+        #print("\n ------Why the fuck did I make it here then??????")
+        #print("\n ------Why the fuck did I make it here then??????")
+        #print("\n ------Why the fuck did I make it here then??????")
 
 
 
