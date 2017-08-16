@@ -35,7 +35,7 @@ class Trie():
 
         if isinstance(word, Fingerprint):
             fp_obj = word
-            word = word.sorted_string()
+            word = word.stamp
 
         current_node = self.head
         word_finished = True
@@ -125,7 +125,10 @@ class Trie():
 
     def all_fingerprints(self):
         words = list()
+
         for note in Note:
+            note_words_debug = list()
+            print("note", note)
             prefix = note.__str__()
 
             prefix = prefix.split(",")
@@ -153,9 +156,13 @@ class Trie():
                 if current_node.fingerprint != None:
                     # Isn't it nice to not have to go back up the tree?
                     words.append(current_node.fingerprint)
+                    note_words_debug.append(current_node.fingerprint)
                 
                 queue = [node for key,node in current_node.children.items()] + queue
-            
+            #print(note_words_debug)''
+            for fingerprint in note_words_debug:
+                print("\n ", fingerprint.id)
+        
         return words
     
     def start_with_prefix(self, prefix):
@@ -195,7 +202,7 @@ class Trie():
         
         return words
 
-    def prefix_fingerprints(self, prefix):
+    def fingerprints_from_prefix(self, prefix):
         """ Returns a list of all words in tree that start with prefix """
         words = list()
         if prefix == None:
@@ -288,18 +295,12 @@ class Trie():
 
 
 class Fingerprint():
-
-
-
-    #def __init__(self, music_object):
-    #    self.chords = []
-    #    self.id = music_object.fingerprint
-
-   #     self.sorted_string()
-
     def __init__(self, stamp):
         self.stamp = stamp
         self.chords = []
+        self.extensions = {}
+            #####chord.neighbors = {}
+        self.neighbors = {}
 
         ##frozen set of note is is currently id, not stamp so
         #get list of note strings
@@ -329,10 +330,6 @@ class Fingerprint():
     def __str__(self):
         return "\--------------------Fingerprint Object: " + self.id.__str__() + " " + self.chords.__str__()
 
-
-    def sorted_string(self):
-        return self.stamp
-
     def print_chords(self):
         for chord in self.chords:
             print("\n Chord:", chord.name)
@@ -343,26 +340,43 @@ class Fingerprint():
 
 
 
+    def set_extension(self, fingerprint):
+        length = len(fingerprint.id)
+
+        
+        if self.extensions.get(length, None) is None:
+            self.extensions[length] = [fingerprint]
+        else:
+           self.extensions[length].append(fingerprint)
 
 
-chord = Chord.create(root = Note.E, triad = "Major")
-chord_major = Chord.create(root = Note.E, triad = "Major")
 
-fingerprint = Fingerprint(
-    chord.stamp
-    )
+    def set_neighbor(self, fingerprint):
+        print("\n \n \n Setting neighbor for", self.id, ":", fingerprint.id)
 
-print(fingerprint)
-print("Fingerprint ID:",fingerprint.id) #
-print(chord_major.fingerprint)
-print(fingerprint.id == chord_major.fingerprint)#
-    
+
+
+
+        new_note = fingerprint.id.difference(self.id)
+        print("\n \t New Note:", new_note)
+        #set fingerprint as neighbor if notes in fingerprint have one more note than the chord, dict where key is the new_note, and value is a fingerprint
+
+        if len(fingerprint.id) == (len(self.id) + 1):
+            #neighbors are one step away
+            if self.neighbors.get(new_note, None) is None:
+                self.neighbors[new_note] = fingerprint
+            #else:
+            #    self.neighbors[new_note].append(fingerprint)
+
+
+
+        for added_note, neighbor in self.neighbors.items():
+            print("\n \t \t Added note:", added_note, "Neighbor:", neighbor.id)
 
 
 
 if __name__ == '__main__':
     trie = Trie()
- 
     trie.add_chords()
     #####populate tree of fingerprints (and empty nodes)
     
@@ -414,34 +428,7 @@ if __name__ == '__main__':
         fingerprint = trie.fingerprint(item)
         print("SDFSFFSDFSDF",fingerprint.chords)
 
-    print ("!!!!!!!!!!!!!!!!!!!!!!!!", list(map(str,trie.prefix_fingerprints('A,C,E'))))
-
-
-
-
-
-
-
-    def set_extensions(previous_fingerprint, fingerprint):
-        length = len(fingerprint.id)
-
-        
-        if previous_fingerprint.extensions.get(length, None) is None:
-            previous_fingerprint.extensions[length] = [fingerprint]
-        else:
-           previous_fingerprint.extensions[length].append(fingerprint)
-
-    def set_neighbors(previous_fingerprint, fingerprint):
-
-        new_note = fingerprint.id.difference(previous_fingerprint.id)
-        #get neighbors if notes in fingerprint have one more note than the chord 
-
-        if len(fingerprint.id) == (len(previous_fingerprint.id) + 1):
-            #neighbors are one step away
-            if previous_fingerprint.neighbors.get(new_note, None) is None:
-                previous_fingerprint.neighbors[new_note] = [fingerprint]
-            else:
-                previous_fingerprint.neighbors[new_note].append(fingerprint)
+    print ("!!!!!!!!!!!!!!!!!!!!!!!!", list(map(str,trie.fingerprints_from_prefix('A,C,E'))))
 
     ############Structuring Chord.extensions ###################################################
 
@@ -471,49 +458,59 @@ if __name__ == '__main__':
 
         #get all fingerprints in the trie and set neighbors and extensions
         for fingerprint in all_fingerprints:
-            extended_fingerprints = trie.prefix_fingerprints(fingerprint.stamp)
+            extended_fingerprints = trie.fingerprints_from_prefix(fingerprint.stamp)
             #####chord = fingerprint.chords[0]
             #previous_fingerprint is the one getting the extensions
-            previous_fingerprint = fingerprint
+            #previous_fingerprint = fingerprint
             
             
 
             #####chord.extensions = {}
-            previous_fingerprint.extensions = {}
+            #fingerprint.extensions = {}
             #####chord.neighbors = {}
-            previous_fingerprint.neighbors = {}
+            #fingerprint.neighbors = {}
 
-            for fingerprint in extended_fingerprints:
+            for extension in extended_fingerprints:
                 ####### right now prefix returns the prefix itself
                 ####### until I fix that let's just weed out the prefix by checking if the lenfths are the same
-                if len(fingerprint.id) == len(previous_fingerprint.id):
+                if len(extension.id) == len(fingerprint.id):
+                    #print(extension.id, "===================================", fingerprint.id)
                     continue
-                set_extensions(previous_fingerprint, fingerprint)        
-                set_neighbors(previous_fingerprint, fingerprint)
+                #set_extension(fingerprint, extension)        
+                #set_neighbor(fingerprint, extension)
+
+                fingerprint.set_extension(extension)
+                fingerprint.set_neighbor(extension)
 
 
 
     set_all_extensions()
 
 
+    trie.all_fingerprints()
 
 
 
 
-
-
+    #### Trie debug
+    '''
     fingerprint = trie.fingerprint("A,C,E")
 
 
-    extended_fingerprints = trie.prefix_fingerprints(fingerprint.stamp)
+    extended_fingerprints = trie.fingerprints_from_prefix(fingerprint.stamp)
     chord = fingerprint.chords[0]
     
     for key, fingerprints in fingerprint.extensions.items():
         print("Size:", key)
 
         for ffp in fingerprints:
-            print("Chord:", ffp.id)
-    print(ffp.neighbors)
+            print("Chord:", ffp.chords[0].name)
+            print(ffp.neighbors)
+
+
+
+
+    #fingerprint = trie.fingerprint("C,E,G")
     for changed_note, fingerprints in fingerprint.neighbors.items():
         print("===Changed Note: \n", changed_note)
 
@@ -522,3 +519,31 @@ if __name__ == '__main__':
 
 
     print(len(trie.all_fingerprints()))
+
+
+
+    for fingerprint in trie.all_fingerprints():
+        print("\n Fingerprint:",fingerprint.id)
+
+        for changed_note, neighbor in fingerprint.neighbors.items():
+            for fingerprint in fingerprints:
+                print("\n \t Added Note:", changed_note)
+                print("\n \t \t Chord:", fingerprint.chords[0].name, "Notes:", fingerprint.id)
+
+
+
+
+    
+    fingerprint = trie.fingerprint("C,E,G")
+    print(fingerprint.neighbors)
+    print(fingerprint.extensions)
+    for added_note, fingerprints in fingerprint.neighbors.items():
+        print("Added Note: \n", added_note)
+
+        for fingerprint in fingerprints:
+            print(fingerprint.id)
+            print("Chord:", fingerprint.chords[0].name)
+
+
+    print(len(trie.all_fingerprints()))
+    '''
