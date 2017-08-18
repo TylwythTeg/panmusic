@@ -107,6 +107,10 @@ class FingerprintTree():
     def superstrings(self, public_stamp):
         stamp = public_stamp.split(",")
         stamp = self.replace_sharps(stamp)
+        ##now we have the normalized "ATE" stamp
+        ##we should sort it so that people can check notes out of order
+        stamp = "".join(sorted(stamp))
+
 
         superstrings = []
         for superstring in self.get_superstrings(stamp):
@@ -136,6 +140,25 @@ class FingerprintTree():
     def stamps_at_suffix(self, public_stamp):
         stamp = public_stamp.split(",")
         stamp = self.replace_sharps(stamp)
+
+        ##now we have the normalized "ATE" stamp
+        ##we should sort it so that people can check notes out of order
+        stamp = "".join(sorted(stamp))
+
+        stamps = []
+        for superstring in self.stamps_from_suffix(stamp):
+            superstring = ",".join(superstring)
+            print("THIS",superstring)
+            superstring = superstring.split(",")
+            superstring = self.sharpify_string(superstring, add_comma = True)
+            #-1 to remove the comma that the above adds to the last element
+            stamps.append(superstring[:-1])
+
+
+        return stamps
+
+
+
         return self.stamps_from_suffix(stamp)
     
     ### internal function that takes raw stamp ("ATE") and gets all valid stamps that live there
@@ -224,7 +247,7 @@ print(ft.stamp_from_coordinates((12,15)))
 
 
 #get em
-superstrings = ft.superstrings("A,C,E")
+superstrings = ft.superstrings("E,A,C")
 sfs = ft.stamps_at_suffix("A,C,E")
 print("sfs", sfs)
 
@@ -236,3 +259,5 @@ print("\n \n \n Super Strings of A,C,E :", superstrings)
 
 
 
+superstrings = ft.superstrings("E,A,C")
+print("\n \n \n Super Strings of A,C,E :", superstrings)
