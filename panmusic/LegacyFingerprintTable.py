@@ -75,5 +75,7 @@ class FingerprintTable():
             #    chord_fingerprint.chords.append(chord)
 
         #print(len(self.fingerprints))
+
+        FingerprintTable()
             
 
