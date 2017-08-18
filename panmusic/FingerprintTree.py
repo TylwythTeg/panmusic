@@ -13,10 +13,12 @@ class FingerprintTree():
         return normalized
     
     @staticmethod
-    def sharpify_string(string):
+    def sharpify_string(string, add_comma = False):
         sharpified = ""
         for note in string:
             sharpified += FingerprintTree.sharpify_note(note)
+            if add_comma:
+                sharpified += ","
         return sharpified
 
     @staticmethod
@@ -50,13 +52,17 @@ class FingerprintTree():
             "B": "B",
             "C": "C",
             "T": "C#",### C Sharp = T
+            "C#": "C#",
             "D": "D",
             "U": "D#",### D Sharp = U
+            "D#": "D#",
             "E": "E",
             "F": "F",
             "V": "F#",### F Sharp = V
+            "F#": "F#",
             "G": "G",
             "W": "G#",### G SHarp = W
+            "G#": "G#"
         }
         return sharpifications.get(note)
 
@@ -101,7 +107,18 @@ class FingerprintTree():
     def superstrings(self, public_stamp):
         stamp = public_stamp.split(",")
         stamp = self.replace_sharps(stamp)
-        return self.get_superstrings(stamp)
+
+        superstrings = []
+        for superstring in self.get_superstrings(stamp):
+            superstring = ",".join(superstring)
+            print("THIS",superstring)
+            superstring = superstring.split(",")
+            superstring = self.sharpify_string(superstring, add_comma = True)
+            #-1 to remove the comma that the above adds to the last element
+            superstrings.append(superstring[:-1])
+
+
+        return superstrings
 
     #### takes the raw normalized stamp ie "ATE"
     #### for internal purposes
@@ -211,12 +228,11 @@ superstrings = ft.superstrings("A,C,E")
 sfs = ft.stamps_at_suffix("A,C,E")
 print("sfs", sfs)
 
-print("Normalized:", superstrings)
+print("\n \n \n Super Strings of A,C,E :", superstrings)
 
 #convert to real notes
-print([FingerprintTree.sharpify_string(stamp) for stamp in superstrings])
+#print([FingerprintTree.sharpify_string(stamp) for stamp in superstrings])
 
-print("\n Human Readable", superstrings)
 
 
 
