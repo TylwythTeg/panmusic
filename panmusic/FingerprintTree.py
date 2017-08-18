@@ -5,10 +5,8 @@ class FingerprintTree():
 
     @staticmethod
     def replace_sharps(string):
-        #print(string)
         normalized = ""
         for note in string:
-            print("\n ", note)
             normalized += FingerprintTree.normalize_note(note)
         return normalized
     
@@ -115,7 +113,6 @@ class FingerprintTree():
         superstrings = []
         for superstring in self.get_superstrings(stamp):
             superstring = ",".join(superstring)
-            print("THIS",superstring)
             superstring = superstring.split(",")
             superstring = self.sharpify_string(superstring, add_comma = True)
             #-1 to remove the comma that the above adds to the last element
@@ -148,7 +145,6 @@ class FingerprintTree():
         stamps = []
         for superstring in self.stamps_from_suffix(stamp):
             superstring = ",".join(superstring)
-            print("THIS",superstring)
             superstring = superstring.split(",")
             superstring = self.sharpify_string(superstring, add_comma = True)
             #-1 to remove the comma that the above adds to the last element
@@ -163,7 +159,6 @@ class FingerprintTree():
     
     ### internal function that takes raw stamp ("ATE") and gets all valid stamps that live there
     def stamps_from_suffix(self, y):
-        print(y)
         #y = FingerprintTree.replace_sharps(y)
         y_input = y
         node = self.tree.root
@@ -237,27 +232,10 @@ class FingerprintTree():
 
 ft = FingerprintTree()
 
-####this is for singular *my* footprint
-#print("44444444444444",ft.get_full_index("CEGW"))
-
-print(len(ft.tree.word))
-print(ft.stamp_from_coordinates((12,15)))
-
-
-
-
-#get em
-superstrings = ft.superstrings("E,A,C")
+#### get all the stamps that have suffix
 sfs = ft.stamps_at_suffix("A,C,E")
-print("sfs", sfs)
+print("\n All Stamps at A,C,E: ", sfs)
 
-print("\n \n \n Super Strings of A,C,E :", superstrings)
-
-#convert to real notes
-#print([FingerprintTree.sharpify_string(stamp) for stamp in superstrings])
-
-
-
-
+#### get all stamps that are superstrings of suffix
 superstrings = ft.superstrings("E,A,C")
-print("\n \n \n Super Strings of A,C,E :", superstrings)
+print("\n All Super Strings of A,C,E :", superstrings)
