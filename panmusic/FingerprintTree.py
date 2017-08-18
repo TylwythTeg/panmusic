@@ -8,6 +8,7 @@ class FingerprintTree():
         #print(string)
         normalized = ""
         for note in string:
+            print("\n ", note)
             normalized += FingerprintTree.normalize_note(note)
         return normalized
     
@@ -96,10 +97,34 @@ class FingerprintTree():
         }
         return valid_chars.get(char, True)
 
+    #takes raw comma'd stamp ie "A,C#,E"
+    def superstrings(self, public_stamp):
+        stamp = public_stamp.split(",")
+        stamp = self.replace_sharps(stamp)
+        return self.get_superstrings(stamp)
+
+    #### takes the raw normalized stamp ie "ATE"
+    #### for internal purposes
+    def get_superstrings(self, y):
+        stamps = self.stamps_from_suffix(y)
+
+        ### Remove the element that is the string we're getting a superstring for
+        superstrings = []
+        for string in stamps:
+            if string != y:
+                superstrings.append(string)
+        return superstrings
+
+    ####public facing get all stamps from this suffix
+    def stamps_at_suffix(self, public_stamp):
+        stamp = public_stamp.split(",")
+        stamp = self.replace_sharps(stamp)
+        return self.stamps_from_suffix(stamp)
     
-    def superstrings(self, y):
+    ### internal function that takes raw stamp ("ATE") and gets all valid stamps that live there
+    def stamps_from_suffix(self, y):
         print(y)
-        y = FingerprintTree.replace_sharps(y)
+        #y = FingerprintTree.replace_sharps(y)
         y_input = y
         node = self.tree.root
         while True:
@@ -182,12 +207,14 @@ print(ft.stamp_from_coordinates((12,15)))
 
 
 #get em
-superstrings = ft.superstrings("ATE")
+superstrings = ft.superstrings("A,C,E")
+sfs = ft.stamps_at_suffix("A,C,E")
+print("sfs", sfs)
 
 print("Normalized:", superstrings)
 
 #convert to real notes
-superstrings = [FingerprintTree.sharpify_string(stamp) for stamp in superstrings]
+print([FingerprintTree.sharpify_string(stamp) for stamp in superstrings])
 
 print("\n Human Readable", superstrings)
 
