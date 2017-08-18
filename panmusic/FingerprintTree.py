@@ -23,16 +23,21 @@ class FingerprintTree():
         normalizations = {
             "A": "A",
             "A#": "S",### A Sharp = S
+            "S": "S",
             "B": "B",
             "C": "C",
             "C#": "T",### C Sharp = T
+            "T": "T",
             "D": "D",
             "D#": "U",### D Sharp = U
+            "U": "U",
             "E": "E",
             "F": "F",
             "F#": "V",### F Sharp = V
+            "V": "V",
             "G": "G",
             "G#": "W",### G SHarp = W
+            "W": "W",
         }
         return normalizations.get(note)
 
@@ -93,6 +98,8 @@ class FingerprintTree():
 
     
     def superstrings(self, y):
+        print(y)
+        y = FingerprintTree.replace_sharps(y)
         y_input = y
         node = self.tree.root
         while True:
@@ -175,7 +182,7 @@ print(ft.stamp_from_coordinates((12,15)))
 
 
 #get em
-superstrings = ft.superstrings("C")
+superstrings = ft.superstrings("ATE")
 
 print("Normalized:", superstrings)
 
@@ -183,3 +190,6 @@ print("Normalized:", superstrings)
 superstrings = [FingerprintTree.sharpify_string(stamp) for stamp in superstrings]
 
 print("\n Human Readable", superstrings)
+
+
+
