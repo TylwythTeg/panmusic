@@ -158,40 +158,6 @@ class FingerprintTree():
 
 
 
-    #####function assumes you are supplying notes to find where in the string this full text fingerprint stamp is located
-    ## TODO: will need to do one that takes a suffix and returns all full indexes of the superstrings (fingerprints) that the suffix is in (for extensions)
-    def get_full_index(self, y):
-        """Returns a tuple of the starting index and ending index of the substring y in the string used for
-        building the Suffix tree.
-
-        :param y: String
-        :return: Index of the starting position of string y in the string used for building the Suffix tree
-                 -1 if y is not a substring.
-
-
-        """
-        tree = self.tree
-        node = tree.root
-        while True:
-            edge = tree._edgeLabel(node, node.parent)
-            #check
-            if edge.startswith(y):
-                return (node.idx, self.get_end(node.idx))
-
-            i = 0
-            while(i < len(edge) and edge[i] == y[0]):
-                y = y[1:]
-                i += 1
-            node = node._get_transition_link(y[0])
-            if not node:
-                return -1 
-
-    
-    
-    ######## FingerprintTree.py methods ########
-
-
-
 
 
 
