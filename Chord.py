@@ -102,12 +102,6 @@ class Chord():
     ############### new stamp ##################
 
 
-    def set_fingerprint(self):
-        self.fingerprint = frozenset(self.notes)
-
-        self.note_set = frozenset(self.notes)
-
-
     ############# notes to chord, pass in list of strings string. pick one chord. prioritize by root #############
     ############# but default to the first element (call enharmonic() for rest) #############
     def from_notes(notes):
@@ -152,8 +146,7 @@ class Chord():
 
         if root is not None:
             self.root = root
-
-        self.set_fingerprint()
+        
         self.set_stamp()
 
     def generate_notes(self):
@@ -318,7 +311,6 @@ class MajorTriad(Triad):
         self.type = "Major"
         self.name = root.__str__() + " " + self.type
         self.generate_notes()
-        self.set_fingerprint()
         self.set_stamp()
 
 
@@ -332,7 +324,6 @@ class MinorTriad(Triad):
         self.name = root.__str__() + " " + self.type
         self.root = root
         self.generate_notes()
-        self.set_fingerprint()
         self.set_stamp()
 
 class SuspendedTriad(Triad):
@@ -352,7 +343,6 @@ class SuspendedTwoTriad(SuspendedTriad):
 
         self.root = root
         self.generate_notes()
-        self.set_fingerprint()
         self.set_stamp()
 
 class SuspendedFourTriad(SuspendedTriad):
@@ -370,7 +360,6 @@ class SuspendedFourTriad(SuspendedTriad):
 
         self.root = root
         self.generate_notes()
-        self.set_fingerprint()
         self.set_stamp()
 
 class AugmentedTriad(Triad):
@@ -383,7 +372,6 @@ class AugmentedTriad(Triad):
         self.name = root.__str__() + " " + self.type
         self.root = root
         self.generate_notes()
-        self.set_fingerprint()
         self.set_stamp()
 
 
@@ -397,7 +385,6 @@ class DiminishedTriad(Triad):
         self.name = root.__str__() + " " + self.type
         self.root = root
         self.generate_notes()
-        self.set_fingerprint()
         self.set_stamp()
 
 
@@ -411,7 +398,6 @@ class FlatFiveTriad(Triad):
         self.name = root.__str__() + " " + self.type
         self.root = root
         self.generate_notes()
-        self.set_fingerprint()
         self.set_stamp()
 
 
@@ -507,7 +493,6 @@ class SixthChord(Tetrad):
         self.intervals = self.triad.intervals + self.sixth_interval
 
         self.generate_notes()
-        self.set_fingerprint()
         self.set_stamp()
 
 
@@ -550,7 +535,6 @@ class DominantSeventhChord(SeventhChord):
         self.intervals = self.triad.intervals + self.seventh_interval
 
         self.generate_notes()
-        self.set_fingerprint()
         self.set_stamp()
 
 class MajorSeventhChord(SeventhChord):
@@ -583,7 +567,6 @@ class MajorSeventhChord(SeventhChord):
         self.intervals = self.triad.intervals + self.seventh_interval
 
         self.generate_notes()
-        self.set_fingerprint()
         self.set_stamp()
 
 class DiminishedSeventhChord(SeventhChord):
@@ -609,7 +592,6 @@ class DiminishedSeventhChord(SeventhChord):
         self.intervals = self.triad.intervals + self.seventh_interval
 
         self.generate_notes()
-        self.set_fingerprint()
         self.set_stamp()
 
 
