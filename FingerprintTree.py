@@ -131,12 +131,13 @@ class FingerprintTree(STree):
 
     #takes raw comma'd stamp ie "A,C#,E"
     def superstrings(self, public_stamp):
-
+        # turn the comma separated note strings into a list of note strings
         stamp = public_stamp.split(",")
+        # get the stamp to the normalized / codified sharp notes (S,T,U,V)
         stamp = self.replace_sharps(stamp)
-        ##now we have the normalized "ATE" stamp
-        ##we should sort it so that people can check notes out of order
-        #print("-------- 1.", stamp)
+        ## now we have the normalized "ATE" stamp
+        ######print("-------- 1.", stamp)
+        ## we should sort it so that people can check notes out of order
         stamp = "".join(sorted(stamp, key = FingerprintTree.get_value))
         #print("-------- 2.",stamp)
 

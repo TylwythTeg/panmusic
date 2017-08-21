@@ -8,11 +8,9 @@ class FingerprintTable():
 
     fingerprints = {}
 
-    def fingerprint_exists(self, note_set):
-        if self.fingerprints.get(note_set, None) is None:
-            return False
-        else:
-            return True
+    ####### Returns whether or not stamp exists as a key in the fingerprints dictionary
+    def fingerprint(self, stamp):
+        return self.fingerprints.get(stamp, None) is not None
 
 
 
@@ -25,18 +23,14 @@ class FingerprintTable():
         for chord in chords:
             
             #if fingerprint exists, get current fingerprint to modify
-            if self.fingerprints.get(chord.stamp, None) is not None:
+            if self.fingerprint(chord.stamp):
                 fingerprint = self.fingerprints[chord.stamp]
-                
-                if chord not in fingerprint.chords:
-                    fingerprint.chords.append(chord)
-                
-
+                fingerprint.add_chord(chord)
 
             #else create new fingerprint
             else:
                 self.fingerprints[chord.stamp] = Fingerprint(chord.stamp)
-                self.fingerprints[chord.stamp].chords.append(chord)
+                self.fingerprints[chord.stamp].add_chord(chord)
 
 
 
@@ -53,6 +47,12 @@ print(Fingerprint(chord.stamp).stamp)
             
 
 print(len(ft.fingerprints))
+print([chord.name for chord in ft.fingerprints["A,C#,F"].chords])
+print(ft.fingerprint("A,C#,F"))
+
+
+#if table.fingerprint("A,C,E"):
+
 
 '''
 for stamp, fingerprint in ft.fingerprints.items():

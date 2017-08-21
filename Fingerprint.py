@@ -3,6 +3,10 @@ from Note import *
 
 class Fingerprint():
 
+    def add_chord(self,chord):
+        if chord not in self.chords:
+            self.chords.append(chord)
+
 
 
     def __init__(self, stamp):
