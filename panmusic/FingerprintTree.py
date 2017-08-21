@@ -92,11 +92,7 @@ class FingerprintTree(STree):
 
         stamp_list = []
         #####Chord Fingerprints
-        wow = False
         for chord in Chord.all():
-            if chord.name == "E Minor Major Six":
-                print("wow")
-                wow = True
             #print(chord.notes, chord.name)
             stamp = chord.stamp
             #get a list of the note strings
@@ -104,12 +100,12 @@ class FingerprintTree(STree):
             #replace sharps with single-char equivalents
             stamp = FingerprintTree.replace_sharps(stamp)
 
-
             if stamp not in stamp_list:
-                if wow:
-                    print("yesss")
-                    wow = False
                 stamp_list.append(stamp)
+
+        #
+
+        
 
         #self.tree = STree(stamp_list)
         super().__init__(stamp_list)
@@ -140,9 +136,9 @@ class FingerprintTree(STree):
         stamp = self.replace_sharps(stamp)
         ##now we have the normalized "ATE" stamp
         ##we should sort it so that people can check notes out of order
-        print(stamp)
+        #print("-------- 1.", stamp)
         stamp = "".join(sorted(stamp, key = FingerprintTree.get_value))
-        print(stamp)
+        #print("-------- 2.",stamp)
 
 
         superstrings = []
@@ -273,6 +269,6 @@ sfs = ft.stamps_at_suffix("G,B,C#,E")
 print("\n All Stamps at C,E,G: ", sfs)
 
 #### get all stamps that are superstrings of suffix
-superstrings = ft.superstrings("A")
+superstrings = ft.superstrings("E,G,C#")
 print("\n \n \n All Super Strings of C#,E,G :", superstrings)
 
