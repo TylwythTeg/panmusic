@@ -2,7 +2,6 @@ from Chord import *
 from Note import *
 
 class Fingerprint():
-    children = set()
 
 
 
