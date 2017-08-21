@@ -56,9 +56,10 @@ print(Fingerprint(chord.stamp).stamp)
 
 print(len(ft.fingerprints))
 
-
+'''
 for stamp, fingerprint in ft.fingerprints.items():
     print("\n Chords for notes:", fingerprint.stamp)
     for chord in fingerprint.chords:
         print("\n \t ", chord.name)
         print("\n \t ", chord.notes)
+'''

@@ -310,20 +310,3 @@ class _SNode():
         else:
             return [x for (n,_) in self.transition_links for x in n._get_leaves()]
 
-
-
-from Chord import Chord
-a = []
-for chord in Chord.all():
-    #get rid of commas for now
-    stamp = chord.stamp.replace(",","")
-
-    #replace sharp notes with single character
-    stamp = stamp.replace("A#","S")
-    stamp = stamp.replace("C#","T")
-    stamp = stamp.replace("D#","U")
-    stamp = stamp.replace("F#","V")
-    stamp = stamp.replace("G#","W")
-
-    if chord.stamp not in a:
-        a.append(stamp)
