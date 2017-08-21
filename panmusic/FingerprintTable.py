@@ -26,10 +26,8 @@ class FingerprintTable():
             
             #if fingerprint exists, get current fingerprint to modify
             if self.fingerprints.get(chord.stamp, None) is not None:
-                #index = self.fingerprints.index(chord_fingerprint)
-                #chord_fingerprint = self.fingerprints[index]
                 fingerprint = self.fingerprints[chord.stamp]
-                #chord_fingerprint = self.fingerprints[chord_fingerprint]
+                
                 if chord not in fingerprint.chords:
                     fingerprint.chords.append(chord)
                 
