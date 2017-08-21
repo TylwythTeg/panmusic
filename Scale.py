@@ -145,7 +145,8 @@ class Scale():
 
     def all():
         for scale in Scale.factory():
-            print("hey")
+            #print("hey")
+            pass
     ############### Fingerprints ####################
 
     def from_chord(chord):
@@ -258,7 +259,7 @@ class Heptatonic(Scale):
         intervals =  map (str, self.intervals)
 
         dictionary = dict(zip(notes, intervals ))
-        print(" \n \n \t \t HEY ", dictionary)
+        #print(" \n \n \t \t HEY ", dictionary)
         return dictionary
 
 
@@ -284,7 +285,7 @@ class IonianScale(Diatonic):
         self.generate_notes()
         self.add_triads()
         self.generate_tetrads()
-        print("--------------",self.tetrads)
+        #print("--------------",self.tetrads)
 
 class DorianScale(Diatonic):
     intervals = [
@@ -1006,4 +1007,4 @@ Scale.set_fingerprints()
 #hat = Chord.factory(Triad.MAJOR, Note.E)
 #print(hat.notes)
                 
-    
+#test
