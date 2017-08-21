@@ -1,7 +1,7 @@
 from STree import STree
 from Chord import Chord
 
-class FingerprintTree():
+class FingerprintTree(STree):
 
     @staticmethod
     def replace_sharps(string):
@@ -64,11 +64,39 @@ class FingerprintTree():
         }
         return sharpifications.get(note)
 
+    #### Used for sorting purposes
+    @staticmethod
+    def get_value(char):
+            values = {
+            "A" : 0,
+            "A#": 1,
+            "S": 1,
+            "B": 2,
+            "C": 3,
+            "C#": 4,
+            "T": 4,
+            "D": 5,
+            "D#": 6,
+            "U": 6,
+            "E": 7,
+            "F": 8,
+            "F#": 9,
+            "V": 9,
+            "G": 10,
+            "G#": 11,
+            "W": 11,
+            }
+            return values.get(char)
+
     def __init__(self):
 
         stamp_list = []
         #####Chord Fingerprints
+        wow = False
         for chord in Chord.all():
+            if chord.name == "E Minor Major Six":
+                print("wow")
+                wow = True
             #print(chord.notes, chord.name)
             stamp = chord.stamp
             #get a list of the note strings
@@ -78,9 +106,13 @@ class FingerprintTree():
 
 
             if stamp not in stamp_list:
+                if wow:
+                    print("yesss")
+                    wow = False
                 stamp_list.append(stamp)
 
-        self.tree = STree(stamp_list)
+        #self.tree = STree(stamp_list)
+        super().__init__(stamp_list)
 
 
 
@@ -103,11 +135,14 @@ class FingerprintTree():
 
     #takes raw comma'd stamp ie "A,C#,E"
     def superstrings(self, public_stamp):
+
         stamp = public_stamp.split(",")
         stamp = self.replace_sharps(stamp)
         ##now we have the normalized "ATE" stamp
         ##we should sort it so that people can check notes out of order
-        stamp = "".join(sorted(stamp))
+        print(stamp)
+        stamp = "".join(sorted(stamp, key = FingerprintTree.get_value))
+        print(stamp)
 
 
         superstrings = []
@@ -140,7 +175,7 @@ class FingerprintTree():
 
         ##now we have the normalized "ATE" stamp
         ##we should sort it so that people can check notes out of order
-        stamp = "".join(sorted(stamp))
+        stamp = "".join(sorted(stamp, key = FingerprintTree.get_value))
 
         stamps = []
         for superstring in self.stamps_from_suffix(stamp):
@@ -161,9 +196,10 @@ class FingerprintTree():
     def stamps_from_suffix(self, y):
         #y = FingerprintTree.replace_sharps(y)
         y_input = y
-        node = self.tree.root
+        #node = self.tree.root
+        node = self.root
         while True:
-            edge = self.tree._edgeLabel(node, node.parent)
+            edge = self._edgeLabel(node, node.parent)
             if edge.startswith(y):
                 break
             else:
@@ -186,7 +222,7 @@ class FingerprintTree():
         return (start, end)
     #get the string at coordinates
     def stamp_from_coordinates(self, coords):
-        return self.tree.word[coords[0] : coords[1]]
+        return self.word[coords[0] : coords[1]]
 
     def full_stamp_from_index(self, index):
         coords = self.coordinates_from_index(index)
@@ -195,7 +231,7 @@ class FingerprintTree():
 
     def get_beginning(self, index):
         #no footprint would be more than 12 characters in length, and we just want to scan a small part
-        word = self.tree.word[index - 12 : index]
+        word = self.word[index - 12 : index]
         #reverse it so we can trawl it backwards
         word = word[::-1]
 
@@ -211,7 +247,7 @@ class FingerprintTree():
     def get_end(self, index):
 
         #no footprint would be more than 12 characters in length, and we just want to scan a small part
-        word = self.tree.word[index:index + 12]
+        word = self.word[index:index + 12]
 
         i = 0
         for char in word:
@@ -233,9 +269,10 @@ class FingerprintTree():
 ft = FingerprintTree()
 
 #### get all the stamps that have suffix
-sfs = ft.stamps_at_suffix("A,C,E")
-print("\n All Stamps at A,C,E: ", sfs)
+sfs = ft.stamps_at_suffix("G,B,C#,E")
+print("\n All Stamps at C,E,G: ", sfs)
 
 #### get all stamps that are superstrings of suffix
-superstrings = ft.superstrings("E,A,C")
-print("\n All Super Strings of A,C,E :", superstrings)
+superstrings = ft.superstrings("A")
+print("\n \n \n All Super Strings of C#,E,G :", superstrings)
+
