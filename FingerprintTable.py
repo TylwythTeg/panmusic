@@ -97,9 +97,8 @@ print("\n All Stamps at G,B,C#,E: ", sfs)
 sfs = ft.tree.stamps_at_suffix("A,B,C#,D,E,F#,G#")
 print("\n \n All Stamps at A,B,C#,D,E,F#,G#: ", sfs)
 
-fingerprint = ft.fingerprints["A,B,C#,D,E,F#,G#"]
-#fingerprint = ft.retreieve("A,B,C#,D,E,F#,G#")
-#print chords
+fingerprint = ft.retrieve("A,B,C#,D,E,F#,G#")
+
 print("\n Chords:")
 for chord in fingerprint.chords:
     print(chord)
