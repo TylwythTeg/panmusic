@@ -4,7 +4,17 @@ from Chord import Chord
 class FingerprintTree(STree):
 
     @staticmethod
+    ### Replace sharps in a stamp.
+    ### This method takes either a comma separated string ("A#,B,C")
+    ###         Or a list (["A#", "B", "C"])
+    ###     And then converts the sharps to single characters
+    ### Returns a string
     def replace_sharps(string):
+        #if we get a comma separated str, turn it into a list so that we can identify Sharp notes
+        # NOTE: if this string is not comma separated this will not work.
+        if isinstance(string, str):
+            string = string.split(",")
+
         normalized = ""
         for note in string:
             normalized += FingerprintTree.normalize_note(note)
