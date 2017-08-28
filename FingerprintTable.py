@@ -167,3 +167,9 @@ for stamp, fingerprint in ft.fingerprints.items():
 
 sfs = ft.tree.stamps_at_suffix("B")
 print("\n \n All Stamps at B:", len(sfs))
+
+
+## Yeah I think the suffix tree is a bust
+## we can use unordered sets as the fingerprint table dictionary keys
+## and just check if.subbset() at O(N) time
+## then we can sort on some hierarchy later
