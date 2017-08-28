@@ -180,7 +180,6 @@ class FingerprintTree(STree):
 
 
 
-        return self.stamps_from_suffix(stamp)
     
     ### internal function that takes raw stamp ("ATE") and gets all valid stamps that live there
     def stamps_from_suffix(self, y):

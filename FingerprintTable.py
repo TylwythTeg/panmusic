@@ -17,6 +17,13 @@ class FingerprintTable():
 
     ####### Returns self.fingerprints[stamp] or None if it is not found
     def retrieve(self, stamp):
+        ################# Sort this stamp
+         # Turn the comma separated note strings into a list of note strings
+        stamp = stamp.split(",")
+        ## We should sort it so that people can check notes out of order
+        stamp = ",".join(sorted(stamp, key = FingerprintTree.get_value))
+
+
         return self.fingerprints.get(stamp, None)
 
     ####### Adds all fingerprints from chords, and adds those chords to those fingerprints
@@ -37,7 +44,7 @@ class FingerprintTable():
     def add_scales(self):
         for scale in Scale.all():
             #if fingerprint exists, get current fingerprint to modify
-            print(scale.stamp)
+            #print(scale.stamp)
             if self.fingerprint(scale.stamp):
                 fingerprint = self.fingerprints[scale.stamp]
                 fingerprint.add_scale(scale)
@@ -54,6 +61,16 @@ class FingerprintTable():
         # Do we even need to do this? Would STree take a dictionary fine? Look into that
         stamp_list = [FingerprintTree.replace_sharps(stamp) for stamp in self.fingerprints.keys()]
         self.tree = FingerprintTree(stamp_list)
+
+
+
+    # returns a list of fingerprint objects where their stamps are superstrings of input: fingerprint.stamp
+    # NOTE: maybe take a pure stamp as well instead of a fingerprint object?
+    def fingerprint_extensions(self, fingerprint):
+        superstrings = self.tree.superstrings(fingerprint.stamp)
+        print("\n \t superstrings", superstrings)
+        fingerprints = [self.retrieve(superstring) for superstring in superstrings]
+        return fingerprints
 
 
     def __init__(self):
@@ -94,10 +111,11 @@ print("\n All Stamps at G,B,C#,E: ", sfs)
 
 
 ## A Major Scale
-sfs = ft.tree.stamps_at_suffix("A,B,C#,D,E,F#,G#")
-print("\n \n All Stamps at A,B,C#,D,E,F#,G#: ", sfs)
+sfs = ft.tree.stamps_at_suffix("E,G,B")
+print("\n \n All Stamps at E,G,B: ", sfs)
 
-fingerprint = ft.retrieve("A,B,C#,D,E,F#,G#")
+fingerprint = ft.retrieve("E,G,B,D")
+print(fingerprint.stamp)
 
 print("\n Chords:")
 for chord in fingerprint.chords:
@@ -116,8 +134,13 @@ for scale in fingerprint.scales:
 
 
 #### get all stamps that are superstrings of suffix
-superstrings = ft.tree.superstrings("E,G")
-print("\n \n \n All Super Strings of E,G :", superstrings)
+superstrings = ft.tree.superstrings("E,G,B")
+print("\n \n \n All Super Strings of E,G,B :", superstrings)
+
+fp = ft.retrieve("E,G,B")
+super_prints = ft.fingerprint_extensions(fp)
+for fingerprint in super_prints:
+    print("\n", fingerprint.stamp)
 
 sfs = ft.tree.stamps_at_suffix("B,A,E")
 print("\n \n All Stamps at B,A,E: ", sfs)
@@ -133,3 +156,14 @@ for stamp, fingerprint in ft.fingerprints.items():
         print("\n \t ", chord.name)
         print("\n \t ", chord.notes)
 '''
+
+
+
+#### I just relaized FingerprintTree is not working the way i thought, because 
+
+#### superstrings and stamps_at_suffix wont return a match from B,E,G (E Minor) to B,D,E,G (Em7)
+
+#### So I think we should get matches from B, then eliminate anything without an E and G and etc
+
+sfs = ft.tree.stamps_at_suffix("B")
+print("\n \n All Stamps at B:", len(sfs))
