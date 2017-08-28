@@ -1,16 +1,23 @@
 from Chord import *
 from Note import *
+from Scale import Scale
 
 class Fingerprint():
 
-    def add_chord(self,chord):
+    def add_chord(self, chord):
         if chord not in self.chords:
             self.chords.append(chord)
+            
+    def add_scale(self, scale):
+        if scale not in self.scales:
+            self.scales.append(scale)
+
 
 
 
     def __init__(self, stamp):
         self.chords = []
+        self.scales = []
         if isinstance(stamp, Chord):
             self.id = stamp.fingerprint
             self.stamp = stamp.stamp

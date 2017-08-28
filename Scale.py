@@ -68,7 +68,7 @@ class Scale():
             #"Locrian bb3 bb7": Locrianbb3bb7,
 
             
-            "Custom Scale": CustomScale
+            #"Custom Scale": CustomScale
         }
 
         if all():
@@ -111,43 +111,34 @@ class Scale():
         return dict
     ############### Dict stuff ####################
 
+    ############### new stamp ##################
+    def set_stamp(self):
+        #### TODO: If custom chord, we need to order this series first
+        ##
+        #
+
+        notes = self.notes
+
+        #convert to list of values (0-11) and sort
+        notes = [note.value for note in notes]
+        notes = sorted(notes)
+
+        #convert to list of strings representing notes in order from A-G#
+        notes = [str(Note(note)) for note in notes]
 
 
-    ############### Fingerprints ####################
-    def set_fingerprint(self):
-        #print("hyeyseyseyes \n \n sdfsdf")
-        self.fingerprint = frozenset(self.notes)
+        #convert list of strings into one string separated by comma such as "B,E,G"
+        self.stamp = ",".join(notes)
 
-    #global / static
-    #add a chord to the Chord.fingerprints dictionary
-    #Note: looks like I can reuse this for Scale objects
-    def add_to_fingerprints(scale):
-        #print("sdf33333" , scale.name)
-        if scale.fingerprint not in Scale.fingerprints:
-            Scale.fingerprints[scale.fingerprint] = [scale]
-        else:
-            Scale.fingerprints[scale.fingerprint].append(scale)
-
-
-    #global / static 
-    #Group all chords under fingerprints under Chord.fingerprints
-    def set_fingerprints():
-        Scale.fingerprints = {}
-
-        scales = Scale.factory()
-
-        for key,scale in scales.items():
-
-            #put this in some kind of all_roots function
-            for root in Note:
-                Scale.add_to_fingerprints(scale(root))
+    ############### new stamp ##################
 
 
     def all():
-        for scale in Scale.factory():
-            #print("hey")
-            pass
-    ############### Fingerprints ####################
+        scales = []
+        for key, scale in Scale.factory().items():
+            for root in Note:
+                scales.append(scale(root))
+        return scales
 
     def from_chord(chord):
         scales = []
@@ -175,7 +166,7 @@ class Scale():
     ############## Triads ##############
     def generate_triads(self, root):
 
-        self.set_fingerprint()
+        self.set_stamp()
         
         triads = []
 
@@ -962,7 +953,7 @@ class CustomScale(Scale):
 
 
         
-Scale.set_fingerprints()
+#Scale.set_fingerprints()
         
 #scl = PhrygianScale(Note.E)
 #print(PhrygianScale(Note.E).notes)

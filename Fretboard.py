@@ -6,10 +6,14 @@ class Tuning (Enum):
     DROP_D = [Note.D, Note.A, Note.D, Note.G, Note.B, Note.E]
     DROP_C = [Note.C, Note.G, Note.C, Note.F, Note.A, Note.D]
 
+    ## One-off custom
+    CUSTOM = [Note.D, Note.A, Note.D, Note.FSHARP, Note.B, Note.D]
+
 
 
 class Fretboard():
     tuning = Tuning.STANDARD
+    #tuning = Tuning.CUSTOM
     max_frets = 12
 
     def __init__(self):

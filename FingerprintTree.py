@@ -88,24 +88,7 @@ class FingerprintTree(STree):
             }
             return values.get(char)
 
-    def __init__(self):
-
-        stamp_list = []
-        #####Chord Fingerprints
-        for chord in Chord.all():
-            #print(chord.notes, chord.name)
-            stamp = chord.stamp
-            #get a list of the note strings
-            stamp = stamp.split(",")
-            #replace sharps with single-char equivalents
-            stamp = FingerprintTree.replace_sharps(stamp)
-
-            if stamp not in stamp_list:
-                stamp_list.append(stamp)
-
-        #
-
-        
+    def __init__(self, stamp_list):
 
         #self.tree = STree(stamp_list)
         super().__init__(stamp_list)
@@ -262,14 +245,18 @@ class FingerprintTree(STree):
 
 
 
-
+'''
 ft = FingerprintTree()
 
 #### get all the stamps that have suffix
 sfs = ft.stamps_at_suffix("G,B,C#,E")
-print("\n All Stamps at C,E,G: ", sfs)
+print("\n All Stamps at G,B,C#,E: ", sfs)
+
+sfs = ft.stamps_at_suffix("C,E,G")
+print("\n \n All Stamps at C,E,G: ", sfs)
 
 #### get all stamps that are superstrings of suffix
 superstrings = ft.superstrings("E,G,C#")
 print("\n \n \n All Super Strings of C#,E,G :", superstrings)
+'''
 
