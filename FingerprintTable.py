@@ -7,7 +7,6 @@ from FingerprintTree import FingerprintTree
 class FingerprintTable():
     chords = []
     scales = []
-    tree = None
 
     fingerprints = {}
 
@@ -16,8 +15,14 @@ class FingerprintTable():
         return self.fingerprints.get(stamp, None) is not None
 
     ####### Returns self.fingerprints[stamp] or None if it is not found
-    ####### retrieve("A,C#,E")
+    ####### Useage:
+    #######     retrieve("A,C#,E")
+    #######     retrieve(frozenset(Note.A, Note.CSHARP, Note.E))
     def retrieve(self, stamp):
+        if isinstance(stamp, frozenset):
+            return self.fingerprints.get(stamp, None)
+
+
         # turn comma separated note strings into a list of note strings
         note_list = stamp.split(",")
 
@@ -58,29 +63,19 @@ class FingerprintTable():
                 self.fingerprints[scale.id].add_scale(scale)
 
 
-    ####### Adds the suffix tree that we use to determine relationships and related notes
-    def add_tree(self):
-        # Build list from fingerprint keys (with replaced sharps)
-        # Do we even need to do this? Would STree take a dictionary fine? Look into that
-        stamp_list = [FingerprintTree.replace_sharps(stamp) for stamp in self.fingerprints.keys()]
-        self.tree = FingerprintTree(stamp_list)
-
-
-
-    # returns a list of fingerprint objects where their stamps are superstrings of input: fingerprint.stamp
-    # NOTE: maybe take a pure stamp as well instead of a fingerprint object?
+    
+    ### from fingerprint object, get a list of fingerprint extensions from a fingerprint
     def fingerprint_extensions(self, fingerprint):
-        superstrings = self.tree.superstrings(fingerprint.stamp)
-        print("\n \t superstrings", superstrings)
-        fingerprints = [self.retrieve(superstring) for superstring in superstrings]
-        return fingerprints
+        extensions = []
+        for obj in self.fingerprints:
+            if fingerprint.id.issubset(obj) and fingerprint.id != obj:
+                extensions.append(self.retrieve(obj))
+        return extensions
 
 
     def __init__(self):
         self.add_chords()
         self.add_scales()
-
-        #self.add_tree()
 
         
 
@@ -91,6 +86,23 @@ class FingerprintTable():
 ft = FingerprintTable()
 
 print("----------",ft.retrieve("E,B,A").chords)
+
+g = ft.retrieve("G,B,D")
+print("----------RETRIEVE G,B,D EXTENSIONS----------")
+
+print("Length: ",len(ft.fingerprint_extensions(g)))
+
+for fingerprint in ft.fingerprint_extensions(g):
+    print("\nFingerprint: ", fingerprint.stamp)
+
+    print("\n \tChords:")
+    for chord in fingerprint.chords:
+        print("\n \t \t",chord.name)
+    print("\n \tScales:")
+    for scale in fingerprint.scales:
+        print("\n \t \t",scale.name)
+    
+
 '''
 from Note import Note
 chord = Chord.create(triad = "Major", root = Note.A)
