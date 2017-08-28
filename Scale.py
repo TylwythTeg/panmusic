@@ -130,6 +130,9 @@ class Scale():
         #convert list of strings into one string separated by comma such as "B,E,G"
         self.stamp = ",".join(notes)
 
+    def set_id(self):
+        self.id = frozenset(self.notes)
+
     ############### new stamp ##################
 
 
@@ -167,6 +170,7 @@ class Scale():
     def generate_triads(self, root):
 
         self.set_stamp()
+        self.set_id()
         
         triads = []
 

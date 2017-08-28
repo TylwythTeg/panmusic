@@ -16,12 +16,15 @@ class FingerprintTable():
         return self.fingerprints.get(stamp, None) is not None
 
     ####### Returns self.fingerprints[stamp] or None if it is not found
+    ####### retrieve("A,C#,E")
     def retrieve(self, stamp):
-        ################# Sort this stamp
-         # Turn the comma separated note strings into a list of note strings
-        stamp = stamp.split(",")
-        ## We should sort it so that people can check notes out of order
-        stamp = ",".join(sorted(stamp, key = FingerprintTree.get_value))
+        # turn comma separated note strings into a list of note strings
+        note_list = stamp.split(",")
+
+        # these are strings so conver the strings in the list to notes
+        note_list = [Note.from_string(note) for note in note_list]
+        # make a hashable frozen set to retrieve from dictionary
+        stamp = frozenset(note_list)
 
 
         return self.fingerprints.get(stamp, None)
@@ -31,28 +34,28 @@ class FingerprintTable():
         for chord in Chord.all():
             
             #if fingerprint exists, get current fingerprint to modify
-            if self.fingerprint(chord.stamp):
-                fingerprint = self.fingerprints[chord.stamp]
+            if self.fingerprint(chord.id):
+                fingerprint = self.fingerprints[chord.id]
                 fingerprint.add_chord(chord)
 
             #else create new fingerprint
             else:
-                self.fingerprints[chord.stamp] = Fingerprint(chord.stamp)
-                self.fingerprints[chord.stamp].add_chord(chord)
+                self.fingerprints[chord.id] = Fingerprint(chord.stamp)
+                self.fingerprints[chord.id].add_chord(chord)
 
     ####### Adds all fingerprints from scales, and adds those scales to those fingerprints
     def add_scales(self):
         for scale in Scale.all():
             #if fingerprint exists, get current fingerprint to modify
             #print(scale.stamp)
-            if self.fingerprint(scale.stamp):
-                fingerprint = self.fingerprints[scale.stamp]
+            if self.fingerprint(scale.id):
+                fingerprint = self.fingerprints[scale.id]
                 fingerprint.add_scale(scale)
 
             #else create new fingerprint
             else:
-                self.fingerprints[scale.stamp] = Fingerprint(scale.stamp)
-                self.fingerprints[scale.stamp].add_scale(scale)
+                self.fingerprints[scale.id] = Fingerprint(scale.stamp)
+                self.fingerprints[scale.id].add_scale(scale)
 
 
     ####### Adds the suffix tree that we use to determine relationships and related notes
@@ -77,7 +80,7 @@ class FingerprintTable():
         self.add_chords()
         self.add_scales()
 
-        self.add_tree()
+        #self.add_tree()
 
         
 
@@ -87,8 +90,8 @@ class FingerprintTable():
 
 ft = FingerprintTable()
 
-print("----------",ft.retrieve("A,B,E").chords)
-
+print("----------",ft.retrieve("E,B,A").chords)
+'''
 from Note import Note
 chord = Chord.create(triad = "Major", root = Note.A)
 
@@ -148,7 +151,7 @@ print("\n \n All Stamps at B,A,E: ", sfs)
 
 #if table.fingerprint("A,C,E"):
 
-
+'''
 '''
 for stamp, fingerprint in ft.fingerprints.items():
     print("\n Chords for notes:", fingerprint.stamp)
@@ -158,7 +161,7 @@ for stamp, fingerprint in ft.fingerprints.items():
 '''
 
 
-
+'''
 #### I just relaized FingerprintTree is not working the way i thought, because 
 
 #### superstrings and stamps_at_suffix wont return a match from B,E,G (E Minor) to B,D,E,G (Em7)
@@ -168,7 +171,7 @@ for stamp, fingerprint in ft.fingerprints.items():
 sfs = ft.tree.stamps_at_suffix("B")
 print("\n \n All Stamps at B:", len(sfs))
 
-
+'''
 ## Yeah I think the suffix tree is a bust
 ## we can use unordered sets as the fingerprint table dictionary keys
 ## and just check if.subbset() at O(N) time

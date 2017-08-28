@@ -85,7 +85,9 @@ class Chord():
         #### TODO: If custom chord, we need to order this series first
         ##
         #
+        self.set_id()
 
+        
         notes = self.notes
 
         #convert to list of values (0-11) and sort
@@ -98,6 +100,10 @@ class Chord():
 
         #convert list of strings into one string separated by comma such as "B,E,G"
         self.stamp = ",".join(notes)
+
+
+    def set_id(self):
+        self.id = frozenset(self.notes)
 
     ############### new stamp ##################
 
@@ -148,6 +154,7 @@ class Chord():
             self.root = root
         
         self.set_stamp()
+        self.set_id()
 
     def generate_notes(self):
         self.notes = [self.root]
