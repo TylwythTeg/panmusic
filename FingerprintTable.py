@@ -87,7 +87,7 @@ ft = FingerprintTable()
 
 print("----------",ft.retrieve("E,B,A").chords)
 
-g = ft.retrieve("G,B,D")
+g = ft.retrieve("F#,A,C#")
 print("----------RETRIEVE G,B,D EXTENSIONS----------")
 
 print("Length: ",len(ft.fingerprint_extensions(g)))

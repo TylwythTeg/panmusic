@@ -1,4 +1,5 @@
 from Note import Note
+from Note import Interval
 from Chord import *
 import sys
 import json
@@ -242,19 +243,27 @@ class Scale():
         #print("\n \n \n \n \n \n YESSS print it:", self, note, note in self.notes)
         return note in self.notes
     
-
-
+#using this to bundle all scale constructors together
+def scale_init(self,root):
+    self.name = root.__str__() + self.names[0]
+    self.root = root
+    self.generate_notes()
+    self.add_triads()
+    self.generate_tetrads()
 
 #These are the types, direct children of Scale, as Chord they are based on # of notes
 class Heptatonic(Scale):
     # for matching a note to an interval in regards to the scale, with dictionary
     def interval_dict(self):
-        
-        notes = map(str, self.notes[1:])
-        intervals =  map (str, self.intervals)
+        # at index [1:] before the color reasons
+        notes = map(str, self.notes)
+        #have unison at front for color reaosns
+        these_intervals = [Interval.UNISON] + self.intervals
+        intervals =  map (str, these_intervals)
 
         dictionary = dict(zip(notes, intervals ))
         #print(" \n \n \t \t HEY ", dictionary)
+        print(dictionary);
         return dictionary
 
 
@@ -274,13 +283,13 @@ class IonianScale(Diatonic):
         Interval.MAJOR_SIXTH,
         Interval.MAJOR_SEVENTH
     ]
+
+    names = [
+        "Major (Ionian) Scale",
+    ]
+
     def __init__(self, root):
-        self.name = root.__str__() + " Major (Ionian) Scale"
-        self.root = root
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
-        #print("--------------",self.tetrads)
+        scale_init(self,root)
 
 class DorianScale(Diatonic):
     intervals = [
@@ -291,12 +300,13 @@ class DorianScale(Diatonic):
         Interval.MAJOR_SIXTH,
         Interval.MINOR_SEVENTH
     ]
+
+    names = [
+        "Dorian Scale",
+    ]
+
     def __init__(self, root):
-        self.name = root.__str__() + " Dorian Scale"
-        self.root = root
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
 
 class PhrygianScale(Diatonic):
     intervals = [
@@ -307,12 +317,12 @@ class PhrygianScale(Diatonic):
         Interval.MINOR_SIXTH,
         Interval.MINOR_SEVENTH
     ]
+
+    names = [
+        "Phrygian Scale",
+    ]
     def __init__(self, root):
-        self.name = root.__str__() + " Phrygian Scale"
-        self.root = root
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
 
 class LydianScale(Diatonic):
     intervals = [
@@ -323,12 +333,13 @@ class LydianScale(Diatonic):
         Interval.MAJOR_SIXTH,
         Interval.MAJOR_SEVENTH
     ]
+
+    names = [
+        "Lydian Scale",
+    ]
+
     def __init__(self, root):
-        self.name = root.__str__() + " Lydian Scale"
-        self.root = root
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
 
 class MixolydianScale(Diatonic):
     intervals = [
@@ -339,12 +350,11 @@ class MixolydianScale(Diatonic):
         Interval.MAJOR_SIXTH,
         Interval.MINOR_SEVENTH
     ]
+    names = [
+        "Mixolydian Scale",
+    ]
     def __init__(self, root):
-        self.name = root.__str__() + " Mixolydian Scale"
-        self.root = root
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
 
 class AeolianScale(Diatonic):
     intervals = [
@@ -355,12 +365,11 @@ class AeolianScale(Diatonic):
         Interval.MINOR_SIXTH,
         Interval.MINOR_SEVENTH
     ]
+    names = [
+        "Aeolian (Natural Minor) Scale",
+    ]
     def __init__(self, root):
-        self.name = root.__str__() + " Aeolian (Natural Minor) Scale"
-        self.root = root
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
 
 class LocrianScale(Diatonic):
     intervals = [
@@ -371,12 +380,11 @@ class LocrianScale(Diatonic):
         Interval.MINOR_SIXTH,
         Interval.MINOR_SEVENTH
     ]
+    names = [
+        "Locrian Scale",
+    ]
     def __init__(self, root):
-        self.name = root.__str__() + " Locrian Scale"
-        self.root = root
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
         
 
 
@@ -394,19 +402,16 @@ class MelodicMinor(MelodicMinorMode):
         Interval.MAJOR_SIXTH,
         Interval.MAJOR_SEVENTH
     ]
+    names = [
+        "Melodic Minor",
+        "Ascending Melodic Minor",
+        "Jazz Melodic Minor Scale"
+    ]
     def __init__(self, root):
-        self.name = root.__str__() + " Melodic Minor"
-        self.root = root
+        scale_init(self,root)
 
 
-        self.names = [
-            "Melodic Minor",
-            "Ascending Melodic Minor",
-            "Jazz Melodic Minor Scale"
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        
 
 
 class Dorianb2(MelodicMinorMode):
@@ -418,18 +423,15 @@ class Dorianb2(MelodicMinorMode):
         Interval.MAJOR_SIXTH,
         Interval.MINOR_SEVENTH
     ]
+    names = [
+        "Dorian b2",
+        "Phrygian Natural 6",
+        "Javanese",
+        "Phrygidorian"
+    ]
     def __init__(self, root):
-        self.name = root.__str__() + " Dorian b2"
-        self.root = root
-        self.names = [
-            "Dorian b2",
-            "Phrygian Natural 6",
-            "Javanese",
-            "Phrygidorian"
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
+        
 
 class LydianAugmented(MelodicMinorMode):
     intervals = [
@@ -440,16 +442,13 @@ class LydianAugmented(MelodicMinorMode):
         Interval.MAJOR_SIXTH,
         Interval.MAJOR_SEVENTH
     ]
+    names = [
+        "Lydian Augmented",
+        "Lydian #5",
+    ]
     def __init__(self, root):
-        self.name = root.__str__() + " Lydian Augmented"
-        self.root = root
-        self.names = [
-            "Lydian Augmented",
-            "Lydian #5",
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
+        
 
 class LydianDominant(MelodicMinorMode):
     intervals = [
@@ -460,20 +459,17 @@ class LydianDominant(MelodicMinorMode):
         Interval.MAJOR_SIXTH,
         Interval.MINOR_SEVENTH
     ]
+    names = [
+        "Lydian Dominant",
+        "Lydian b7",
+        "Acoustic",
+        "Mixolydian #4",
+        "Overtone",
+        "Lydomyxian"
+    ]
     def __init__(self, root):
-        self.name = root.__str__() + " Lydian Dominant"
-        self.root = root
-        self.names = [
-            "Lydian Dominant",
-            "Lydian b7",
-            "Acoustic",
-            "Mixolydian #4",
-            "Overtone",
-            "Lydomyxian"
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
+        
 
 class MelodicMajor(MelodicMinorMode):
     intervals = [
@@ -484,22 +480,19 @@ class MelodicMajor(MelodicMinorMode):
         Interval.MINOR_SIXTH,
         Interval.MINOR_SEVENTH
     ]
+    names = [
+        "Melodic Major",
+        "Mixolydian b6",
+        "Fifth Mode of Melodic Major",
+        "Jazz Minor",
+        "Myxaeolian",
+        "Aeolian Dominant",
+        "Mixolydian b13",
+        "Hindu"
+    ] 
     def __init__(self, root):
-        self.name = root.__str__() + " Melodic Major"
-        self.root = root
-        self.names = [
-            "Melodic Major",
-            "Mixolydian b6",
-            "Fifth Mode of Melodic Major",
-            "Jazz Minor",
-            "Myxaeolian",
-            "Aeolian Dominant",
-            "Mixolydian b13",
-            "Hindu"
-        ] 
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
+        
 
 class HalfDiminished(MelodicMinorMode):
     intervals = [
@@ -510,18 +503,15 @@ class HalfDiminished(MelodicMinorMode):
         Interval.MINOR_SIXTH,
         Interval.MINOR_SEVENTH
     ]
+    names = [
+        "Half Diminished",
+        "Locrian Natural 2",
+        "Aeolocrian",
+        "Aeolian b5",
+    ] 
     def __init__(self, root):
-        self.name = root.__str__() + " Half diminished"
-        self.root = root
-        self.names = [
-            "Half Diminished",
-            "Locrian Natural 2",
-            "Aeolocrian",
-            "Aeolian b5",
-        ] 
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
+        
 
 class SuperLocrian(MelodicMinorMode):
     intervals = [
@@ -532,20 +522,14 @@ class SuperLocrian(MelodicMinorMode):
         Interval.MINOR_SIXTH,
         Interval.MINOR_SEVENTH
     ]
+    names = [
+        "Super Locrian",
+        "Altered",
+        "Altered Dominant",
+    ] 
     def __init__(self, root):
-        self.name = root.__str__() + " Super Locrian"
-        self.root = root
-        self.names = [
-            "Super Locrian",
-            "Altered",
-            "Altered Dominant",
-        ] 
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
-
-
-
+        scale_init(self,root)
+        
 
 #Harmonic Series
 class Harmonic(Heptatonic):
@@ -563,13 +547,13 @@ class HarmonicMajor(Harmonic):
         Interval.MAJOR_SEVENTH
     ]
 
+    names = [
+        "Harmonic Major",
+    ]
+
 
     def __init__(self, root):
-        self.name = root.__str__() + " Harmonic Major"
-        self.root = root
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
 
 
 #Harmonic Major Modes
@@ -593,16 +577,13 @@ class HarmonicMajor(HarmonicMajorMode):
         Interval.MAJOR_SEVENTH
     ]
 
+    names = [
+        "Harmonic Major",
+    ]
 
     def __init__(self, root):
-        self.name = root.__str__() + " Harmonic Major"
-        self.root = root
-        self.names = [
-            "Harmonic Major",
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
+        
 
 class Dorianb5(HarmonicMajorMode):
     intervals = [
@@ -614,17 +595,14 @@ class Dorianb5(HarmonicMajorMode):
         Interval.MINOR_SEVENTH
     ]
 
+    names = [
+        "Dorian b5",
+        "Locrian #2",
+    ]
 
     def __init__(self, root):
-        self.name = root.__str__() + " Dorian b5"
-        self.root = root
-        self.names = [
-            "Dorian b5",
-            "Locrian #2",
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
+        
 
 class Phrygianb4(HarmonicMajorMode):
     intervals = [
@@ -636,18 +614,14 @@ class Phrygianb4(HarmonicMajorMode):
         Interval.MINOR_SEVENTH
     ]
 
-
+    names = [
+        "Phrygian b4",
+        "Super Phrygian",
+        "Super Locrian Natural 5",
+    ]
     def __init__(self, root):
-        self.name = root.__str__() + " Phrygian b4"
-        self.root = root
-        self.names = [
-            "Phrygian b4",
-            "Super Phrygian",
-            "Super Locrian Natural 5",
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
+        
 
 class LydianDiminished(HarmonicMajorMode):
     intervals = [
@@ -658,21 +632,15 @@ class LydianDiminished(HarmonicMajorMode):
         Interval.MAJOR_SIXTH,
         Interval.MAJOR_SEVENTH
     ]
-
-
-    def __init__(self, root):
-        self.name = root.__str__() + " Lydian Diminished"
-        self.root = root
-        self.names = [
+    names = [
             "Lydian Diminished",
             "Lydian Diminished 7",
             "Locrian bb7",
-            
         ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
 
+    def __init__(self, root):
+        scale_init(self,root)
+        
 class Mixolydianb2(HarmonicMajorMode):
     intervals = [
         Interval.MINOR_SECOND,
@@ -683,18 +651,14 @@ class Mixolydianb2(HarmonicMajorMode):
         Interval.MINOR_SEVENTH
     ]
 
+    names = [
+        "Mixolydian b2",
+        "Mixolydian b9",
+    ]
 
     def __init__(self, root):
-        self.name = root.__str__() + " Mixolydian b2"
-        self.root = root
-        self.names = [
-            "Mixolydian b2",
-            "Mixolydian b9",
-            
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
+        
 
 class LydianAugmentedSharp2(HarmonicMajorMode):
     intervals = [
@@ -705,20 +669,14 @@ class LydianAugmentedSharp2(HarmonicMajorMode):
         Interval.MAJOR_SIXTH,
         Interval.MAJOR_SEVENTH
     ]
-
+    names = [
+        "Lydian Augmented #2",
+        "Lydian #2 #5",
+    ]
 
     def __init__(self, root):
-        self.name = root.__str__() + " Lydian Augmented #2"
-        self.root = root
-        self.names = [
-            "Lydian Augmented #2",
-            "Lydian #2 #5",
-            
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
-
+        scale_init(self,root)
+        
 class LocrianDiminished7(HarmonicMajorMode):
     intervals = [
         Interval.MINOR_SECOND,
@@ -729,17 +687,14 @@ class LocrianDiminished7(HarmonicMajorMode):
         Interval.MAJOR_SIXTH
     ]
 
+    names = [
+        "Locrian Diminished 7",
+        "Locrian bb7",
+    ]
 
     def __init__(self, root):
-        self.name = root.__str__() + " Locrian Diminished 7"
-        self.root = root
-        self.names = [
-            "Locrian Diminished 7",
-            "Locrian bb7",
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
+        
 
 #i
 class HarmonicMinor(HarmonicMinorMode):
@@ -752,20 +707,17 @@ class HarmonicMinor(HarmonicMinorMode):
         Interval.MAJOR_SEVENTH
     ]
 
+    names = [
+        "Harmonic Minor",
+        "Aeolian Major 7",
+        "Aeolian Natural 7"
+        "Melodic Minor b6",
+        "Mohammedan"
+    ]
 
     def __init__(self, root):
-        self.name = root.__str__() + " Harmonic Minor"
-        self.root = root
-        self.names = [
-            "Harmonic Minor",
-            "Aeolian Major 7",
-            "Aeolian Natural 7"
-            "Melodic Minor b6",
-            "Mohammedan"
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
+       
 
 ''' '''
 class LocrianSharp6(HarmonicMinorMode):
@@ -778,16 +730,12 @@ class LocrianSharp6(HarmonicMinorMode):
         Interval.MINOR_SEVENTH
     ]
 
+    names = [
+        "Locrian #6",
+    ]
 
     def __init__(self, root):
-        self.name = root.__str__() + " Locrian #6"
-        self.root = root
-        self.names = [
-            "Locrian #6",
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
 
 class IonianAugmented(HarmonicMinorMode):
     intervals = [
@@ -799,17 +747,14 @@ class IonianAugmented(HarmonicMinorMode):
         Interval.MAJOR_SEVENTH
     ]
 
-
-    def __init__(self, root):
-        self.name = root.__str__() + " Ionian Augmented"
-        self.root = root
-        self.names = [
+    names = [
             "Ionian Augmented",
             "Ionian #5",
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+    ]
+
+
+    def __init__(self, root):
+        scale_init(self,root)
 
 class Romainian(HarmonicMinorMode):
     intervals = [
@@ -821,11 +766,7 @@ class Romainian(HarmonicMinorMode):
         Interval.MINOR_SEVENTH
     ]
 
-
-    def __init__(self, root):
-        self.name = root.__str__() + " Romainian"
-        self.root = root
-        self.names = [
+    names = [
             "Romainian",
             "Romanian Minor",
             "Ukranian Dorian",
@@ -834,9 +775,10 @@ class Romainian(HarmonicMinorMode):
             "Altered Dorian",
             "Misheberakh"
         ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+
+
+    def __init__(self, root):
+        scale_init(self,root)
 
 #V
 class PhrygianDominant(HarmonicMinorMode):
@@ -849,22 +791,19 @@ class PhrygianDominant(HarmonicMinorMode):
         Interval.MINOR_SEVENTH
     ]
 
+    names = [
+        "Phrygian Dominant",
+        "Phrygian Major",
+        "Phrygian #3",
+        "Mixolydian b2 b6",
+        "Mixolydian b9 b13",
+        "Spanish Gipsy",
+        "Ahava Rabah"
+    ]
+
 
     def __init__(self, root):
-        self.name = root.__str__() + " Phrygian Dominant"
-        self.root = root
-        self.names = [
-            "Phrygian Dominant",
-            "Phrygian Major",
-            "Phrygian #3",
-            "Mixolydian b2 b6",
-            "Mixolydian b9 b13",
-            "Spanish Gipsy",
-            "Ahava Rabah"
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
 
 class LydianSharp2(HarmonicMinorMode):
     intervals = [
@@ -876,16 +815,13 @@ class LydianSharp2(HarmonicMinorMode):
         Interval.MAJOR_SEVENTH
     ]
 
+    names = [
+        "Lydian #2",
+    ]
+
 
     def __init__(self, root):
-        self.name = root.__str__() + " Lydian #2"
-        self.root = root
-        self.names = [
-            "Lydian #2",
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
 
 class UltraLocrian(HarmonicMinorMode):
     intervals = [
@@ -897,18 +833,15 @@ class UltraLocrian(HarmonicMinorMode):
         Interval.MAJOR_SIXTH
     ]
 
+    names = [
+        "Ultra Locrian",
+        "Super Locrian bb7",
+        "Super Locrian Diminished 7",
+    ]
+
 
     def __init__(self, root):
-        self.name = root.__str__() + " Ultra Locrian"
-        self.root = root
-        self.names = [
-            "Ultra Locrian",
-            "Super Locrian bb7",
-            "Super Locrian Diminished 7",
-        ]
-        self.generate_notes()
-        self.add_triads()
-        self.generate_tetrads()
+        scale_init(self,root)
 
 
 
@@ -932,7 +865,6 @@ class DoubleHarmonicMajor(Heptatonic):
 
 
 
-
 class CustomScale(Scale):
     intervals = [
         Interval.MAJOR_SECOND,
@@ -953,7 +885,7 @@ class CustomScale(Scale):
         self.generate_tetrads()
 
 
-        
+
 
 
         
